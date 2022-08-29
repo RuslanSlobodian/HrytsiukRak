@@ -1,26 +1,26 @@
-//Код програми 2.14. Демонстрація механізму використання покажчика на об'єкт
+// Код програми 2.14. Демонстрація механізму використання покажчика на об'єкт
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 
 using namespace std; 			// Використання стандартного простору імен
 
-class pClass { 			// Оголошення класового типу
-    int num;
+class MyClass { 			// Оголошення класового типу
+    int number;
 public:
-    void Set(int n) { num = n; }
-    void Show() { cout << "num= " << num << endl; }
+    void setNumber(int n) { number = n; }
+    void show() { cout << "num= " << number << endl; }
 };
 
-int main()
-{
-    pClass Obj, *p; 	// Створення об'єкта класу і покажчика на нього.
+int main() {
+    MyClass object;     // Створення об'єкта класу
+    MyClass * ptr;      // Створення вказівника на об'єкт класу MyClass
 
-    Obj.Set(1);  		// Отримуємо прямий доступ до об'єкта Obj.
-    Obj.Show();
+    object.setNumber(1);    // Отримуємо прямий доступ до об'єкта object
+    object.show();
 
-    p = &Obj;  // Присвоюємо покажчику p адресу об'єкта Obj.
-    p->Show(); // Отримуємо доступ до об'єкта Obj за допомогою покажчика.
+    ptr = &object;  // Присвоюємо покажчику p адресу об'єкта object
+    ptr->show();    // Отримуємо доступ до об'єкта object за допомогою покажчика
 
     //system("PAUSE");
     return EXIT_SUCCESS;

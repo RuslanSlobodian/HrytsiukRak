@@ -1,35 +1,36 @@
-//Код програми 2.4. Демонстрація механізму передачі конструктору двох параметрів
+// Код програми 2.4. Демонстрація механізму передачі конструктору двох параметрів
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 
 using namespace std; 			// Використання стандартного простору імен
 
-class widClass { 		       // Оголошення класового типу
+class MyClass { 		       // Оголошення класового типу
 private:
     int c, d;
 public:
-    widClass(int a, int b);  // Оголошення параметризованого конструктора
+    MyClass(int a, int b);  // Оголошення параметризованого конструктора
     void Show();
 };
-// Передаємо 2 аргументи конструктору widClass().
-widClass::widClass(int a, int b)
-{
-    c = a; d = b;
+
+// Передаємо два аргументи конструктору MyClass()
+MyClass::MyClass(int a, int b) {
+    c = a;
+    d = b;
     cout << "Об'єкт iнiцiалiзовано" << endl;
 }
 
-void widClass::Show()
-{
+void MyClass::Show() {
     cout << "c= " << c << "; d= " << d << endl;
 }
 
-int main()
-{
-    // Створення та ініціалізація двох об'єктів.
-    widClass ObjX(10, 20), ObjY(0, 0);
-    ObjX.Show();
-    ObjY.Show();
+int main() {
+    // Створення та ініціалізація двох об'єктів за допомогою параметризованого конструктора
+    MyClass objectX(10, 20);
+    MyClass objectY(0, 0);
+
+    objectX.Show();
+    objectY.Show();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

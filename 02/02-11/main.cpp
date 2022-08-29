@@ -1,47 +1,44 @@
-//Код програми 2.11. Демонстрація механізму організації масиву об'єктів
+// Код програми 2.11. Демонстрація механізму організації масиву об'єктів
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 
 using namespace std; 			// Використання стандартного простору імен
 
-enum resolution {low, medium, high};
+enum Resolution {low, medium, high};
 
-class displayClass {	 // Оголошення класового типу
+class DisplayClass {	 // Оголошення класового типу
     int width;
     int height;
-    resolution res;
+    Resolution res;
 public:
-    void Set(int w, int h) {width = w; height = h; }
-    void Get(int &w, int &h) {w = width; h = height; }
-    void Show(resolution r) {res = r; }
-    resolution getRes() {return res; }
+    void setWidthAndHeight(int w, int h) {width = w; height = h; }
+    void getWidthAndHeight(int &w, int &h) {w = width; h = height; }
+    void showResolution(Resolution r) {res = r; }
+    Resolution getResolution() {return res; }
 };
 
-char names[3][9] = { "Низький", "Середнiй", "Високий"};
+char names[3][12] = { "low", "medium", "high"};
 
-int main()
-{
-    displayClass Monitor[3];
+int main() {
+    DisplayClass monitors[3];
 
-    Monitor[0].Show(low);
-    Monitor[0].Set(640, 480);
+    monitors[0].showResolution(low);
+    monitors[0].setWidthAndHeight(640, 480);
 
-    Monitor[1].Show(medium);
-    Monitor[1].Set(800, 600);
-    Monitor[2].Show(high);
-    Monitor[2].Set(1600, 1200);
+    monitors[1].showResolution(medium);
+    monitors[1].setWidthAndHeight(800, 600);
+    monitors[2].showResolution(high);
+    monitors[2].setWidthAndHeight(1600, 1200);
 
     cout << "Можливi режими вiдображення даних: " << endl;
 
     int w, h;
-    for(int i=0; i<3; i++)
-    {
-        cout << names[Monitor[i].getRes()] << ": ";
-        Monitor[i].Get(w, h);
+    for(int i=0; i<3; i++) {
+        cout << names[monitors[i].getResolution()] << ": ";
+        monitors[i].getWidthAndHeight(w, h);
         cout << w << " x " << h << endl;
     }
-
 
     //system("PAUSE");
     return EXIT_SUCCESS;

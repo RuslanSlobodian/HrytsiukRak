@@ -5,7 +5,7 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class MyClass {		 // Оголошення класового типу
+class MyClass {                 // Оголошення класового типу
     int a;
     int b;
 public:
@@ -21,10 +21,10 @@ int main() {
         {MyClass(9, 10), MyClass(11, 12)},
         {MyClass(13, 14), MyClass(15, 16)}
     };
-    for(int i=0; i<4; i++)
+    for(int i = 0; i < 4; i++)
         for(int j=0; j<2; j++) {
-            cout << "array[" << i << "," << j << "] ==> a= ";
-            cout << array[i][j].getA() << "; b= ";
+            cout << "array[" << i << "," << j << "] ==> a = ";
+            cout << array[i][j].getA() << "; b = ";
             cout << array[i][j].getB() << endl;
         }
 

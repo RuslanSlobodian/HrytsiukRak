@@ -17,7 +17,8 @@ public:
 
 // Визначення конструктора
 MyClass::MyClass() {
-    a = 0; cout << "Об'єкт iнiцiалiзовано" << endl;
+    a = 0;
+    cout << "Об'єкт iнiцiалiзовано" << endl;
 }
 
 // Визначення деструктора
@@ -27,10 +28,10 @@ MyClass::~MyClass() {
 
 // Введення в об'єкт значення
 void MyClass::setData(double x, double y) {
-    double a1 = pow(x,1.3);
-    double a2 = pow(fabs(3.2*x - y),0.4);
-    double a3 = pow(pow(cos(a2),2),1./3);
-    a = a1+a3;
+    double a1 = pow(x, 1.3);
+    double a2 = pow(fabs(3.2 * x - y), 0.4);
+    double a3 = pow(pow(cos(a2), 2), 1.0 / 3);
+    a = a1 + a3;
 }
 
 // Виведення з об'єкта значення
@@ -46,8 +47,8 @@ int main() {
     double x = 2.6;
     double y = 7.1;
 
-    objectA.setData(x,y);
-    objectB.setData(x+y,y/x);
+    objectA.setData(x, y);
+    objectB.setData(x + y, y / x);
 
     cout << "Вмiст об'єкта objectA: " << objectA.getData() << endl;
     cout << "Вмiст об'єкта objectB: " << objectB.getData() << endl;

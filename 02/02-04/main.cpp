@@ -5,12 +5,12 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class MyClass { 		       // Оголошення класового типу
+class MyClass {                 // Оголошення класового типу
 private:
     int c, d;
 public:
-    MyClass(int a, int b);  // Оголошення параметризованого конструктора
-    void Show();
+    MyClass(int a, int b);      // Оголошення параметризованого конструктора
+    void show();
 };
 
 // Передаємо два аргументи конструктору MyClass()
@@ -20,8 +20,8 @@ MyClass::MyClass(int a, int b) {
     cout << "Об'єкт iнiцiалiзовано" << endl;
 }
 
-void MyClass::Show() {
-    cout << "c= " << c << "; d= " << d << endl;
+void MyClass::show() {
+    cout << "c = " << c << "; d = " << d << endl;
 }
 
 int main() {
@@ -29,8 +29,8 @@ int main() {
     MyClass objectX(10, 20);
     MyClass objectY(0, 0);
 
-    objectX.Show();
-    objectY.Show();
+    objectX.show();
+    objectY.show();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

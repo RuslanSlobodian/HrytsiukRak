@@ -1,48 +1,60 @@
-//Код програми 3.2. Демонстрація механізму використання "дружньої" функції для перевірки статусу кожного об'єкта
+// Код програми 3.2. Демонстрація механізму використання "дружньої" функції для перевірки статусу кожного об'єкта
 
-#include <iostream>		 		// Для потокового введення-виведення
+#include <iostream>             // Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 
 using namespace std; 			// Використання стандартного простору імен
 
-const int IDLE=0;
-const int INUSE=1;
+const int IDLE  = 0;            // IDLE, якщо повідомлення неактивне
+const int INUSE = 1;            // INUSE, якщо повідомлення виведене на екран
 
-class bClass; // Випереджувальне оголошення класу
-class aClass { // Оголошення класового типу
-    int status; // IDLE, якщо повідомлення неактивне
-    // INUSE, якщо повідомлення виведене на екран.
+class SecondClass;              // Випереджувальне оголошення класу
+
+class FirstClass {              // Оголошення класового типу
+    int status;                 // Статус повідомлення
 public:
-    void Set(int s) { status = s; }
-    friend int Put(aClass obi, bClass obj);
+    void setStatus(int s) {
+        status = s;
+    }
+    friend int checkStatus(FirstClass objectA, SecondClass objectB);
 };
 
-class bClass { // Оголошення класового типу
-    int status; // IDLE, якщо повідомлення неактивне
-    // INUSE, якщо повідомлення виведене на екран.
+class SecondClass {             // Оголошення класового типу
+    int status;                 // Статус повідомлення
 public:
-    void Set(int s) { status = s; }
-    friend int Put(aClass obi, bClass obj);
+    void setStatus(int s) { status = s; }
+    friend int checkStatus(FirstClass objectA, SecondClass objectB);
 };
 
-// Функція Put() - "друг" для класів aClass і bClass.
-int Put(aClass obi, bClass obj)
-{
-    if(obi.status || obj.status) return 0;
-    else return 1;
+// Функція checkStatus() - "друг" для класів FirstClass і SecondClass
+int checkStatus(FirstClass objectA, SecondClass objectB) {
+    if(objectA.status || objectB.status) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
-int main()
-{
-    aClass ObjX; // Створення об'єкта класу
-    bClass ObjY; // Створення об'єкта класу
-    ObjX.Set(IDLE); // IDLE = 0
-    ObjY.Set(IDLE);
-    if(Put(ObjX, ObjY)) cout << "Екран вiльний" << endl;
-    else cout << "Вiдображається повiдомлення" << endl;
-    ObjX.Set(INUSE); // INUSE = 1
-    if(Put(ObjX, ObjY)) cout << "Екран вiльний" << endl;
-    else cout << "Вiдображається повiдомлення" << endl;
+int main() {
+    FirstClass objectX;         // Створення об'єкта класу FirstClass
+    SecondClass objectY;        // Створення об'єкта класу SecondClass
+
+    objectY.setStatus(IDLE);    // IDLE = 0, повідомлення неактивне
+    objectY.setStatus(IDLE);    // IDLE = 0, повідомлення неактивне
+
+    if(checkStatus(objectX, objectY)) {
+        cout << "Екран вiльний" << endl;
+    } else {
+        cout << "Вiдображається повiдомлення" << endl;
+    }
+
+    objectY.setStatus(INUSE);   // INUSE = 1, повідомлення виведене на екран
+
+    if(checkStatus(objectX, objectY)) {
+        cout << "Екран вiльний" << endl;
+    } else {
+        cout << "Вiдображається повiдомлення" << endl;
+    }
 
     //system("PAUSE");
     return EXIT_SUCCESS;

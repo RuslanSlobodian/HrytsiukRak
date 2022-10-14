@@ -1,4 +1,4 @@
-//Код програми 3.5. Демонстрація механізму динамічної ініціалізації конструктора
+// Код програми 3.5. Демонстрація механізму динамічної ініціалізації конструктора
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
@@ -6,43 +6,60 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class timerClass { // Оголошення класового типу
+class TimerClass {              // Оголошення класового типу
     int s;
 public:
-    // Задавання секунд у вигляді рядка
-    timerClass(char *t) { s = atoi(t); }
+    // Задавання секунд у вигляді символьного рядка
+    TimerClass(char* str) {
+        s = atoi(str);
+    }
     // Задавання секунд у вигляді цілого числа
-    timerClass(int t) { s = t; }
+    TimerClass(int seconds) {
+        s = seconds;
+    }
     // Час, який задається в хвилинах і секундах
-    timerClass(int xv, int sec) { s = xv*60 + sec; }
+    TimerClass(int minutes, int seconds) {
+        s = minutes * 60 + seconds;
+    }
     // Час, який задається в годинах, хвилинах і секундах
-    timerClass(int hod, int xv, int sec) { s = 60*(hod*60 + xv) + sec; }
-    void Run(); // Таймер відліку часу
+    TimerClass(int hours, int minutes, int seconds) {
+        s = 60 * ( hours * 60 + minutes) + seconds;
+    }
+    void run();                 // Запуск таймера відліку часу
 };
-void timerClass::Run()
-{
+
+void TimerClass::run() {
     clock_t t1 = clock();
     while((clock()/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC)< s);
-    cout << "\a"; // Подання звукового сигналу
+    cout << "\a";               // Подання звукового сигналу
 }
 
-int main()
-{
-    timerClass ObjA(10); // Створення об'єкта класу
-    ObjA.Run();
+int main() {
+    TimerClass objectA(10);     // Створення об'єкта класу
+    objectA.run();
+
     char str[80];
     cout << "Введiть кiлькiсть секунд: ";
     cin >> str;
-    timerClass ObjB(str); // Динамічна ініціалізація конструктора
-    ObjB.Run();
-    int xv, sec;
-    cout << "Введiть хвилини i секунди: "; cin >> xv >> sec;
-    timerClass ObjC(xv, sec); // Динамічна ініціалізація конструктора
-    ObjC.Run();
-    int hod;
-    cout << "Введiть години, хвилини i секунди: "; cin >> hod >> xv >> sec;
-    timerClass ObjD(hod, xv, sec); // Динамічна ініціалізація конструктора
-    ObjD.Run();
+    TimerClass objectB(str);    // Динамічна ініціалізація конструктора
+    objectB.run();
+
+    int minutes;
+    int seconds;
+    cout << "Введiть хвилини i секунди: ";
+    cin >> minutes >> seconds;
+
+    // Динамічна ініціалізація конструктора
+    TimerClass objectC(minutes, seconds);
+    objectC.run();
+
+    int hours;
+    cout << "Введiть години, хвилини i секунди: ";
+    cin >> hours >> minutes >> seconds;
+
+    // Динамічна ініціалізація конструктора
+    TimerClass objectD(hours, minutes, seconds);
+    objectD.run();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

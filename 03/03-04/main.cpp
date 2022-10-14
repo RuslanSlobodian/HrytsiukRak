@@ -1,4 +1,4 @@
-//Код програми 3.4. Демонстрація механізму використання перевизначених конструкторів
+// Код програми 3.4. Демонстрація механізму використання перевизначених конструкторів
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
@@ -6,34 +6,46 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class timerClass { // Оголошення класового типу
+class TimerClass {              // Оголошення класового типу
     int s;
 public:
-    // Задавання секунд у вигляді рядка
-    timerClass(char *t) { s = atoi(t); }
+    // Задавання секунд у вигляді символьного рядка
+    TimerClass(char* str) {
+        s = atoi(str);
+    }
     // Задавання секунд у вигляді цілого числа
-    timerClass(int t) { s = t; }
+    TimerClass(int seconds) {
+        s = seconds;
+    }
     // Час, який задається в хвилинах і секундах
-    timerClass(int xv, int sec) { s = xv*60 + sec; }
+    TimerClass(int minutes, int seconds) {
+        s = minutes * 60 + seconds;
+    }
     // Час, який задається в годинах, хвилинах і секундах
-    timerClass(int hod, int xv, int sec) { s = 60*(hod*60 + xv) + sec; }
-    void Run(); // Таймер відліку часу
+    TimerClass(int hours, int minutes, int seconds) {
+        s = 60 * ( hours * 60 + minutes) + seconds;
+    }
+    void run();                 // Запуск таймера відліку часу
 };
 
-void timerClass::Run()
-{
+void TimerClass::run() {
     clock_t t1 = clock();
-    while((clock()/CLOCKS_PER_SEC - t1/CLOCKS_PER_SEC)< s);
-    cout << "\a"; // Подання звукового сигналу
+    while((clock() / CLOCKS_PER_SEC - t1 / CLOCKS_PER_SEC) < s) ;
+    cout << "\a";               // Подання звукового сигналу
 }
 
-int main()
-{
-    timerClass ObjA(10), ObjB("20"), ObjC(1, 10), ObjD(0, 2, 8);
-    ObjA.Run(); // Відлік 10 секунд
-    ObjB.Run(); // Відлік 20 секунд
-    ObjC.Run(); // Відлік 1 хвилини і 10 секунд
-    ObjD.Run(); // відлік 0 годин 2 хвилини і 8 секунд
+int main() {
+    TimerClass objectA((char*)"10");
+    objectA.run();              // Відлік 10 секунд
+
+    TimerClass objectB(20);
+    objectB.run();              // Відлік 20 секунд
+
+    TimerClass objectC(1, 10);
+    objectC.run();              // Відлік 1 хвилини і 10 секунд
+
+    TimerClass objectD(0, 2, 8);
+    objectD.run();              // відлік 0 годин 2 хвилини і 8 секунд
 
     //system("PAUSE");
     return EXIT_SUCCESS;

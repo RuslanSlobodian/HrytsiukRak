@@ -6,14 +6,14 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class myClass { 			// Оголошення класового типу
+class MyClass { 			// Оголошення класового типу
     //. . .
 };
 int main()
 {
     int c, d;
     float f;
-    myClass obj;
+    MyClass obj;
     cout << "Тип змiнної c: " << typeid(c).name() << endl;
     cout << "Тип змiнної f: " << typeid(f).name() << endl;
     cout << "Тип змiнної obj: " << typeid(obj).name() << endl << endl;

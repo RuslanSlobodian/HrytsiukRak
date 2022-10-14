@@ -5,7 +5,7 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass {		 // Оголошення базового класу
+class BaseClass {		 // Оголошення базового класу
 protected:
     int c, d;   // Ці члени закриті у класі baseClass але доступні для класу derived.
 public:
@@ -14,7 +14,7 @@ public:
 };
 
 // Оголошення похідного класу
-class derived : public baseClass {
+class Derived : public BaseClass {
     int f;
 public:
     // Клас derived має доступ до членів класу baseClass c та d.
@@ -24,7 +24,7 @@ public:
 
 int main()
 {
-    derived ObjD; // Створення об'єкта класу
+    Derived ObjD; // Створення об'єкта класу
     // OK, класу derived це робити дозволено.
     ObjD.setB(2, 3);
     // OK, класу derived це робити дозволено.

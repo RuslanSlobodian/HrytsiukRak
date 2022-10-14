@@ -1,11 +1,11 @@
-//Код програми 5.6. Демонстрація некоректного використання закритих членів
+// Код програми 5.6. Демонстрація некоректного використання закритих членів
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass{		 // Оголошення базового класу
+class BaseClass{		 // Оголошення базового класу
 protected:
     int c, d;
 public:
@@ -13,7 +13,7 @@ public:
     void showB(char *s) { cout << s << "c= " << c << "; d= " << d << endl; }
 };
 // Елементи класу baseClass будуть закриті умежах класу derivedA.
-class derivedA : private baseClass {
+class derivedA : private BaseClass {
     int f;
 public:
     // Виклики цихфункцій цілком законні, оскільки змінні c та d

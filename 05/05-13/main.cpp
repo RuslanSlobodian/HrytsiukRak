@@ -23,18 +23,18 @@ public:
 };
 
 // Оголошення похідного класу
-class derived : public baseA, public baseB {
+class Derived : public baseA, public baseB {
     int d;
 public:
-    derived(int x, int y, int z): baseA(y), baseB(z)
+    Derived(int x, int y, int z): baseA(y), baseB(z)
     { d = x; cout << "Створення derived-об'єкта" << endl; }
-    ~derived() { cout << "Руйнування derived-об'єкта" << endl; }
+    ~Derived() { cout << "Руйнування derived-об'єкта" << endl; }
     void showB(char *s) {cout << s << "c= " << c << "; d= " << d << "; f= " << f << endl; }
 };
 
 int main()
 {
-    derived ObjD(3, 4, 5);
+    Derived ObjD(3, 4, 5);
     ObjD.showB("Базовий клас: "); // Відображає числа c= 4; d= 3; f= 5
 
     //system("PAUSE");

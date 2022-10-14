@@ -18,15 +18,15 @@ public:
 };
 
 // Оголошення похідного класу
-class derived : public baseA, public baseB {
+class Derived : public baseA, public baseB {
 public:
-    derived() 		{ cout << "Створення derived-об'єкта" << endl; }
-    ~derived()		 { cout << "Руйнування derived-об'єкта" << endl; 	}
+    Derived() 		{ cout << "Створення derived-об'єкта" << endl; }
+    ~Derived()		 { cout << "Руйнування derived-об'єкта" << endl; 	}
 };
 
 int main()
 {
-    derived ObjD; // Створення об'єкта класу
+    Derived ObjD; // Створення об'єкта класу
     // Створення і руйнування об'єкта ObjD.
 
     //system("PAUSE");

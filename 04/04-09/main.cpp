@@ -5,22 +5,28 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-const int size = 3;
+const int SIZE = 3;
 
-class aClass { // Оголошення класового типу
-    int aMas[size];
+class FirstClass {              // Оголошення класового типу
+    int aMas[SIZE];
 public:
-    aClass() { for(int i=0; i<size; i++) aMas[i] = i*i; }
-    int operator[](int i) {return aMas[i]; }
+    FirstClass() {
+        for(int i = 0; i < SIZE; i++) {
+            aMas[i] = i*i;
+        }
+    }
+    int operator[](int i) {
+        return aMas[i];
+    }
 };
 
-int main()
-{
-    aClass ObjA;
-    cout << "aMas[2]= " << ObjA[2] << endl; // Відображає число 4
+int main() {
+    FirstClass objectA;
+    cout << "aMas[2]= " << objectA[2] << endl; // Відображає число 4
     cout << "Значення елементiв масиву <A>:" << endl;
-    for(int i=0; i<3; i++)
-        cout << "aMas[" << i << "]= " << ObjA[i] << endl;
+    for(int i=0; i<3; i++) {
+        cout << "aMas[" << i << "]= " << objectA[i] << endl;
+    }
 
     //system("PAUSE");
     return EXIT_SUCCESS;

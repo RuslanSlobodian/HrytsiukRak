@@ -5,7 +5,7 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass { // Оголошення базового класу
+class BaseClass { // Оголошення базового класу
     int c; // private-член у класі baseClass
 public:
     int d, f;
@@ -13,12 +13,12 @@ public:
     int Put() { return c; }
 };
 // Клас baseClass успадковується як private-клас.
-class derived : private baseClass {
+class Derived : private BaseClass {
 public:
     /* Наступнітри настанови перевизначають private-успадкування класу baseClass і відновлюють public-статус доступу для членів d, Set() і Put(). */
 
     // Змінна d стає знову public-членом a змінна f залишається закритим членом.
-    baseClass::d;
+    BaseClass::d;
     baseClass::Set(); // Функція Set() стає public-членом.
     baseClass::Put(); // Функція Put() стає public-членом.
 
@@ -27,7 +27,7 @@ public:
 };
 int main()
 {
-    derived ObjD; // Створення об'єкта класу
+    Derived ObjD; // Створення об'єкта класу
 
     // ObjD.c = 10; // Неправильно, оскільки член c закритий у класі derived.
     ObjD.d = 20; // Допустимо, оскільки член d став відкритим у класі derived

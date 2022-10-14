@@ -1,47 +1,52 @@
-//Код програми 4.7. Демонстрація механізму появи помилки, яка виникає при поверненні об'єкта з функції
+// Код програми 4.7. Демонстрація механізму появи помилки, яка виникає при поверненні об'єкта з функції
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бібліотека С++
 #include <string.h>
 using namespace std; 			// Використання стандартного простору імен
 
-class strClass { // Оголошення класового типу
+class StrClass {                // Оголошення класового типу
     char *s;
 public:
-    strClass() { s = 0; }
-    strClass(const strClass &obj); // Оголошення конструктора копії
-    ~strClass() {if(s) delete[]s; cout << "Звiльнення s-пам'ятi" << endl; }
-    void Show(char *c) { cout << c << s << endl; }
-    void Set(char *str);
+    StrClass() { s = 0; }
+    StrClass(const StrClass &object); // Оголошення конструктора копії
+    ~StrClass() {
+        if(s) {
+            delete[] s;
+            cout << "Звiльнення s-пам'ятi" << endl;
+        }
+    }
+    void show(char *c) { cout << c << s << endl; }
+    void set(char *str);
 };
-// Визначення конструктора копії.
-strClass::strClass(const strClass &obj)
-{
-    s = new char[strlen(obj.s)+1];
-    strcpy(s, obj.s);
+
+// Визначення конструктора копії
+StrClass::StrClass(const StrClass &object) {
+    s = new char[strlen(object.s)+1];
+    strcpy(s, object.s);
 }
-// Завантаження рядка.
-void strClass::Set(char *str)
-{
+
+// Завантаження рядка
+void StrClass::set(char *str) {
     s = new char[strlen(str)+1];
     strcpy(s, str);
 }
-// Ця функція повертає об'єкт типу strClass.
-strClass Init()
-{
+
+// Ця функція повертає об'єкт типу strClass
+StrClass init() {
     char str[80];
-    strClass obj;
-    cout << "Введiть рядок: "; cin >> str;
-    obj.Set(str);
-    return obj;
+    StrClass object;
+    cout << "Введiть рядок: ";
+    cin >> str;
+    object.set(str);
+    return object;
 }
 
-int main()
-{
-    strClass Obj; // Створення об'єкта класу
-    // Присвоюємо об'єкт, повернутий функцією Init(), об'єкту Obj.
-    Obj = Init(); // Ця настанова генерує помилку!!!!
-    Obj.Show("s= ");
+int main() {
+    StrClass object; // Створення об'єкта класу
+    // Присвоюємо об'єкт, повернутий функцією init(), об'єкту object
+    object = init(); // Цей рядок коду генерує помилку!!!!
+    object.show("s = ");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -5,7 +5,7 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass 		{ // Оголошення базового класу
+class BaseClass 		{ // Оголошення базового класу
     int c; 		// Закритий
 protected:
     int d;		 // Захищений
@@ -16,7 +16,7 @@ public:
 };
 
 // Успадковуємо клас baseClass як protected-клас.
-class derived : protected baseClass {
+class Derived : protected BaseClass {
 public:
     void setJ(int a) { d = a; } // d - тут protected-член
     void setF(int a) { f = a; } // f - тут protected-член
@@ -26,7 +26,7 @@ public:
 
 int main()
 {
-    derived ObjD; // Створення об'єкта класу
+    Derived ObjD; // Створення об'єкта класу
     /* Наступний рядок неправомірний, оскількифункція Set() є
         protected-членом класу derived, що робить його недоступним за його межами. */
     //		ObjD.Set(10);

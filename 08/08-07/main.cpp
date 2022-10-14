@@ -5,11 +5,11 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class bClass { 			// Оголошення класового типу
+class SecondClass { 			// Оголошення класового типу
 
 };
 
-class dClass: public bClass { 	// Оголошення класового типу
+class dClass: public SecondClass { 	// Оголошення класового типу
 
 };
 
@@ -17,7 +17,7 @@ int main()
 {
     dClass derived;
     try { throw derived; }
-    catch(bClass ObjB) {cout << "Перехоплення винятку базового класу" << endl; }
+    catch(SecondClass ObjB) {cout << "Перехоплення винятку базового класу" << endl; }
     catch(dClass ObjD) {cout << "Це перехоплення не відбудеться" << endl; }
 
     //system("PAUSE");

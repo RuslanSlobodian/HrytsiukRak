@@ -5,14 +5,14 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass		 { // Оголошення базового класу
+class BaseClass		 { // Оголошення базового класу
 public:
-    baseClass()		 { cout << "Створення baseClass-об'єкта" << endl; }
-    ~baseClass() 	 { cout << "Руйнування baseClass-об'єкта" << endl; }
+    BaseClass()		 { cout << "Створення baseClass-об'єкта" << endl; }
+    ~BaseClass() 	 { cout << "Руйнування baseClass-об'єкта" << endl; }
 };
 
 // Оголошення похідного класу
-class derivedA : public baseClass {
+class derivedA : public BaseClass {
 public:
     derivedA()		 { cout << "Створення derivedA-об'єкта" << endl; }
     ~derivedA() 	{ cout << "Руйнування derivedA-об'єкта" << endl; }

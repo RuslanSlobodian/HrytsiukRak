@@ -5,16 +5,16 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class kooClass {		 // Оголошення класового типу
+class KooClass {		 // Оголошення класового типу
     int x, y, z;			 // Тривимірнікоординати (тепер це private-члени)
 public:
-    kooClass(int a, int b, int c) { x = a; y = b; z = c; }
-    friend ostream &operator<<(ostream &stream, kooClass obj);
+    KooClass(int a, int b, int c) { x = a; y = b; z = c; }
+    friend ostream &operator<<(ostream &stream, KooClass obj);
 };
 
 // Відображення тривимірних координат x, y, z
 // Перевизначений оператор виведення даних для класу kooClass
-ostream &operator<<(ostream &stream, kooClass obj)
+ostream &operator<<(ostream &stream, KooClass obj)
 {
     stream << obj.x << ", ";
     stream << obj.y << ", ";
@@ -24,7 +24,7 @@ ostream &operator<<(ostream &stream, kooClass obj)
 }
 int main()
 {
-    kooClass ObjA(1, 2, 3), ObjB(3, 4, 5), ObjC(5, 6, 7);
+    KooClass ObjA(1, 2, 3), ObjB(3, 4, 5), ObjC(5, 6, 7);
 
     // Перевизначений оператор виведення даних
     cout << ObjA << ObjB << ObjC;

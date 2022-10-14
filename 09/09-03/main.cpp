@@ -5,17 +5,17 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class kooClass { // Оголошення класового типу
+class KooClass { // Оголошення класового типу
     int x, y, z; // Тривимірнікоординати
 public:
-    kooClass(int a, int b, int c) { x = a; y = b; z = c; }
-    friend ostream &operator<<(ostream &stream, kooClass obj);
-    friend istream &operator>>(istream &stream, kooClass &obj);
+    KooClass(int a, int b, int c) { x = a; y = b; z = c; }
+    friend ostream &operator<<(ostream &stream, KooClass obj);
+    friend istream &operator>>(istream &stream, KooClass &obj);
 };
 
 // Відображення тривимірних координат x, y, z
 // Перевизначений оператор виведення даних для класу kooClass
-ostream &operator<<(ostream&stream, kooClass obj)
+ostream &operator<<(ostream&stream, KooClass obj)
 {
     stream << obj.x << ", ";
     stream << obj.y << ", ";
@@ -26,7 +26,7 @@ ostream &operator<<(ostream&stream, kooClass obj)
 
 // Прийняття тривимірних координат x, y, z
 // Перевизначений оператор введення даних для класу kooClass
-istream &operator>>(istream&stream, kooClass &obj)
+istream &operator>>(istream&stream, KooClass &obj)
 {
     cout << "Введiть координати x, y i z: ";
 
@@ -37,7 +37,7 @@ istream &operator>>(istream&stream, kooClass &obj)
 
 int main()
 {
-    kooClass ObjA(1, 2, 3);
+    KooClass ObjA(1, 2, 3);
 
     cout << ObjA;	 // Перевизначений оператор виведення даних
 

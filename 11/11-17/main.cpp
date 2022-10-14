@@ -6,13 +6,13 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class myClass { 		      // Оголошення класового типу
+class MyClass { 		      // Оголошення класового типу
 public:
     int sum;
     void myClass::Sum(int x);
 };
 
-void myClass::Sum(int x)
+void MyClass::Sum(int x)
 {
     sum = 0;
     for(int i=x; i; i--) sum += i;
@@ -20,13 +20,13 @@ void myClass::Sum(int x)
 
 int main()
 {
-    int myClass::*dp; 		     // Покажчик на int-члена класу
-    void (myClass::*fp)(int x); // Покажчик на функцію-члена
+    int MyClass::*dp; 		     // Покажчик на int-члена класу
+    void (MyClass::*fp)(int x); // Покажчик на функцію-члена
 
-    myClass ObjC;
+    MyClass ObjC;
 
     dp = myClass::sum; // Отримуємо адресу члена даних
-    fp = &myClass::Sum; // Отримуємо адресу функції-члена класу
+    fp = &MyClass::Sum; // Отримуємо адресу функції-члена класу
 
     (ObjC.*fp)(7); // Обчислюємо суму чисел від 1 до 7
     cout << "Сума чисел від 1 до 7 дорівнює " << ObjC.*dp;

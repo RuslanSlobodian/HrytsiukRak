@@ -5,14 +5,14 @@
 
 using namespace std; 			// Використання стандартного простору iмен
 
-class kooClass { 				// Оголошення класового типу
+class KooClass { 				// Оголошення класового типу
     int x, y, z; 				// Тривимiрнi координати
 public:
-    kooClass() { x = y = z = 0; cout << "Створення об'єкта 0, 0, 0" << endl; }
-    kooClass(int c, int d, int f) { x = c; y = d; z = f;
+    KooClass() { x = y = z = 0; cout << "Створення об'єкта 0, 0, 0" << endl; }
+    KooClass(int c, int d, int f) { x = c; y = d; z = f;
                                     cout << "Створення об'єкта " << c << ", ";
                                                                 cout << d << ", " << f << endl; }
-    ~kooClass() { cout << "Руйнування об'єкта" << endl; }
+    ~KooClass() { cout << "Руйнування об'єкта" << endl; }
     void *operator new(size_t size);
     void *operator new[](size_t size);
     void operator delete(void *p);
@@ -20,7 +20,7 @@ public:
     void showB(char *s);
 };
 // Перевизначення оператора new для класу kooClass.
-void *kooClass::operator new(size_t size)
+void *KooClass::operator new(size_t size)
 {
     void *p;
     cout << "Видiлення областi пам'ятi для об'єкта класу kooClass" << endl;
@@ -34,7 +34,7 @@ void *kooClass::operator new(size_t size)
     return p;
 }
 // Перевизначення оператора new для масиву об'єктiв типу kooClass.
-void *kooClass::operator new[](size_t size)
+void *KooClass::operator new[](size_t size)
 {
     void *p;
 
@@ -48,19 +48,19 @@ void *kooClass::operator new[](size_t size)
     return p;
 }
 // Перевизначення оператора delete для класу kooClass.
-void kooClass::operator delete(void *p)
+void KooClass::operator delete(void *p)
 {
     cout << "Видалення об'єкта класу kooClass" << endl;
     free(p);
 }
 // Перевизначення оператора delete для масиву об'єктiв типу kooClass.
-void kooClass::operator delete[](void *p)
+void KooClass::operator delete[](void *p)
 {
     cout << "Видалення масиву об'єктiв типу kooClass" << endl;
     free(p);
 }
 // Вiдображення тривимiрних координат x, y, z.
-void kooClass::showB(char *s)
+void KooClass::showB(char *s)
 {
     cout << "Координати об'єкта <" << s << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
@@ -68,10 +68,10 @@ void kooClass::showB(char *s)
 
 int main()
 {
-    kooClass *p1, *p2;
+    KooClass *p1, *p2;
     try {
-        p1 = new kooClass[3]; // Видiлення областi пам'ятi для масиву
-        p2 = new kooClass(5, 6, 7); // Видiлення областi пам'ятi для об'єкта
+        p1 = new KooClass[3]; // Видiлення областi пам'ятi для масиву
+        p2 = new KooClass(5, 6, 7); // Видiлення областi пам'ятi для об'єкта
     }
     catch(bad_alloc ba) {
         cout << "Помилка пiд час видiлення областi пам'ятi" << endl;

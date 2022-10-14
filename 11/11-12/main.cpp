@@ -5,16 +5,16 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class myClass {		 // Оголошення класового типу
+class MyClass {		 // Оголошення класового типу
     int a;
 public:
-    myClass(int x) { a = x; }
-    int Put() { return a; }
+    objB(int x) { a = x; }
+    int getData() { return a; }
 };
 int main()
 {
-    myClass ObjA(4);
-    cout << ObjA.Put();
+    MyClass objB(4);
+    cout << ObjA.getData();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

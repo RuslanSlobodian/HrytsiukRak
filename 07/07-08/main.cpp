@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int size = 10;
+const int SIZE = 10;
 template <class aType> class arrClass { // Оголошення класового типу
     aType aMas[size];
 public:

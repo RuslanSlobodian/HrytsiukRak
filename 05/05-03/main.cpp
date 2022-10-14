@@ -5,23 +5,23 @@
 
 using namespace std; // Використання стандартного простору iмен
 
-class baseClass {		 // Оголошення базового класу
+class BaseClass {		 // Оголошення базового класу
     int c, d;
 public:
     void setB(int a, int b) { c = a; d = b; }
     void showB(char *s) { cout << s << "c= " << c << "; d= " << d << endl; }
 };
 // Вiдкритi члени класу baseClass тепер стають закритими членами класу derived.
-class derived : private baseClass {
+class Derived : private BaseClass {
     int f;
 public:
-    derived(int x) { f = x; }
+    Derived(int x) { f = x; }
     void showF(char *b, char *p) { showB(b); cout << p << "f= " << f << endl; }
 };
 
 int main()
 {
-    derived ObjD(3);
+    Derived objD(3);
     // Помилка, доступу дофункцiї setB() немає.
     //	ObjD.setB(1, 2);
     // Помилка, доступу дофункцiї showB() немає.

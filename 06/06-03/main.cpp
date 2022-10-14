@@ -5,21 +5,21 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass { 			// Оголошення базового класу
+class BaseClass { 			// Оголошення базового класу
 public:
     virtual void Show() { cout << "Базовий клас." << endl; }
 };
-class firstD : public baseClass { 	// Клас firstD виведений з класу 								baseClass
+class firstD : public BaseClass { 	// Клас firstD виведений з класу 								baseClass
 public:
     void Show() { cout << "Перший похiдний клас." << endl; }
 };
-class secondD : public baseClass { // Клас secondD виведений з класу 	baseClass
+class secondD : public BaseClass { // Клас secondD виведений з класу 	baseClass
     // Функція Show() тут взагалі не 								визначена.
 };
 int main()
 {
-    baseClass ObjB;		// Створення об'єкта базового типу
-    baseClass *bp;		 // Створення покажчика на об'єкт 								 базового типу
+    BaseClass ObjB;		// Створення об'єкта базового типу
+    BaseClass *bp;		 // Створення покажчика на об'єкт 								 базового типу
     firstD ObjF;			 // Створення об'єкта похідного типу
     secondD ObjS; 		// Створення об'єкта похідного типу
 

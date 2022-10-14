@@ -5,26 +5,26 @@
 
 using namespace std; // Використання стандартного простору iмен
 
-class baseClass { 			// Оголошення базового класу
+class BaseClass { 			// Оголошення базового класу
 public:
     // Оголошення вiртуальної функцiї
     virtual void Show() { cout << "Базовий клас." << endl; }
 };
 
-class firstD : public baseClass {
+class firstD : public BaseClass {
 public:
     // Перевизначення функцiї Show() для 							класу firstD.
     void Show() { cout << "Перший похiдний клас." << endl; }
 };
-class secondD : public baseClass {
+class secondD : public BaseClass {
 public:
     // Перевизначення функцiї Show() для 							класу secondD.
     void Show() { cout << "Другий похiдний клас." << endl; }
 };
 int main()
 {
-    baseClass ObjB; 		// Створення об'єкта базового типу
-    baseClass *bp; 		// Створення покажчика на об'єкт базового типу
+    BaseClass ObjB; 		// Створення об'єкта базового типу
+    BaseClass *bp; 		// Створення покажчика на об'єкт базового типу
     firstD ObjF; 		// Створення об'єкта похiдного типу
     secondD ObjS; 		// Створення об'єкта похiдного типу
     bp = &ObjB;		 // Присвоєння покажчику адреси об'єкта 						базового класу

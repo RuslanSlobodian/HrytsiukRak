@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int size=100;
+const int SIZE=100;
 // Створення узагальненого класу queueClass.
 template <class qType> class queueClass {
     qType array[size];

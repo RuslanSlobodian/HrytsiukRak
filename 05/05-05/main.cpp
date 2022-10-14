@@ -5,20 +5,23 @@
 
 using namespace std; // Використання стандартного простору iмен
 
-class baseClass {		 // Оголошення базового класу
+class BaseClass {		 // Оголошення базового класу
 protected:
-    int c, d;
+    int c;
+    int d;
 public:
     void setB(int a, int b) { c = a; d = b; }
     void showB(char *s) { cout << s << "c= " << c << "; d= " << d << 	endl; }
 };
+
 // Члени c та d успадковуються як protected-члени.
-class derivedA : public baseClass {
+class derivedA : public BaseClass {
     int f;
 public:
-    void setF() { f = c*d; } // Правомiрний доступ
+    void setF() { f = c * d; } // Правомiрний доступ
     void showF(char *b, char *p) { showB(b); cout << p << "f= " << f << endl; }
 };
+
 // Члени c та d успадковуються опосередковано черезклас derivedA.
 class derivedB : public derivedA {
     int h;

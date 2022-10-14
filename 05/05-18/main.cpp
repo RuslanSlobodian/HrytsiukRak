@@ -5,19 +5,19 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass { // Оголошення базового класу
+class BaseClass { // Оголошення базового класу
 public:
     int c;
 };
 
 // Клас derivedA успадковує клас baseClass як віртуальний.
-class derivedA : virtual public baseClass {
+class derivedA : virtual public BaseClass {
 public:
     int d;
 };
 
 // Клас derivedB успадковує клас baseClass як віртуальний.
-class derivedB : virtual public baseClass {
+class derivedB : virtual public BaseClass {
 public:
     int f;
 };

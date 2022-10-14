@@ -5,20 +5,20 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-class myClass { 		     // Оголошення класового типу
+class MyClass { 		     // Оголошення класового типу
     int n;
 public:
-    myClass(int c) { n = c; }
-    int Put() { return n; }
+    MyClass(int c) { n = c; }
+    int getData() { return n; }
 };
 int main()
 {
-    myClass Obj(10);
+    MyClass objectB(10);
 
-    cout << Obj.Put() << endl; // Відображає 10
+    cout << objectB.getData() << endl; // Відображає 10
     // Тепер використовуємо неявне перетворення для присвоєння 			нового значення.
-    Obj = 1000;
-    cout << Obj.Put() << endl; // Відображає 1000
+    objectB = 1000;
+    cout << objectB.getData() << endl; // Відображає 1000
 
     //system("PAUSE");
     return EXIT_SUCCESS;

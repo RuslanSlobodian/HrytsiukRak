@@ -1,4 +1,4 @@
-//Код програми 5.1. Демонстраціямеханізму успадкування двох підкласів
+//Код програми 5.1. Демонстрація механізму успадкування двох підкласів
 
 #include <iostream>		 		// Для потокового введення-виведення
 #include <cstdlib>				// Стандартна бiблiотека С++
@@ -18,7 +18,7 @@ public:
 
 // Оголошення похiдного класу вантажiвок.
 class vanAuto : public dorZasib {
-    int mistkist; // вантажомiсткiсть умкуб.
+    int mistkist; // вантажомiсткiсть у м куб.
 public:
     void setMistkist(int h) { mistkist = h; }
     int getMistkist() { return mistkist; }

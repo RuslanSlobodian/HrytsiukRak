@@ -6,13 +6,13 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass { 		// Оголошення класового типу
+class BaseClass { 		// Оголошення класового типу
     char author[80];
 public:
     void putAuthor(char *s) { strcpy(author, s); }
     void showAuthor() { cout << "Автор: "<< author << endl; }
 };
-class derivClass : public baseClass { // Оголошення класового типу
+class derivClass : public BaseClass { // Оголошення класового типу
     char title[80];
 public:
     void putTitle(char *n) { strcpy(title, n); }
@@ -20,8 +20,8 @@ public:
 };
 int main()
 {
-    baseClass *bp;		 // Створення покажчика на об'єкт базового типу
-    baseClass ObjB; 		// Створення об'єкта базового типу
+    BaseClass *bp;		 // Створення покажчика на об'єкт базового типу
+    BaseClass ObjB; 		// Створення об'єкта базового типу
     derivClass *dp; 		// Створення покажчика на об'єкт похідного типу
     derivClass ObjD; 		// Створення об'єкта похідного типу
     // Доступ до класу baseClass через покажчик.

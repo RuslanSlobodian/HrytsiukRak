@@ -5,19 +5,19 @@
 
 using namespace std; // Використання стандартного простору імен
 
-class baseClass { // Оголошення базового класу
+class BaseClass { // Оголошення базового класу
 public:
     int c;
 };
 
 // Клас derivedA успадковує клас baseClass.
-class derivedA : public baseClass {
+class derivedA : public BaseClass {
 public:
     int d;
 };
 
 // Клас derivedB успадковує клас baseClass.
-class derivedB : public baseClass {
+class derivedB : public BaseClass {
 public:
     int f;
 };

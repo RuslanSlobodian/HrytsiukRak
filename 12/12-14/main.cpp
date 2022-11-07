@@ -35,7 +35,7 @@ int main()
     cout << endl;
 
     // Замінюємо букви 'е' буквами 'Х'.
-    replace_copy(vek.begin(), vek.end(), vek2.begin(), 'е', 'X');
+//    replace_copy(vek.begin(), vek.end(), vek2.begin(), 'е', 'X');
 
     cout << "Пiсля замiни букв 'е' буквами 'X': ";
     for(int i=0; vek2[i]; i++) cout << vek2[i];

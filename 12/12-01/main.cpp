@@ -15,34 +15,44 @@ int main()
 
     /* Поміщаємо значення у кінець вектора, і розмір
     вектора за потреби збільшуватиметься. */
-    for(int i=0; i<10; i++) vek.push_back(i);
+    for(int i=0; i<10; i++) {
+        vek.push_back(i);
+    }
 
     // Відображаємо поточний розмір вектора vek.
     cout << "Новий розмiр = " << vek.size() << endl;
 
     // Відображаємо вміст вектора.
     cout << "Поточний вмiст:" << endl;
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for(int i = 0; i < vek.size(); i++) {
+        cout << vek[i] << " ";
+    }
     cout << endl;
 
 
     /* Поміщаємо у кінець вектора нові значення, і розмір
     вектора за потреби збільшуватиметься. */
-    for(int i=0; i<10; i++) vek.push_back(i + 10);
+    for(int i=0; i < 10; i++) {
+        vek.push_back(i + 10);
+    }
     // //Відображаємо поточний розмір вектора vek.
     cout << "Новий розмiр = " << vek.size() << endl;
 
     // Відображаємо новий вміст вектора.
     cout << "Новий вмiст:" << endl;
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for(int i=0; i < vek.size(); i++) cout << vek[i] << " ";
     cout << endl;
 
     // Змінюємо вміст вектора.
-    for(int i=0; i<vek.size(); i++) vek[i] = vek[i] + vek[i];
+    for(int i = 0; i < vek.size(); i++) {
+        vek[i] = vek[i] + vek[i];
+    }
 
     // Відображаємо вміст вектора.
     cout << "Вмiст подвоєно:" << endl;
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for(int i=0; i<vek.size(); i++) {
+        cout << vek[i] << " ";
+    }
     cout << endl;
 
     //system("PAUSE");

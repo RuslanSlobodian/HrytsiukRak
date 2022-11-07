@@ -5,12 +5,15 @@
 
 using namespace std; 			// Використання стандартного простору імен
 
-#define EVEN(a) (a)%2==0? 1 : 0
+#define EVEN(a) (a) % 2 == 0 ? 1 : 0
 
 int main()
 {
-    if(EVEN(9 + 1)) cout << "парне число";
-    else cout << "непарне число";
+    if(EVEN(9 + 1)) {
+        cout << "парне число";
+    } else {
+        cout << "непарне число";
+    }
 
     //system("PAUSE");
     return EXIT_SUCCESS;

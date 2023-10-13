@@ -1,41 +1,50 @@
-//Код програми 5.13. Демонстраціямеханізму передачі параметрів конструкторамдекількох базових класів
+// Код програми 5.13. Демонстрація механізму передачі параметрів конструкторам декількох базових класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class baseA {		 // Оголошення базового класу
+class BaseA {                   // Оголошення базового класу
 protected:
     int c;
 public:
-    baseA(int x) { c = x; cout << "Створення baseA-об'єкта" << endl; }
-    ~baseA() { cout << "Руйнування baseA-об'єкта" << endl; }
+    BaseA(int c) {
+        this->c = c;
+        cout << "Створення об'єкта класу BaseA" << endl;
+    }
+    ~BaseA() { cout << "Руйнування об'єкта класу BaseA" << endl; }
 };
 
-// Оголошення базового класу
-class baseB { // Оголошення базового класу
+class BaseB {                   // Оголошення базового класу
 protected:
     int f;
 public:
-    baseB(int x) { f = x; cout << "Створення baseB-об'єкта" << endl; }
-    ~baseB() { cout << "Руйнування baseB-об'єкта" << endl; }
+    BaseB(int f) {
+        this->f = f;
+        cout << "Створення об'єкта класу BaseB" << endl;
+    }
+    ~BaseB() { cout << "Руйнування об'єкта класу BaseB" << endl; }
 };
 
 // Оголошення похідного класу
-class derived : public baseA, public baseB {
+class Derived : public BaseA, public BaseB {
     int d;
 public:
-    derived(int x, int y, int z): baseA(y), baseB(z)
-    { d = x; cout << "Створення derived-об'єкта" << endl; }
-    ~derived() { cout << "Руйнування derived-об'єкта" << endl; }
-    void showB(char *s) {cout << s << "c= " << c << "; d= " << d << "; f= " << f << endl; }
+    Derived(int d, int c, int f) : BaseA(c), BaseB(f) {
+        this->d = d;
+        cout << "Створення об'єкта класу Derived" << endl;
+    }
+
+    ~Derived() { cout << "Руйнування об'єкта класу Derived" << endl; }
+
+    void show() { cout << "c = " << c << "; d = " << d << "; f = " << f << endl; }
 };
 
-int main()
-{
-    derived ObjD(3, 4, 5);
-    ObjD.showB("Базовий клас: "); // Відображає числа c= 4; d= 3; f= 5
+int main() {
+    system("chcp 65001");
+    Derived object(3, 4, 5);
+    object.show();              // Відображає числа c = 4; d = 3; f = 5
 
     //system("PAUSE");
     return EXIT_SUCCESS;

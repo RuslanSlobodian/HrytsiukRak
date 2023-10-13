@@ -1,49 +1,48 @@
-//Код програми 5.17. Демонстраціямеханізму використання оператора дозволу контексту для вибору потрібного члена
+// Код програми 5.17. Демонстрація механізму використання оператора дозволу контексту для вибору потрібного члена
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class baseClass { // Оголошення базового класу
+class BaseClass {               // Оголошення базового класу
 public:
     int c;
 };
 
-// Клас derivedA успадковує клас baseClass.
-class derivedA : public baseClass {
+// Клас DerivedA успадковує клас BaseClass
+class DerivedA : public BaseClass {
 public:
     int d;
 };
 
-// Клас derivedB успадковує клас baseClass.
-class derivedB : public baseClass {
+// Клас DerivedB успадковує клас BaseClass
+class DerivedB : public BaseClass {
 public:
     int f;
 };
 
-/* Клас derivedC успадковує обидва класи derivedA і derivedB.
-    Це означає, що у класі derivedC існує двікопіїкласу baseClass! */
-class derivedC : public derivedA, public derivedB {
+// Клас DerivedC успадковує обидва класи DerivedA і DerivedB
+// Це означає, що у класі DerivedC існує дві копії класу BaseClass!
+class DerivedC : public DerivedA, public DerivedB {
 public:
     int sum;
 };
 
-int main()
-{
-    derivedC ObjC;
+int main() {
+    DerivedC object;
 
-    ObjC.derivedA::c = 10; // Контекст дозволений, використовується член c класу derivedA.
-    ObjC.d = 20;
-    ObjC.f = 30;
+    object.DerivedA::c = 10;    // Контекст дозволений, використовується член c класу DerivedA
+    object.d = 20;
+    object.f = 30;
 
-    // Контекст дозволений ітут.
-    ObjC.sum = ObjC.derivedA::c + ObjC.d + ObjC.f;
+    // Контекст дозволений і тут
+    object.sum = object.DerivedA::c + object.d + object.f;
 
-    // Виникнення неоднозначності ліквідована ітут.
-    cout << ObjC.derivedA::c << " ";
-    cout << ObjC.d << " " << ObjC.f << " ";
-    cout << ObjC.sum;
+    // Виникнення неоднозначності ліквідована також тут
+    cout << object.DerivedA::c << " ";
+    cout << object.d << " " << object.f << " ";
+    cout << object.sum;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

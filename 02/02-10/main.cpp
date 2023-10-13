@@ -12,11 +12,14 @@ public:
     void setC(int d) {
         c = d;
     }
-    int getC() { return c; }
+
+    int getC() {
+        return c;
+    }
 };
 
 int main() {
-    MyClass object; 			// Створення об'єкта класу
+    MyClass object;             // Створення об'єкта класу
     object.setC(10);
     cout << "c = " << object.getC() << endl;
 

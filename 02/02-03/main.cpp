@@ -1,10 +1,10 @@
 // Код програми 2.3. Демонстрація механізму використання параметризованого конструктора
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <math.h>			 	// Для використання математичних функцій
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cmath>                // Для використання математичних функцій
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
 private:
@@ -13,8 +13,8 @@ private:
 public:
     MyClass(int n);             // Оголошення параметризованого конструктора
     ~MyClass();                 // Оголошення деструктора
-    void setData(double, double); 	// Введення в об'єкт значення
-    double getData(); 			// Виведення з об'єкта значення
+    void setData(double, double);    // Введення в об'єкт значення
+    double getData();           // Виведення з об'єкта значення
 };
 
 // Визначення параметризованого конструктора
@@ -31,10 +31,10 @@ MyClass::~MyClass() {
 
 // Введення в об'єкт значення
 void MyClass::setData(double x, double y) {
-    double a1 = pow(x,1.3);
-    double a2 = pow(fabs(3.2*x - y),0.4);
-    double a3 = pow(pow(cos(a2),2),1./3);
-    a = a1+a3;
+    double a1 = pow(x, 1.3);
+    double a2 = pow(fabs(3.2 * x - y), 0.4);
+    double a3 = pow(pow(cos(a2), 2), 1. / 3);
+    a = a1 + a3;
 }
 
 // Виведення з об'єкта значення
@@ -50,8 +50,8 @@ int main() {
     double x = 2.6;
     double y = 7.1;
 
-    objectA.setData(x,y);
-    objectB.setData(x+y,y/x);
+    objectA.setData(x, y);
+    objectB.setData(x + y, y / x);
 
     cout << "Вмiст об'єкта objectA: " << objectA.getData() << endl;
     cout << "Вмiст об'єкта objectB: " << objectB.getData() << endl;

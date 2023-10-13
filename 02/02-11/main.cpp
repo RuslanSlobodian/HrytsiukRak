@@ -1,11 +1,13 @@
 // Код програми 2.11. Демонстрація механізму організації масиву об'єктів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-enum Resolution {low, medium, high};
+enum Resolution {
+    low, medium, high
+};
 
 class DisplayClass {            // Оголошення класового типу
     int width;
@@ -16,19 +18,22 @@ public:
         width = _width;
         height = _height;
     }
+
     void getWidthAndHeight(int &_width, int &_height) {
         _width = width;
         _height = height;
     }
+
     void setResolution(Resolution _resolution) {
         resolution = _resolution;
     }
+
     Resolution getResolution() {
         return resolution;
     }
 };
 
-char names[3][12] = { "low", "medium", "high"};
+char names[3][12] = {"low", "medium", "high"};
 
 int main() {
     DisplayClass monitors[3];
@@ -42,8 +47,9 @@ int main() {
 
     cout << "Можливi режими вiдображення даних: " << endl;
 
-    int w, h;
-    for(int i = 0; i < 3; i++) {
+    int w;
+    int h;
+    for (int i = 0; i < 3; i++) {
         cout << names[monitors[i].getResolution()] << ": ";
         monitors[i].getWidthAndHeight(w, h);
         cout << w << " x " << h << endl;

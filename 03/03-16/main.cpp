@@ -8,10 +8,10 @@ using namespace std; 			// Використання стандартного п�
 class MyClass {                 // Оголошення класового типу
     int c;
 public:
-    void setC(int с) {
+    void setC(int с) {          //сетер (setter) атрибуту с
         this->c = с;
     }
-    int getC() {
+    int getC() {                //гетер (getter) атрибуту с
         return this->c;         // те ж саме, що:  return c;
     }
 };

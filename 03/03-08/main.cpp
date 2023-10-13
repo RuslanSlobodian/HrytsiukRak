@@ -1,9 +1,9 @@
 // Код програми 3.8. Демонстрація механізму використання конструкторів, деструкторів при передачі об'єктів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
     int n;
@@ -12,9 +12,11 @@ public:
         n = _n;
         cout << "Створення об'єкта" << endl;
     }
+
     ~MyClass() {
         cout << "Руйнування об'єкта" << endl;
     }
+
     int getData() {
         return n;
     }
@@ -25,6 +27,7 @@ void function(MyClass object) {
 }
 
 int main() {
+    system("chcp 65001");
     MyClass objectA(10);        // Створення об'єкта класу
     function(objectA);
 

@@ -1,17 +1,19 @@
 // Код програми 3.7. Демонстрація механізму передачі об'єктів функціям
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
     int c;
 public:
     MyClass() { c = 0; }
+
     void setC(int _c) { c = _c; }
-    void show(string s) {
-        cout << s << c << endl;
+
+    void show(string str) {
+        cout << str << c << endl;
     }
 };
 

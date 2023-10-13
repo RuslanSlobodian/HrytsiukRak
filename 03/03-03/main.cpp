@@ -37,6 +37,7 @@ int FirstClass::checkStatus(SecondClass object) {
 }
 
 int main() {
+    system("chcp 65001");
     FirstClass objectX;         // Створення об'єкта класу
     SecondClass objectY;        // Створення об'єкта класу
 

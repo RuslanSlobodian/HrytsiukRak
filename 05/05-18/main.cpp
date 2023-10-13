@@ -1,50 +1,47 @@
-//Код програми 5.18. Демонстрація механізму застосування віртуальних базових класів
+// Код програми 5.18. Демонстрація механізму застосування віртуальних базових класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class BaseClass { // Оголошення базового класу
+class BaseClass {               // Оголошення базового класу
 public:
     int c;
 };
 
-// Клас derivedA успадковує клас baseClass як віртуальний.
-class derivedA : virtual public BaseClass {
+// Клас DerivedA успадковує клас BaseClass як віртуальний
+class DerivedA : virtual public BaseClass {
 public:
     int d;
 };
 
-// Клас derivedB успадковує клас baseClass як віртуальний.
-class derivedB : virtual public BaseClass {
+// Клас DerivedB успадковує клас baseClass як віртуальний
+class DerivedB : virtual public BaseClass {
 public:
     int f;
 };
 
-/* Клас derivedC успадковує обидва класи derivedA і derivedB.
-    Цього разу вінмістить тільки одну копіюкласу baseClass. */
-class derivedC : public derivedA, public derivedB {
+// Клас DerivedC успадковує обидва класи DerivedA і DerivedB
+// Цього разу він містить тільки одну копію класу BaseClass
+class DerivedC : public DerivedA, public DerivedB {
 public:
     int sum;
 };
 
-int main()
-{
-    derivedC ObjC;
-    ObjC.c = 10;		 // Тепер неоднозначності немає.
-    ObjC.d = 20;
-    ObjC.f = 30;
+int main() {
+    DerivedC object;
+    object.c = 10;              // Тепер неоднозначності немає
+    object.d = 20;
+    object.f = 30;
 
-    // Тепер неоднозначності немає.
-    ObjC.sum = ObjC.c + ObjC.d + ObjC.f;
+    // Тепер неоднозначності немає
+    object.sum = object.c + object.d + object.f;
 
-    // Тепер неоднозначності немає.
-    cout << ObjC.c << " ";
-
-    cout << ObjC.d << " " << ObjC.f << " ";
-    cout << ObjC.sum;
-
+    // Тепер неоднозначності немає
+    cout << object.c << " ";
+    cout << object.d << " " << object.f << " ";
+    cout << object.sum;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

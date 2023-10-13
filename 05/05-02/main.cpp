@@ -1,42 +1,49 @@
-//Код програми 5.2. Демонстраціямеханізму доступу до членів базового класу  після їх успадковується як public-клас
+// Код програми 5.2. Демонстрація механізму доступу до членів базового класу при успадкуванні з специфікатором public
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бiблiотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бiблiотека С++
 
-using namespace std; // Використання стандартного простору iмен
+using namespace std;            // Використання стандартного простору iмен
 
-class BaseClass { // Оголошення базового класу
+class BaseClass {               // Оголошення базового класу
     int c;
     int d;
 public:
-    void setB(int a, int b) { c = a; d = b; }
-    void showB(char *s) {
-        cout << s << "c= " << c << "; d= " << d << endl;
+    void setBase(int c, int d) {
+        this->c = c;
+        this->d = d;
+    }
+
+    void showBase(string str) {
+        cout << str << "c = " << c << "; d = " << d << endl;
     }
 };
 
 class Derived : public BaseClass {
     int f;
 public:
-    Derived(int x) {
-        f = x;
+    Derived(int f) {
+        this->f = f;
     }
-    void showF(char *b, char *p) {
-        showB(b); cout << p << "f= " << f << endl;
+
+    void showDerived(string strB, string strD) {
+        showBase(strB);
+        cout << strD << "f = " << f << endl;
     }
 };
 
-int main()
-{
-    BaseClass objD;
+int main() {
+    system("chcp 65001");
+    Derived object(3);
 
-    // Доступ до членiв класу baseClass
-    objD.setB(1, 2);
-    // Доступ до членiв класу baseClass
-    objD.showB("Базовий клас: "); cout << endl;
+    // Доступ до членiв класу BaseClass
+    object.setBase(1, 2);
+    // Доступ до членiв класу BaseClass
+    object.showBase("Базовий клас: ");
+    cout << endl;
 
-    // Доступ до члена класу derived
-    objD.showF("Базовий клас: ", "Похiдний клас: ");
+    // Доступ до члена класу Derived
+    object.showDerived("Базовий клас: ", "Похiдний клас: ");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

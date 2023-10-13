@@ -1,47 +1,47 @@
-//Код програми 5.16. Демонстрація невизначеності під час успадкування декількох базових класів
+// Код програми 5.16. Демонстрація невизначеності під час успадкування декількох базових класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class BaseClass { // Оголошення базового класу
+class BaseClass {               // Оголошення базового класу
 public:
     int c;
 };
 
-// Клас derivedA успадковує клас baseClass.
-class derivedA : public BaseClass {
+// Клас DerivedA успадковує клас BaseClass
+class DerivedA : public BaseClass {
 public:
     int d;
 };
 
-// Клас derivedB успадковує клас baseClass.
-class derivedB : public BaseClass {
+// Клас DerivedB успадковує клас BaseClass
+class DerivedB : public BaseClass {
 public:
     int f;
 };
 
-/* Клас derivedC успадковує обидва класи derivedA і derivedB.
-    Це означає, що у класі derivedC існує двікопіїкласу baseClass! */
-class derivedC : public derivedA, public derivedB {
+// Клас DerivedC успадковує обидва класи DerivedA і DerivedB
+// Це означає, що у класі DerivedC існує дві копії класу BaseClass!
+class DerivedC : public DerivedA, public DerivedB {
 public:
     int sum;
 };
 
-int main()
-{
-    derivedC ObjC;
-    ObjC.c = 10; // Це і є неоднозначність: який саме член c маємо на увазі???
-    ObjC.d = 20;
-    ObjC.f = 30;
+int main() {
+    DerivedC object;
+    object.c = 10; // Це і є неоднозначність: який саме член c мається на увазі???
+    object.d = 20;
+    object.f = 30;
 
-    // Ітуттеж спостерігається неоднозначність з членом c.
-    ObjC.sum = ObjC.c + ObjC.d + ObjC.f;
-    // Ітуттеж неоднозначність з членом c.
-    cout << ObjC.c << " ";
-    cout << ObjC.d << " " << ObjC.f << " ";
-    cout << ObjC.sum;
+    // І тут теж спостерігається неоднозначність з членом c
+    object.sum = object.c + object.d + object.f;
+
+    // І тут теж неоднозначність з членом c
+    cout << object.c << " ";
+    cout << object.d << " " << object.f << " ";
+    cout << object.sum;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

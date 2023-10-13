@@ -1,33 +1,32 @@
-//Код програми 5.11. Демонстрація послідовності виконання конструкторів і деструкторів під час успадкування декількох базових класів
+// Код програми 5.11. Демонстрація послідовності виконання конструкторів і деструкторів під час успадкування декількох базових класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class baseA {		 // Оголошення базового класу
+class BaseA {                   // Оголошення базового класу BaseA
 public:
-    baseA()		 { cout << "Створення baseA-об'єкта" << endl; }
-    ~baseA()		 { cout << "Руйнування baseA-об'єкта" << endl; }
+    BaseA() { cout << "Створення об'єкта класу BaseA" << endl; }
+    ~BaseA() { cout << "Руйнування об'єкта класу BaseA" << endl; }
 };
 
-class baseB { // Оголошення базового класу
+class BaseB {                   // Оголошення базового класу BaseB
 public:
-    baseB()		 { cout << "Створення baseB-об'єкта" << endl; }
-    ~baseB()		 { cout << "Руйнування baseB-об'єкта" << endl; }
+    BaseB() { cout << "Створення об'єкта класу BaseB" << endl; }
+    ~BaseB() { cout << "Руйнування об'єкта класу BaseB" << endl; }
 };
 
 // Оголошення похідного класу
-class Derived : public baseA, public baseB {
+class Derived : public BaseA, public BaseB {
 public:
-    Derived() 		{ cout << "Створення derived-об'єкта" << endl; }
-    ~Derived()		 { cout << "Руйнування derived-об'єкта" << endl; 	}
+    Derived() { cout << "Створення об'єкта класу Derived" << endl; }
+    ~Derived() { cout << "Руйнування об'єкта класу Derived" << endl; }
 };
 
-int main()
-{
-    Derived ObjD; // Створення об'єкта класу
-    // Створення і руйнування об'єкта ObjD.
+int main() {
+    system("chcp 65001");
+    Derived derived;            // Створення і руйнування об'єкта класу Derived
 
     //system("PAUSE");
     return EXIT_SUCCESS;

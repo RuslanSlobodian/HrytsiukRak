@@ -3,7 +3,7 @@
 #include <iostream>             // Для потокового введення-виведення
 #include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
 private:

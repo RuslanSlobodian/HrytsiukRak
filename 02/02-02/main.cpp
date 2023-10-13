@@ -1,12 +1,12 @@
 // Код програми 2.2. Демонстрація механізму використання конструктора і деструктора
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <math.h>			 	// Для використання математичних функцій
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <math.h>               // Для використання математичних функцій
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class MyClass { 			    // Оголошення класового типу
+class MyClass {                 // Оголошення класового типу
     double a;
 public:
     MyClass();                  // Оголошення конструктора
@@ -40,6 +40,7 @@ double MyClass::getData() {
 }
 
 int main() {
+    system("chcp 65001");
     // Створення двох об'єктів класу
     MyClass objectA;
     MyClass objectB;
@@ -54,5 +55,6 @@ int main() {
     cout << "Вмiст об'єкта objectB: " << objectB.getData() << endl;
 
     //system("PAUSE");
-    return EXIT_SUCCESS;
+    //
+    // return EXIT_SUCCESS;
 }

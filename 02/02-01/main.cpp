@@ -12,7 +12,7 @@ private:
 public:
     void init();                    // Ініціалізація даних класу
     void inputData(double, double); // Введення в об'єкт значення
-    double outputData();			// Виведення з об'єкта значення
+    double outputData();            // Виведення з об'єкта значення
 };
 
 // Ініціалізація даних класу MyClass
@@ -34,7 +34,7 @@ double MyClass::outputData() {
 }
 
 int main() {
-    // Створення двох об'єктів класу
+    // Створення двох об'єктів класу MyClass
     MyClass objectA;
     MyClass objectB;
 
@@ -45,7 +45,7 @@ int main() {
     objectB.init();
 
     objectA.inputData(x, y);
-    objectB.inputData(x + y, y/x);
+    objectB.inputData(x + y, y / x);
 
     cout << "Вмiст об'єкта objectA: " << objectA.outputData() << endl;
     cout << "Вмiст об'єкта objectB: " << objectB.outputData() << endl;

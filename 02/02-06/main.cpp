@@ -6,8 +6,8 @@
 using namespace std;            // Використання стандартного простору імен
 
 struct MyStruct {               // Оголошення структурного типу
-    int getC();                  // Ці члени відкриті (public)
-    void setC(int d);            // за замовчуванням
+    int getC();                 // Ці члени відкриті (public)
+    void setC(int d);           // за замовчуванням
 private:
     int c;
 };

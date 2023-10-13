@@ -1,9 +1,9 @@
 // Код програми 3.6. Демонстрація механізму присвоєння об'єктів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
     int a;
@@ -12,16 +12,19 @@ public:
     MyClass() {
         a = b = 0;
     }
+
     void setData(int c, int d) {
         a = c;
         b = d;
     }
+
     void show() {
         cout << "a = " << a << "; b = " << b << endl;
     }
 };
 
 int main() {
+    system("chcp 65001");
     MyClass objectA, objectB;   // Створення об'єктів класу
     objectA.setData(10, 20);
     objectB.setData(0, 0);

@@ -36,6 +36,7 @@ int checkStatus(FirstClass objectA, SecondClass objectB) {
 }
 
 int main() {
+    system("chcp 65001");
     FirstClass objectX;         // Створення об'єкта класу FirstClass
     SecondClass objectY;        // Створення об'єкта класу SecondClass
 

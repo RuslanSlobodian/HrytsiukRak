@@ -1,23 +1,24 @@
 // Код програми 3.11. Демонстрація механізму повернення об'єкта функцією
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 #include <string.h>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
-class StrClass {                // Оголошення класового типу
+class MyClass {                // Оголошення класового типу
     char str[80];
 public:
-    void set(char* s) {
-        strcpy(str, s);
+    void set(char *s) {
+        strncpy(str, s, 80);
     }
+
     void show() { cout << "Рядок: " << str << endl; }
 };
 
-// Ця функція повертає об'єкт типу strClass
-StrClass init() {
-    StrClass object;
+// Ця функція повертає об'єкт типу MyClass
+MyClass init() {
+    MyClass object;
     char str[80];
     cout << "Введiть рядок: ";
     cin >> str;
@@ -26,8 +27,9 @@ StrClass init() {
 }
 
 int main() {
-    StrClass object;            // Створення об'єкта класу
-    object = init();            // Присвоюємо об'єкт, повернутий функцією init(), об'єкту obj
+    system("chcp 65001");
+    MyClass object;             // Створення об'єкта класу
+    object = init();            // Присвоюємо об'єкт, повернутий функцією init(), об'єкту object
     object.show();
 
     //system("PAUSE");

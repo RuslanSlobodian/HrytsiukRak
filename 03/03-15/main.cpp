@@ -1,9 +1,9 @@
 // Код програми 3.15. Демонстрація механізму використання конструктора копії для створення тимчасового об'єкта, що повертається функцією
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>             // Для потокового введення-виведення
+#include <cstdlib>              // Стандартна бібліотека С++
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
 
@@ -11,7 +11,8 @@ public:
     MyClass() {
         cout << "Звичайний конструктор" << endl;
     }
-    MyClass(const MyClass& object) {
+
+    MyClass(const MyClass &object) {
         cout << "Конструктор копiї" << endl;
     }
 };
@@ -22,6 +23,7 @@ MyClass function() {
 }
 
 int main() {
+    system("chcp 65001");
     MyClass objectA;            // Викликається звичайний конструктор
     MyClass objectB(objectA);   // Викликається конструктор копії
 

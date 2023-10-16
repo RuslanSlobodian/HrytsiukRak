@@ -3,69 +3,80 @@
 #include <cstdlib>
 #include <iostream>
 
-using namespace std;            // Використання стандартного простору імен
+using namespace std;
 
-class KooClass {                // Оголошення класового типу
-    int x;                      //
-    int y;                      // Тривимірні координати
-    int z;                      //
+class Coordinates {             // Оголошення класового типу
+    int x;
+    int y;
+    int z;
 public:
-    KooClass() { x = y = z = 0; }
-    KooClass(int x, int y, int z) : x(x), y(y), z(z) { }
-    KooClass operator-(KooClass object ); // Операнд object передається неявно
-    KooClass operator=(KooClass object ); // Операнд object передається неявно
-    KooClass operator++();      // Префіксна форма оператора інкремента "++"
-    void show(char *s);
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int c, int d, int f) {
+        x = c;
+        y = d;
+        z = f;
+    }
+
+    Coordinates(const Coordinates &source){
+        this->x = source.x;
+        this->y = source.y;
+        this->z = source.z;
+    }
+
+    Coordinates operator-(Coordinates obj); // Операнд obj передається неявно
+    Coordinates operator=(Coordinates obj); // Операнд obj передається неявно
+    Coordinates operator++();   // Префіксна форма оператора інкремента "++"
+    void show(string str);
 };
 
-// Перевизначення бінарного оператора віднімання "-"
-KooClass KooClass::operator-(KooClass object) {
-    KooClass tmp;               // Створення тимчасового об'єкта
-    tmp.x = x - object.x;		// Операції віднімання цілочисельних значень
-    tmp.y = y - object.y; 		// зберігають початковий вміст операндів
-    tmp.z = z - object.z;
+// Перевизначення бінарного оператора віднімання "-".
+Coordinates Coordinates::operator-(Coordinates obj) {
+    Coordinates tmp;            // Створення тимчасового об'єкта
+    tmp.x = this->x - obj.x;    // Операції віднімання цілочисельних значень
+    tmp.y = this->y - obj.y;    // зберігають початковий вміст операндів.
+    tmp.z = this->z - obj.z;
 
     return tmp;                 // Повертає модифікований тимчасовий об'єкт
 }
 
-// Перевизначення оператора присвоєння "="
-KooClass KooClass::operator=(KooClass object) {
-    x = object.x;                  // Операції присвоєння цілочисельних значень
-    y = object.y;                  // зберігають початковий вміст операндів
-    z = object.z;
+// Перевизначення оператора присвоєння "=".
+Coordinates Coordinates::operator=(Coordinates obj) {
+    x = obj.x;                  // Операції присвоєння цілочисельних значень
+    y = obj.y;                  // зберігають початковий вміст операндів
+    z = obj.z;
     return *this;
 }
 
-// Повернення модифікованого об'єкта операнда, адресованого вказівником
-// Перевизначення префіксної форми унарного оператора інкремента "++"
-KooClass KooClass::operator++() {
-    this->x++; // Інкремент координат x, y і z
-    this->y++;
-    this->z++;
-    // Повернення модифікованого об'єкта операнда, адресованого вказівником
+// Повернення модифікованого об'єкта операнда, адресованого покажчиком
+// Перевизначення префіксної форми унарного оператора інкремента "++".
+Coordinates Coordinates::operator++() {
+    x++;
+    y++;                        // Інкремент координат x, y і z
+    z++;
+    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
 
-// Відображення тривимірних координат x, y, z
-void KooClass::show(char *s) {
-    cout << "Координати об'єкта <" << s << ">: ";
+// Відображення тривимірних координат x, y, z.
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
 
 int main() {
-    KooClass objectA(1, 2, 3);
-    KooClass objectB(10, 10, 10);
-    KooClass objectC;
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3), objectB(10, 10, 10), objectC;
 
     objectA.show("A");
     objectB.show("B");
 
-    objectC = objectA - objectB;            // Віднімання об'єктів objectA і objectB
+    objectC = objectA - objectB;// Віднімання об'єктів objectA і objectB
     objectC.show("C = A - B");
 
-    objectC = objectA - objectB - objectC;  // Множинне віднімання об'єктів
+    objectC = objectA - objectB - objectC; // Множинне віднімання об'єктів
     objectC.show("C = A - B - C");
-    objectC = objectB = objectA;            // Множинне присвоєння об'єктів
+    objectC = objectB = objectA;// Множинне присвоєння об'єктів
     objectB.show("B = A");
     objectC.show("C = B");
 

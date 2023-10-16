@@ -3,58 +3,71 @@
 #include <cstdlib>
 #include <iostream>
 
-using namespace std;            // Використання стандартного простору імен
+using namespace std;
 
-class KooClass {                // Оголошення класового типу
-    int x;                      //
-    int y;                      // Тривимірні координати
-    int z;                      //
+class Coordinates {             // Оголошення класового типу
+    int x;
+    int y;
+    int z;
 public:
-    KooClass() { x = y = z = 0; }
-    KooClass(int x, int y, int z) : x(x), y(y), z(z) { }
-    KooClass operator*(KooClass object); // Операнд object передається неявно
-    KooClass operator=(KooClass object); // Операнд object передається неявно
-    KooClass operator++();      // Префіксна форма оператора інкремента "++"
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int c, int d, int f) {
+        x = c;
+        y = d;
+        z = f;
+    }
+
+    Coordinates(const Coordinates &source){
+        this->x = source.x;
+        this->y = source.y;
+        this->z = source.z;
+    }
+
+    Coordinates operator*(Coordinates rhs); // Операнд rhs передається неявно
+    Coordinates operator=(Coordinates rhs); // Операнд rhs передається неявно
+    Coordinates operator++();   // Префіксна форма оператора інкремента "++"
 
     // Постфіксна форма оператора інкремента "++"
-    KooClass operator++(int notused);
+    Coordinates operator++(int notused);
 
     // Префіксна форма унарного оператора зміни знаку "-"
-    KooClass operator-();
-    void show(char *s);
+    Coordinates operator-();
+
+    void show(string str);
 };
 
 // Перевизначення бінарного оператора множення "*"
-KooClass KooClass::operator*(KooClass object) {
-    KooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = x * object.x; // Операції множення цілочисельних значень
-    tmp.y = y * object.y; // зберігають початковий вміст операндів
-    tmp.z = z * object.z;
+Coordinates Coordinates::operator*(Coordinates rhs) {
+    Coordinates tmp; // Створення тимчасового об'єкта
+    tmp.x = x * rhs.x; // Операції множення цілочисельних значень
+    tmp.y = y * rhs.y; // зберігають початковий вміст операндів
+    tmp.z = z * rhs.z;
 
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
 
 // Перевизначення оператора присвоєння "="
-KooClass KooClass::operator=(KooClass object) {
-    x = object.x; // Операції присвоєння цілочисельних значень
-    y = object.y; // зберігають початковий вміст операндів
-    z = object.z;
+Coordinates Coordinates::operator=(Coordinates rhs) {
+    x = rhs.x; // Операції присвоєння цілочисельних значень
+    y = rhs.y; // зберігають початковий вміст операндів
+    z = rhs.z;
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
 
 // Перевизначення префіксної форми унарного оператора інкремента "++"
-KooClass KooClass::operator++() {
+Coordinates Coordinates::operator++() {
     x++; // Інкремент координат x, y і z
     y++;
     z++;
-    // Повернення модифікованого об'єкта операнда, адресованого вказівником
+    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
 
 // Перевизначення постфіксної форми унарного оператора інкремента "++"
-KooClass KooClass::operator++(int notused) {
-    KooClass tmp = *this; // Збереження початкового значення об'єкта
+Coordinates Coordinates::operator++(int notused) {
+    Coordinates tmp = *this; // Збереження початкового значення об'єкта
     x++; // Інкремент координат x, y і z
     y++;
     z++;
@@ -62,55 +75,47 @@ KooClass KooClass::operator++(int notused) {
 }
 
 // Перевизначення префіксної форми унарного оператора зміни знаку "-"
-KooClass KooClass::operator-() {
-    x=-x; // Зміна знаку координат x, y і z
-    y=-y;
-    z=-z;
-    // Повернення модифікованого об'єкта операнда, адресованого вказівником
+Coordinates Coordinates::operator-() {
+    x = -x; // Зміна знаку координат x, y і z
+    y = -y;
+    z = -z;
+    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
 
-// Відображення тривимірних координат x, y, z
-void KooClass::show(char *s) {
-    cout << "Координати об'єкта <" << s << ">: ";
+// Відображення тривимірних координат x, y, z.
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
 
 int main() {
-    KooClass objectA(1, 2, 3);
-    KooClass objectB(10, 10, 10);
-    KooClass objectC;
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3), objectB(10, 10, 10), objectC;
 
     objectA.show("A");
     objectB.show("B");
 
-    objectC = objectA * objectB;// Множення об'єктів ObjA і objectB
+    objectC = objectA * objectB;// Множення об'єктів objectA і objectB
     objectC.show("C = A * B");
 
     objectC = objectA * objectB * objectC; // Множинне множення об'єктів
     objectC.show("C = A * B * C");
 
-    objectC = objectB = objectA;// Множинне присвоєння об'єктів
+    objectC = objectB = objectA; // Множинне присвоєння об'єктів
     objectC.show("C = B");
     objectB.show("B = A");
-
     ++objectC;                  // Префіксна форма операції інкремента
     objectC.show("++C");
     objectC++;                  // Постфіксна форма операції інкремента
     objectC.show("C++");
-
-    // Об'єкт ObjA набуває значення об'єкта objectC після його інкрементування
-    objectA = ++objectC;
-    // Тепер об'єкти objectA і objectC мають однакові значення
-    objectA.show("A = ++C");
+    objectA = ++objectC;        // Об'єкт objectA набуває значення об'єкта objectC після його інкрементування
+    objectA.show("A = ++C");    // Тепер об'єкти objectA і objectC мають однакові значення
     objectC.show("C");
-
-    // Об'єкт objectA набуває значення об'єкта objectC до його інкрементування
-    objectA = objectC++;
-    // Тепер об'єкти objectA і objectC мають різні значення
-    objectA.show("A = C++");
+    objectA = objectC++;        // Об'єкт objectA набуває значення об'єкта objectC до його інкрементування
+    objectA.show("A = C++");    // Тепер об'єкти objectA і objectC мають різні значення
     objectC.show("C");
-    -objectC; // Префіксна форма операції зміни знаку
+    -objectC;                   // Префіксна форма операції зміни знаку
     objectC.show("-C");
 
     //system("PAUSE");

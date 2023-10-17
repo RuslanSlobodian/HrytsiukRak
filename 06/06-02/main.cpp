@@ -1,38 +1,40 @@
-//Код програми 6.2. Демонстрацiя механiзму застосування вiртуальних функцiй
+// Код програми 6.2. Демонстрацiя механiзму застосування вiртуальних методів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бiблiотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; // Використання стандартного простору iмен
+using namespace std;
 
-class BaseClass { 			// Оголошення базового класу
+class BaseClass {               // Оголошення базового класу
 public:
-    // Оголошення вiртуальної функцiї
-    virtual void Show() { cout << "Базовий клас." << endl; }
+    // Оголошення вiртуального методу
+    virtual void show() { cout << "Базовий клас" << endl; }
 };
 
-class firstD : public BaseClass {
+class FirstDerived : public BaseClass {
 public:
-    // Перевизначення функцiї Show() для 							класу firstD.
-    void Show() { cout << "Перший похiдний клас." << endl; }
+    // Перевизначення методу show() для класу FirstDerived
+    void show() { cout << "Перший похiдний клас" << endl; }
 };
-class secondD : public BaseClass {
+
+class SecondDerived : public BaseClass {
 public:
-    // Перевизначення функцiї Show() для 							класу secondD.
-    void Show() { cout << "Другий похiдний клас." << endl; }
+    // Перевизначення методу show() для класу SecondDerived
+    void show() { cout << "Другий похiдний клас" << endl; }
 };
-int main()
-{
-    BaseClass ObjB; 		// Створення об'єкта базового типу
-    BaseClass *bp; 		// Створення покажчика на об'єкт базового типу
-    firstD ObjF; 		// Створення об'єкта похiдного типу
-    secondD ObjS; 		// Створення об'єкта похiдного типу
-    bp = &ObjB;		 // Присвоєння покажчику адреси об'єкта 						базового класу
-    bp->Show(); 		// Доступ до функцiї Show() класу 								baseClass
-    bp = &ObjF; 		// Присвоєння покажчику адреси об'єкта 							похiдного класу
-    bp->Show(); 		// Доступ до функцiї Show() класу firstD
-    bp = &ObjS; 		// Присвоєння покажчику адреси об'єкта 							похiдного класу
-    bp->Show(); 		// Доступ до функцiї Show() класу secondD
+
+int main() {
+    system("chcp 65001");
+    BaseClass baseClassObject;  // Створення об'єкта базового класу
+    BaseClass *baseClassPtr;    // Створення вказівника на об'єкт базового класу
+    FirstDerived firstDerivedObject;    // Створення об'єкта похiдного класу
+    SecondDerived secondDerivedObject;  // Створення об'єкта похiдного класу
+    baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового класу
+    baseClassPtr->show();        // Доступ до методу show() класу BaseClass
+    baseClassPtr = &firstDerivedObject; // Присвоєння вказівнику адреси об'єкта першого похiдного класу
+    baseClassPtr->show();        // Доступ до методу show() класу FirstDerived
+    baseClassPtr = &secondDerivedObject;// Присвоєння вказівнику адреси об'єкта другого похiдного класу
+    baseClassPtr->show();        // Доступ до методу show() класу SecondDerived
 
     //system("PAUSE");
     return EXIT_SUCCESS;

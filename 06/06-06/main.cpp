@@ -1,59 +1,71 @@
-//Код програми 6.6. Демонстрацiя механiзму надання параметру вiртуальноїфункцiї значення, що дiє за замовчуванням
+// Код програми 6.6. Демонстрацiя механiзму надання параметру вiртуального методу значення, що дiє за замовчуванням
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бiблiотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; // Використання стандартного простору iмен
+using namespace std;
 
-class figure {
+class Figure {
 protected:
-    double x, y;
+    double x;
+    double y;
 public:
-    void Set(double _x, double _y=0) { x = _x; y = _y; }
-    virtual void Show()=0;
+    void set(double x, double y = 0) {
+        this->x = x;
+        this->y = y;
+    }
+
+    virtual void show() {
+        cout << "У цьому класі вираз для обчислення площі не визначено" << endl;
+    }
 
 };
-class triangle : public figure {
+
+class Triangle : public Figure {
 public:
-    void Show()
-    {
-        cout << "Трикутник з висотою " << x; cout << " i основою " << y;
-        cout << " має площу " << x * 0.5 * y ; cout << " кв. од." << endl;
+    void show() {
+        cout << "Трикутник з висотою " << x;
+        cout << " i основою " << y;
+        cout << " має площу " << x * 0.5 * y;
+        cout << " кв. од." << endl;
     }
 };
-class rectangle : public figure {
+
+class Rectangle : public Figure {
 public:
-    void Show()
-    {
+    void show() {
         cout << "Прямокутник розмiрами " << x << " x " << y;
-        cout << " має площу " << x * y ; cout << " кв. од." << endl;
+        cout << " має площу " << x * y;
+        cout << " кв. од." << endl;
     }
 };
-class circle : public figure {
+
+class Circle : public Figure {
 public:
-    void Show()
-    {
+    void show() {
         cout << "Круг з радiусом " << x;
-        cout << " має площу " << 3.14159 * x * x ; cout << 	" кв. од." << endl;
+        cout << " має площу " << 3.14159 * x * x;
+        cout << " кв. од." << endl;
     }
 };
-int main()
-{
-    figure *p; 		// Створення покажчика на об'єкт базового типу
-    triangle ObjT; 	// Створення об'єкта похiдного типу
-    rectangle ObjR; 	// Створення об'єкта похiдного типу
-    circle ObjC;		 // Створення об'єкта похiдного типу
 
-    p = &ObjT; 		// Присвоєння покажчику адреси об'єкта 							   похiдного класу
-    p->Set(10.3, 5.5);
-    p->Show();
+int main() {
+    system("chcp 65001");
+    Figure *figurePtr;          // Створення вказівника на об'єкт базового класу
+    Triangle triangle;          // Створення об'єкта похiдного класу
+    Rectangle rectangle;        // Створення об'єкта похiдного класу
+    Circle circle;              // Створення об'єкта похiдного класу
 
-    p = &ObjR; 		// Присвоєння покажчику адреси об'єкта 							   похідного класу
-    p->Set(10.3, 5.5);
-    p->Show();
-    p = &ObjC; 		// Присвоєння покажчику адреси об'єкта 							   похідного класу
-    p->Set(9.67);
-    p->Show();
+    figurePtr = &triangle;      // Присвоєння вказівнику адреси об'єкта похiдного класу
+    figurePtr->set(10.3, 5.5);
+    figurePtr->show();
+
+    figurePtr = &rectangle;     // Присвоєння вказівнику адреси об'єкта похідного класу
+    figurePtr->set(10.3, 5.5);
+    figurePtr->show();
+    figurePtr = &circle;        // Присвоєння вказівнику адреси об'єкта похідного класу
+    figurePtr->set(9.67);
+    figurePtr->show();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

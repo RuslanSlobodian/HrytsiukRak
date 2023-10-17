@@ -1,29 +1,37 @@
-//Код програми 4.10. Демонстрація механізму перевизначення оператора індексації
-//елементів масиву "[]" як зліва, так і праворуч від оператора присвоєння
+// Код програми 4.10. Демонстрація механізму перевизначення оператора індексації елементів масиву "[]"
+// як зліва, так і праворуч від оператора присвоєння
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-const int size = 3;
+const int SIZE = 3;
 
-class aClass { // Оголошення класового типу
-    int aMas[size];
+class ArrayClass {              // Оголошення класового типу
+    int array[SIZE];
 public:
-    aClass() { for(int i=0; i<size; i++) aMas[i] = i*i; }
-    int &operator[](int i) {return aMas[i]; }
+    ArrayClass() {
+        for (int i = 0; i < SIZE; i++) {
+            array[i] = i * i;
+        }
+    }
+
+    int &operator[](int i) {
+        return array[i];
+    }
 };
 
-int main()
-{
-    aClass ObjA;
+int main() {
+    system("chcp 65001");
+    ArrayClass objectA;
     cout << "Значення елементiв масиву <A>:" << endl;
-    for(int i=0; i<3; i++)
-        cout << "aMas[" << i << "]= " << ObjA[i] << endl;
-    // Оператор "[]" знаходиться зліва від оператора присвоєння "=".
-    ObjA[2] = 25;
-    cout << endl << "aMas[2]= " << ObjA[2]; // Тепер відображається число 25.
+    for (int i = 0; i < 3; i++) {
+        cout << "array[" << i << "]= " << objectA[i] << endl;
+    }
+    // Оператор "[]" знаходиться зліва від оператора присвоєння "="
+    objectA[2] = 25;
+    cout << endl << "array[2]= " << objectA[2]; // Тепер відображається число 25
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -1,59 +1,76 @@
-//Код програми 4.1. Демонстрація механізму перевизначення бінарних операторів
-//додавання "+" та присвоєння "=" за допомогою функцій-членів класу
+// Код програми 4.1. Демонстрація механізму перевизначення бінарних операторів додавання "+" та присвоєння "=" за допомогою методів
 
 #include <cstdlib>
 #include <iostream>
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;
 
-class kooClass { 			// Оголошення класового типу
-    int x, y, z; 				// Тривимірні координати
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    kooClass() {x = y = z = 0; }
-    kooClass(int c, int d, int f) {x = c; y = d; z = f; }
-    kooClass operator+(kooClass obj); // Операнд obj передається неявно.
-    kooClass operator=(kooClass obj); // Операнд obj передається неявно.
-    void Show(char *s);
-};
-// Перевизначення бінарного оператора додавання "+".
-kooClass kooClass::operator+(kooClass obj)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = x + obj.x; // Операції додавання цілочисельних значень
-    tmp.y = y + obj.y; // зберігають початковий вміст операндів
-    tmp.z = z + obj.z;
+    Coordinates() { x = y = z = 0; }
 
-    return tmp; // Повертає модифікований тимчасовий об'єкт
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    Coordinates(const Coordinates &source){
+        this->x = source.x;
+        this->y = source.y;
+        this->z = source.z;
+    }
+
+    Coordinates operator+(Coordinates object); // Операнд object передається неявно
+    Coordinates operator=(Coordinates object); // Операнд object передається неявно
+    void show(string str);
+};
+
+// Перевизначення бінарного оператора додавання "+"
+Coordinates Coordinates::operator+(Coordinates object) {
+    Coordinates tmp;            // Створення тимчасового об'єкта
+    tmp.x = x + object.x;       // Операції додавання цілочисельних значень
+    tmp.y = y + object.y;       // зберігають початковий вміст операндів
+    tmp.z = z + object.z;
+
+    return tmp;                 // Повертає модифікований тимчасовий об'єкт
 }
-// Перевизначення оператора присвоєння "=".
-kooClass kooClass::operator=(kooClass obj)
-{
-    this->x = obj.x; // Операції присвоєння цілочисельних значень
-    y = obj.y; // зберігають початковий вміст операндів
-    z = obj.z;
+
+// Перевизначення оператора присвоєння "="
+Coordinates Coordinates::operator=(Coordinates object) {
+    this->x = object.x;         // Операції присвоєння цілочисельних значень
+    y = object.y;               // зберігають початковий вміст операндів
+    z = object.z;
 
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
-// Відображення тривимірних координат x, y, z.
-void kooClass::Show(char *s)
-{
-    cout << "Координати об'єкта <" << s << ">: ";
+
+// Відображення тривимірних координат x, y, z
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
-int main()
-{
-    kooClass ObjA(1, 2, 3), ObjB(10, 10, 10), ObjC;
-    ObjA.Show("A");
-    ObjB.Show("B");
 
-    ObjC = ObjA + ObjB; // Додавання об'єктів ObjA і ObjB
-    ObjC.Show("C=A+B");
-    ObjC = ObjA + ObjB + ObjC; // Множинне додавання об'єктів
-    ObjC.Show("C=A+B+C");
-    ObjC = ObjB = ObjA; // Множинне присвоєння об'єктів
-    ObjB.Show("B=A");
-    ObjC.Show("C=B");
+int main() {
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3);
+    Coordinates objectB(10, 10, 10);
+    Coordinates objectC;
+
+    objectA.show("A");
+    objectB.show("B");
+
+    objectC = objectA + objectB;            // Додавання об'єктів objectA і objectB
+    objectC.show("C = A + B");
+    objectC = objectA + objectB + objectC;  // Множинне додавання об'єктів
+    objectC.show("C = A + B + C");
+    objectC = objectB = objectA;            // Множинне присвоєння об'єктів
+    objectB.show("B = A");
+    objectC.show("C = B");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

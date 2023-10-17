@@ -1,80 +1,97 @@
-//Код програми 4.5. Демонстрація механізму перевизначення бінарних операторів
-// множення "*" і ділення "/" з використанням функцій"друзів" класу
+// Код програми 4.5. Демонстрація механізму перевизначення бінарних операторів "*" і "/" з використанням дружніх функцій
 
 #include <cstdlib>
 #include <iostream>
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;
 
-class kooClass { // Оголошення класового типу
-    int x, y, z; // Тривимірні координати
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    kooClass() {x = y = z = 0; }
-    kooClass(int c, int d, int f) { x = c; y = d; z = f; }
-    friend kooClass operator*(kooClass obi, int c);
-    friend kooClass operator*(int c, kooClass obi);
-    friend kooClass operator/(kooClass obi, int c);
-    friend kooClass operator/(int c, kooClass obi);
-    void Show(char *s);
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    friend Coordinates operator*(Coordinates lhs, int number);
+
+    friend Coordinates operator*(int number, Coordinates rhs);
+    friend Coordinates operator/(Coordinates lhs, int number);
+
+    friend Coordinates operator/(int number, Coordinates obi);
+
+    int getX() { return x; }
+
+    int getY() { return y; }
+
+    int getZ() { return z; }
+
+    void show(string str);
 };
+
+// Операторна "дружня" функція класу
+// Перевизначення бінарного оператора множення "*"
+Coordinates operator*(Coordinates lhs, int number) {
+    Coordinates tmp;            // Створення тимчасового об'єкта
+    tmp.x = lhs.x * number;
+    tmp.y = lhs.y * number;
+    tmp.z = lhs.z * number;
+    return tmp;                 // Повертає модифікований тимчасовий об'єкт
+}
+
 // Операторна "дружня" функція класу.
-// Перевизначення бінарного оператора множення "*".
-kooClass operator*(kooClass obi, int c)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = obi.x * c;
-    tmp.y = obi.y * c;
-    tmp.z = obi.z * c;
+// Перевизначення бінарного оператора множення "*"
+Coordinates operator*(int number, Coordinates rhs) {   // rhs - right-hand side
+    Coordinates tmp(number * rhs.getX(), number * rhs.getY(), number * rhs.getZ()); // Створення тимчасового об'єкта
+//    tmp.x = number * rhs.x;
+//    tmp.y = number * rhs.y;
+//    tmp.z = number * rhs.z;
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
-// Операторна "дружня" функція класу.
-// Перевизначення бінарного оператора множення "*".
-kooClass operator*(int c, kooClass obi)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = c * obi.x;
-    tmp.y = c * obi.y;
-    tmp.z = c * obi.z;
+
+// Перевизначення бінарного оператора ділення "/"
+Coordinates operator/(Coordinates lhs, int number) {    // lhs - left-hand side
+    Coordinates tmp; // Створення тимчасового об'єкта
+    tmp.x = lhs.x / number;
+    tmp.y = lhs.y / number;
+    tmp.z = lhs.z / number;
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
-// Перевизначення бінарного оператора ділення "/".
-kooClass operator/(kooClass obi, int c)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = obi.x / c;
-    tmp.y = obi.y / c;
-    tmp.z = obi.z / c;
+
+// Перевизначення бінарного оператора ділення "/"
+Coordinates operator/(int number, Coordinates obi) {
+    Coordinates tmp; // Створення тимчасового об'єкта
+    tmp.x = number / obi.x;
+    tmp.y = number / obi.y;
+    tmp.z = number / obi.z;
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
-// Перевизначення бінарного оператора ділення "/".
-kooClass operator/(int c, kooClass obi)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = c / obi.x;
-    tmp.y = c / obi.y;
-    tmp.z = c / obi.z;
-    return tmp; // Повертає модифікований тимчасовий об'єкт
-}
+
 // Відображення тривимірних координат x, y, z.
-void kooClass::Show(char *s)
-{
-    cout << "Координати об'єкта <" << s << ">: ";
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
-int main()
-{
-    kooClass ObjA(1, 2, 3), ObjB(10, 10, 10), ObjC;
+
+int main() {
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3), objectB(10, 10, 10), objectC;
     int a = 10, b = 5;
-    ObjA.Show("A");
-    ObjB.Show("B");
-    ObjC = ObjA * a; // Множення об'єкта ObjA на число a
-    ObjC.Show("C=A*a");
-    ObjC = a * ObjA; // Множення числа a на об'єкт ObjA
-    ObjC.Show("C=a*A");
-    ObjC = ObjB / b; // Ділення об'єкта ObjB на число b
-    ObjC.Show("C=B*b");
-    ObjC = a / ObjB; // Ділення числа a на об'єкт ObjB
-    ObjC.Show("C=a/B");
+    objectA.show("A");
+    objectB.show("B");
+    objectC = objectA * a;      // Множення об'єкта objectA на число a
+    objectC.show("C = A * a");
+    objectC = a * objectA;      // Множення числа a на об'єкт objectA
+    objectC.show("C = a * A");
+    objectC = objectB / b;      // Ділення об'єкта objectB на число b
+    objectC.show("C = B * b");
+    objectC = a / objectB;      // Ділення числа a на об'єкт objectB
+    objectC.show("C = a / B");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -1,57 +1,72 @@
-//Код програми 4.4. Демонстрація механізму перевизначення бінарного оператора додавання "+" за допомогою "дружньої" функції класу
+// Код програми 4.4. Демонстрація механізму перевизначення бінарного оператора "+" за допомогою "дружньої" функції класу
 
 #include <cstdlib>
 #include <iostream>
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;
 
-class kooClass { // Оголошення класового типу
-    int x, y, z; // Тривимірні координати
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    kooClass() {x = y = z = 0; }
-    kooClass(int c, int d, int f) { x = c; y = d; z = f; }
-    friend kooClass operator+(kooClass obi, kooClass obj);
-    kooClass operator=(kooClass obj); // Операнд obj передається неявно.
-    void Show(char *s);
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    Coordinates(const Coordinates &source) {
+        this->x = source.x;
+        this->y = source.y;
+        this->z = source.z;
+    }
+
+    friend Coordinates operator+(Coordinates lhs, Coordinates rhs);
+
+    Coordinates operator=(Coordinates rhs); // Операнд rhs передається неявно
+    void show(string str);
 };
-// Операторна "дружня" функція класу.
-// Перевизначення бінарного оператора додавання "+".
-kooClass operator+(kooClass obi, kooClass obj)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = obi.x + obj.x;
-    tmp.y = obi.y + obj.y;
-    tmp.z = obi.z + obj.z;
-    return tmp; // Повертає модифікований тимчасовий об'єкт
+
+// Операторна "дружня" функція класу
+// Перевизначення бінарного оператора додавання "+"
+Coordinates operator+(Coordinates lhs, Coordinates rhs) {   // lhs - left-hand side, rhs - right-hand side
+    Coordinates tmp;            // Створення тимчасового об'єкта
+    tmp.x = lhs.x + rhs.x;
+    tmp.y = lhs.y + rhs.y;
+    tmp.z = lhs.z + rhs.z;
+    return tmp;                 // Повертає тимчасовий об'єкт
 }
-// Перевизначення оператора присвоєння "=".
-kooClass kooClass::operator=(kooClass obj)
-{
-    x = obj.x;
-    y = obj.y;
-    z = obj.z;
-    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
+
+// Перевизначення оператора присвоєння "="
+Coordinates Coordinates::operator=(Coordinates rhs) {   // rhs - right-hand side
+    x = rhs.x;
+    y = rhs.y;
+    z = rhs.z;
+    // Повернення модифікованого об'єкта операнда, адресованого вказівником this (lhs)
     return *this;
 }
-// Відображення тривимірних координат x, y, z.
-void kooClass::Show(char *s)
-{
-    cout << "Координати об'єкта <" << s << ">: ";
+
+// Відображення тривимірних координат x, y, z
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
 
-int main()
-{
-    kooClass ObjA(1, 2, 3), ObjB(10, 10, 10), ObjC;
-    ObjA.Show("A");
-    ObjB.Show("B");
-    ObjC = ObjA + ObjB; // Додавання об'єктів ObjA і ObjB
-    ObjC.Show("C=A+B");
-    ObjC = ObjA + ObjB + ObjC; // Множинне додавання об'єктів
-    ObjC.Show("C=A+B+C");
-    ObjC = ObjB = ObjA ; // Множинне присвоєння об'єктів
-    ObjC.Show("C=B");
-    ObjB.Show("B=A");
+int main() {
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3), objectB(10, 10, 10), objectC;
+    objectA.show("A");
+    objectB.show("B");
+    objectC = objectA + objectB;// Додавання об'єктів objectA і objectB
+    objectC.show("C = A + B");
+    objectC = objectA + objectB + objectC; // Множинне додавання об'єктів
+    objectC.show("C = A + B + C");
+    objectC = objectB = objectA;// Множинне присвоєння об'єктів
+    objectC.show("C = B");
+    objectB.show("B = A");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

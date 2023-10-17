@@ -1,107 +1,122 @@
-//Код програми 4.3. Демонстрація механізму перевизначення унарного оператора інкремента "++" з використанням його префіксної та пост-фіксної форм
+// Код програми 4.3. Демонстрація механізму перевизначення унарного оператора інкремента "++" з використанням його префіксної та пост-фіксної форм
 
 #include <cstdlib>
 #include <iostream>
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;
 
-class kooClass { 			// Оголошення класового типу
-    int x, y, z; 			// Тривимірні координати
+class Coordinates {             // Оголошення класового типу
+    int x;
+    int y;
+    int z;
 public:
-    kooClass() { x = y = z = 0; }
-    kooClass(int c, int d, int f) {x = c; y = d; z = f; }
-    kooClass operator*(kooClass obj); // Операнд obj передається неявно.
-    kooClass operator=(kooClass obj); // Операнд obj передається неявно.
-    kooClass operator++(); // Префіксна форма оператора інкремента "++"
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    Coordinates(const Coordinates &source){
+        this->x = source.x;
+        this->y = source.y;
+        this->z = source.z;
+    }
+
+    Coordinates operator*(Coordinates rhs); // Операнд rhs передається неявно
+    Coordinates operator=(Coordinates rhs); // Операнд rhs передається неявно
+    Coordinates operator++();   // Префіксна форма оператора інкремента "++"
 
     // Постфіксна форма оператора інкремента "++"
-    kooClass operator++(int notused);
+    Coordinates operator++(int notused);
 
     // Префіксна форма унарного оператора зміни знаку "-"
-    kooClass operator-();
-    void Show(char *s);
+    Coordinates operator-();
+
+    void show(string str);
 };
-// Перевизначення бінарного оператора множення "*".
-kooClass kooClass::operator*(kooClass obj)
-{
-    kooClass tmp; // Створення тимчасового об'єкта
-    tmp.x = x * obj.x; // Операції множення цілочисельних значень
-    tmp.y = y * obj.y; // зберігають початковий вміст операндів
-    tmp.z = z * obj.z;
+
+// Перевизначення бінарного оператора множення "*"
+Coordinates Coordinates::operator*(Coordinates rhs) {
+    Coordinates tmp; // Створення тимчасового об'єкта
+    tmp.x = x * rhs.x; // Операції множення цілочисельних значень
+    tmp.y = y * rhs.y; // зберігають початковий вміст операндів
+    tmp.z = z * rhs.z;
 
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
-// Перевизначення оператора присвоєння "=".
-kooClass kooClass::operator=(kooClass obj)
-{
-    x = obj.x; // Операції присвоєння цілочисельних значень
-    y = obj.y; // зберігають початковий вміст операндів
-    z = obj.z;
+
+// Перевизначення оператора присвоєння "="
+Coordinates Coordinates::operator=(Coordinates rhs) {
+    x = rhs.x; // Операції присвоєння цілочисельних значень
+    y = rhs.y; // зберігають початковий вміст операндів
+    z = rhs.z;
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
-// Перевизначення префіксної форми унарного оператора інкремента "++".
-kooClass kooClass::operator++()
-{
+
+// Перевизначення префіксної форми унарного оператора інкремента "++"
+Coordinates Coordinates::operator++() {
     x++; // Інкремент координат x, y і z
     y++;
     z++;
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
-// Перевизначення постфіксної форми унарного оператора інкремента "++".
-kooClass kooClass::operator++(int notused)
-{
-    kooClass tmp = *this; // Збереження початкового значення об'єкта
+
+// Перевизначення постфіксної форми унарного оператора інкремента "++"
+Coordinates Coordinates::operator++(int notused) {
+    Coordinates tmp = *this; // Збереження початкового значення об'єкта
     x++; // Інкремент координат x, y і z
     y++;
     z++;
     return tmp; // Повернення початкового значення об'єкта
 }
-// Перевизначення префіксної форми унарного оператора зміни знаку "-".
-kooClass kooClass::operator-()
-{
-    x=-x; // Зміна знаку координат x, y і z
-    y=-y;
-    z=-z;
+
+// Перевизначення префіксної форми унарного оператора зміни знаку "-"
+Coordinates Coordinates::operator-() {
+    x = -x; // Зміна знаку координат x, y і z
+    y = -y;
+    z = -z;
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
+
 // Відображення тривимірних координат x, y, z.
-void kooClass::Show(char *s)
-{
-    cout << "Координати об'єкта <" << s << ">: ";
+void Coordinates::show(string str) {
+    cout << "Координати об'єкта <" << str << ">: ";
     cout << "\t\tx= " << x << ", y= " << y << ", z= " << z << endl;
 }
 
-int main()
-{
-    kooClass ObjA(1, 2, 3), ObjB(10, 10, 10), ObjC;
+int main() {
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3), objectB(10, 10, 10), objectC;
 
-    ObjA.Show("A");
-    ObjB.Show("B");
+    objectA.show("A");
+    objectB.show("B");
 
-    ObjC = ObjA * ObjB; // Множення об'єктів ObjA і ObjB
-    ObjC.Show("C=A*B");
+    objectC = objectA * objectB;// Множення об'єктів objectA і objectB
+    objectC.show("C = A * B");
 
-    ObjC = ObjA * ObjB * ObjC; // Множинне множення об'єктів
-    ObjC.Show("C=A*B*C");
+    objectC = objectA * objectB * objectC; // Множинне множення об'єктів
+    objectC.show("C = A * B * C");
 
-    ObjC = ObjB = ObjA; // Множинне присвоєння об'єктів
-    ObjC.Show("C=B");
-    ObjB.Show("B=A");
-    ++ObjC; // Префіксна форма операції інкремента
-    ObjC.Show("++C");
-    ObjC++; // Постфіксна форма операції інкремента
-    ObjC.Show("C++");
-    ObjA = ++ObjC; // Об'єкт ObjA набуває значення об'єкта ObjC після його інкрементування.
-    ObjA.Show("A = ++C"); // Тепер об'єкти ObjA і ObjC мають однакові значення.
-    ObjC.Show("C");
-    ObjA = ObjC++; // Об'єкт ObjA набуває значення об'єкта ObjC до його інкрементування.
-    ObjA.Show("A=C++"); // Тепер об'єкти ObjA і ObjC мають різні значення.
-    ObjC.Show("C");
-    -ObjC; // Префіксна форма операції зміни знаку
-    ObjC.Show("-C");
+    objectC = objectB = objectA; // Множинне присвоєння об'єктів
+    objectC.show("C = B");
+    objectB.show("B = A");
+    ++objectC;                  // Префіксна форма операції інкремента
+    objectC.show("++C");
+    objectC++;                  // Постфіксна форма операції інкремента
+    objectC.show("C++");
+    objectA = ++objectC;        // Об'єкт objectA набуває значення об'єкта objectC після його інкрементування
+    objectA.show("A = ++C");    // Тепер об'єкти objectA і objectC мають однакові значення
+    objectC.show("C");
+    objectA = objectC++;        // Об'єкт objectA набуває значення об'єкта objectC до його інкрементування
+    objectA.show("A = C++");    // Тепер об'єкти objectA і objectC мають різні значення
+    objectC.show("C");
+    -objectC;                   // Префіксна форма операції зміни знаку
+    objectC.show("-C");
 
     //system("PAUSE");
     return EXIT_SUCCESS;

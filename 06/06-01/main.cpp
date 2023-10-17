@@ -1,47 +1,52 @@
-//Код програми 6.1. Демонстрація механізму використання покажчиків набазовий клас для доступу до об'єктів похідних класів
+// Код програми 6.1. Демонстрація механізму використання вказівників на базовий клас для доступу до об'єктів похідних класів
 
-#include <cstring>	 		// Для роботи з рядковими типами даних
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
+#include <cstring>
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; // Використання стандартного простору імен
+using namespace std;
 
-class baseClass { 		// Оголошення класового типу
+class BaseClass {               // Оголошення базового класу
     char author[80];
 public:
-    void putAuthor(char *s) { strcpy(author, s); }
-    void showAuthor() { cout << "Автор: "<< author << endl; }
+    void setAuthor(const char *author) { strcpy(this->author, author); }
+
+    void showAuthor() { cout << "Автор: " << this->author << endl; }
 };
-class derivClass : public baseClass { // Оголошення класового типу
+
+class DerivedClass : public BaseClass { // Оголошення похідного класу
     char title[80];
 public:
-    void putTitle(char *n) { strcpy(title, n); }
-    void showTitle() { cout << "Назва: " << title << endl; }
+    void setTitle(const char *title) { strcpy(this->title, title); }
+
+    void showTitle() { cout << "Назва: " << this->title << endl; }
 };
-int main()
-{
-    baseClass *bp;		 // Створення покажчика на об'єкт базового типу
-    baseClass ObjB; 		// Створення об'єкта базового типу
-    derivClass *dp; 		// Створення покажчика на об'єкт похідного типу
-    derivClass ObjD; 		// Створення об'єкта похідного типу
-    // Доступ до класу baseClass через покажчик.
-    bp = &ObjB; 		// Присвоєння покажчику адреси об'єкта базового классу
 
-    bp->putAuthor("Емiль Золя");
+int main() {
+    system("chcp 65001");
+    BaseClass *baseClassPtr;    // Створення вказівника на об'єкт базового класу
+    BaseClass baseClassObject;  // Створення об'єкта базового класу
+    DerivedClass *derivedClassPtr;      // Створення вказівника на об'єкт похідного класу
+    DerivedClass derivedClassObject;    // Створення об'єкта похідного класу
+    // Доступ до об'єкта базового класу через вказівник baseClassPtr
+    baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового классу
 
-    // Доступ до класу derivClass через "базовий" 	покажчик.
-    bp = &ObjD;		 // Присвоєння покажчику адреси об'єкта похідного класу
-    bp->putAuthor("Вiльям Шекспiр");
+    baseClassPtr->setAuthor("Б'ярн Страуструп");
 
-    ObjB.showAuthor();	 // Покажемо, що кожен автор належить до відповідного об'єкта.
-    ObjD.showAuthor();
+    // Доступ до об'єкта похідного класу DerivedClass через вказівник на базовий клас
+    baseClassPtr = &derivedClassObject; // Присвоєння вказівнику адреси об'єкта похідного класу
+    baseClassPtr->setAuthor("Роберт Мартін");
+
+    baseClassObject.showAuthor();       // Покажемо, що кожен автор належить до відповідного об'єкта
+    derivedClassObject.showAuthor();
     cout << endl;
-    /* Оскільки функції putTitle() i showTitle() не є частиною базового класу, то вонинедоступні через "базовий" покажчик bp, i тому до 		них потрібно звертатисяабо безпосередньо, або, як показано тут, 		через покажчик на похідний тип. */
 
-    dp = &ObjD;		 // Присвоєння покажчику адреси об'єкта похідного класу
-    dp->putTitle("Буря");
-    dp->showAuthor();	 // Тут можна використовувати або покажчик bp, або покажчик dp.
-    dp->showTitle();
+    // Оскільки методи setTitle() i showTitle() не є частиною базового класу, то вони не доступні через "базовий" вказівник
+    // baseClassPtr, i тому до них потрібно звертатися або безпосередньо, або, як показано тут, через вказівник на похідний клас
+    derivedClassPtr = &derivedClassObject;         // Присвоєння вказівнику адреси об'єкта похідного класу
+    derivedClassPtr->setTitle("Чистий код");
+    derivedClassPtr->showAuthor();      // Тут можна використовувати або вказівник baseClassPtr, або вказівник derivedClassPtr
+    derivedClassPtr->showTitle();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

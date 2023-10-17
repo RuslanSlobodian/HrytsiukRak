@@ -1,48 +1,55 @@
-//Код програми 6.5. Демонстрацiя механiзму застосування вiртуальних  функцiй
+// Код програми 6.5. Демонстрацiя механiзму застосування вiртуальних методів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бiблiотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; // Використання стандартного простору iмен
+using namespace std;
 
-class figure {
+class Figure {
 protected:
-    double x, y;
+    double x;
+    double y;
 public:
-    void Set(double _x, double _y) { x = _x; y = _y; }
-    virtual void Show()
-    {
-        cout << "У цьому класi виразу для обчислення площi не визначено." << endl;
+    void set(double x, double y) {
+        this->x = x;
+        this->y = y;
     }
-};
-class triangle : public figure {
-public:
-    void Show()
-    {
-        cout << "Трикутник з висотою " << x; cout << " i основою " << y;
-        cout << " має площу " << x * 0.5 * y ; cout << " кв. од." 	<< endl;
-    }
-};
-class rectangle : public figure {
-public:
-    void Show()
-    {
-        cout << "Прямокутник розмiрами " << x << " x " << y;
-        cout << " має площу " << x * y ; cout << " кв. од." 			<< endl;
+
+    virtual void show() {
+        cout << "У цьому класi виразу для обчислення площi не визначено" << endl;
     }
 };
 
-int main()
-{
-    figure *p; // Створення покажчика на об'єкт базового типу
-    triangle ObjT; // Створення об'єктiв похiдних типiв
-    rectangle ObjR; // Створення об'єкта похідного типу
-    p = &ObjT; // Присвоєння покажчику адреси об'єкта похідного класу
-    p->Set(10.3, 5.5);
-    p->Show();
-    p = &ObjR; // Присвоєння покажчику адреси об'єкта похідного 			класу
-    p->Set(10.3, 5.5);
-    p->Show();
+class Triangle : public Figure {
+public:
+    void show() {
+        cout << "Трикутник з висотою " << x;
+        cout << " i основою " << y;
+        cout << " має площу " << x * 0.5 * y;
+        cout << " кв. од." << endl;
+    }
+};
+
+class Rectangle : public Figure {
+public:
+    void show() {
+        cout << "Прямокутник розмiрами " << x << " x " << y;
+        cout << " має площу " << x * y;
+        cout << " кв. од." << endl;
+    }
+};
+
+int main() {
+    system("chcp 65001");
+    Figure *figurePtr;          // Створення вказівника на об'єкт базового класу
+    Triangle triangle;          // Створення об'єкта похiдного класу
+    Rectangle rectangle;        // Створення об'єкта похідного класу
+    figurePtr = &triangle;      // Присвоєння вказівнику адреси об'єкта похідного класу
+    figurePtr->set(10.3, 5.5);
+    figurePtr->show();
+    figurePtr = &rectangle;     // Присвоєння вказівнику адреси об'єкта похідного класу
+    figurePtr->set(10.3, 5.5);
+    figurePtr->show();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

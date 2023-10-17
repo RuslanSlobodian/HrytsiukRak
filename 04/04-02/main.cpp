@@ -12,10 +12,10 @@ class Coordinates {             // Оголошення класового ти�
 public:
     Coordinates() { x = y = z = 0; }
 
-    Coordinates(int c, int d, int f) {
-        x = c;
-        y = d;
-        z = f;
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
     }
 
     Coordinates(const Coordinates &source){

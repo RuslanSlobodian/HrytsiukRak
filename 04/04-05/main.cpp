@@ -12,10 +12,10 @@ class Coordinates {             // Оголошення класового ти�
 public:
     Coordinates() { x = y = z = 0; }
 
-    Coordinates(int c, int d, int f) {
-        x = c;
-        y = d;
-        z = f;
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
     }
 
     friend Coordinates operator*(Coordinates lhs, int number);
@@ -34,8 +34,8 @@ public:
     void show(string str);
 };
 
-// Операторна "дружня" функція класу.
-// Перевизначення бінарного оператора множення "*".
+// Операторна "дружня" функція класу
+// Перевизначення бінарного оператора множення "*"
 Coordinates operator*(Coordinates lhs, int number) {
     Coordinates tmp;            // Створення тимчасового об'єкта
     tmp.x = lhs.x * number;
@@ -45,7 +45,7 @@ Coordinates operator*(Coordinates lhs, int number) {
 }
 
 // Операторна "дружня" функція класу.
-// Перевизначення бінарного оператора множення "*".
+// Перевизначення бінарного оператора множення "*"
 Coordinates operator*(int number, Coordinates rhs) {   // rhs - right-hand side
     Coordinates tmp(number * rhs.getX(), number * rhs.getY(), number * rhs.getZ()); // Створення тимчасового об'єкта
 //    tmp.x = number * rhs.x;
@@ -54,7 +54,7 @@ Coordinates operator*(int number, Coordinates rhs) {   // rhs - right-hand side
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
 
-// Перевизначення бінарного оператора ділення "/".
+// Перевизначення бінарного оператора ділення "/"
 Coordinates operator/(Coordinates lhs, int number) {    // lhs - left-hand side
     Coordinates tmp; // Створення тимчасового об'єкта
     tmp.x = lhs.x / number;
@@ -63,7 +63,7 @@ Coordinates operator/(Coordinates lhs, int number) {    // lhs - left-hand side
     return tmp; // Повертає модифікований тимчасовий об'єкт
 }
 
-// Перевизначення бінарного оператора ділення "/".
+// Перевизначення бінарного оператора ділення "/"
 Coordinates operator/(int number, Coordinates obi) {
     Coordinates tmp; // Створення тимчасового об'єкта
     tmp.x = number / obi.x;

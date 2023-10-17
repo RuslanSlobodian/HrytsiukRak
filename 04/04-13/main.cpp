@@ -1,41 +1,43 @@
 // Код програми 4.13. Демонстрація механізму конкатенації та присвоєння класу рядків
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 #include <string.h>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;            // Використання стандартного простору імен
 
 class StrClass {                // Оголошення класового типу
-    char string[80];
+    char charArray[80];
 public:
-    StrClass(char *str ="") {
-        strcpy(string, str);
+    StrClass(const char *str = "") {
+        strcpy(charArray, str);
     }
+
     StrClass operator+(StrClass object); // Конкатенація рядків
     StrClass operator=(StrClass object); // Присвоєння рядків
 
-    void show(char *s) {        // Виведення рядка
-        cout << s << string << endl;
+    void show(string str) {     // Виведення рядка
+        cout << str << charArray << endl;
     }
 };
 
 // Конкатенація двох рядків
 StrClass StrClass::operator+(StrClass object) {
     StrClass tmp;               // Створення тимчасового об'єкта
-    strcpy(tmp.string, string);
-    strcat(tmp.string, object.string);
+    strcpy(tmp.charArray, charArray);
+    strcat(tmp.charArray, object.charArray);
     return tmp;                 // Повертає модифікований тимчасовий об'єкт
 }
 
 // Присвоєння одного рядка іншому
 StrClass StrClass::operator=(StrClass object) {
-    strcpy(string, object.string);
+    strcpy(charArray, object.charArray);
     // Повернення модифікованого об'єкта операнда, адресованого покажчиком
     return *this;
 }
 
-int main () {
+int main() {
+    system("chcp 65001");
     StrClass objectA("Всiм ");
     StrClass objectB("привiт");
     StrClass objectC;

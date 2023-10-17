@@ -26,13 +26,13 @@ public:
 
     friend Coordinates operator+(Coordinates lhs, Coordinates rhs);
 
-    Coordinates operator=(Coordinates rhs); // Операнд rhs передається неявно.
+    Coordinates operator=(Coordinates rhs); // Операнд rhs передається неявно
     void show(string str);
 };
 
 // Операторна "дружня" функція класу
 // Перевизначення бінарного оператора додавання "+"
-Coordinates operator+(Coordinates lhs, Coordinates rhs) {
+Coordinates operator+(Coordinates lhs, Coordinates rhs) {   // lhs - left-hand side, rhs - right-hand side
     Coordinates tmp;            // Створення тимчасового об'єкта
     tmp.x = lhs.x + rhs.x;
     tmp.y = lhs.y + rhs.y;
@@ -41,11 +41,11 @@ Coordinates operator+(Coordinates lhs, Coordinates rhs) {
 }
 
 // Перевизначення оператора присвоєння "="
-Coordinates Coordinates::operator=(Coordinates rhs) {
+Coordinates Coordinates::operator=(Coordinates rhs) {   // rhs - right-hand side
     x = rhs.x;
     y = rhs.y;
     z = rhs.z;
-    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
+    // Повернення модифікованого об'єкта операнда, адресованого вказівником this (lhs)
     return *this;
 }
 

@@ -1,30 +1,41 @@
-//Код програми 7.11. Демонстрація безпосередньо заданої спеціалізації класів
+// Код програми 7.11. Демонстрація безпосередньо заданої спеціалізації класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
-template <class tType> class myClass { // Оголошення класового типу
-    tType x;
+template<typename T>
+class MyClass {                 // Оголошення класового типу
+    T x;
 public:
-    myClass(tType ObjA) { cout << "У тiлi узагальненого класу myClass" << endl; x = ObjA; }
-    tType getX() { return x; }
-};
-// Безпосередня спеціалізація для типу int.
-template <> class myClass<int> {
-    int x;
-public:
-    myClass(int a) { cout << "У тiлi спецiалiзацiї myClass<int>" << endl; x = a * a; }
-    int getX() { return x; }
+    MyClass(T x) {
+        cout << "У тiлi узагальненого класу MyClass" << endl;
+        this->x = x;
+    }
+
+    T getX() const { return x; }
 };
 
-int main()
-{
-    myClass<double> ObjD(10.1);
-    cout << "double: " << ObjD.getX() << endl << endl;
-    myClass<int> ObjI(5);
-    cout << "int: " << ObjI.getX() << endl;
+// Безпосередня спеціалізація для типу int
+template<>
+class MyClass<int> {
+    int x;
+public:
+    MyClass(int x) {
+        cout << "У тiлi спецiалiзацiї MyClass<int>" << endl;
+        this->x = x * x;
+    }
+
+    int getX() const { return x; }
+};
+
+int main() {
+    system("chcp 65001");
+    MyClass<double> objectA(10.1);
+    cout << "double: " << objectA.getX() << endl << endl;
+    MyClass<int> objectB(5);
+    cout << "int: " << objectB.getX() << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

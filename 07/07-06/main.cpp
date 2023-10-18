@@ -1,54 +1,67 @@
-//Код програми 7.6. Демонстрація механізму створення класу з одним узагальненим типом даних
+// Код програми 7.6. Демонстрація механізму створення класу з одним узагальненим типом даних
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
-const int SIZE=100;
-// Створення узагальненого класу queueClass.
-template <class qType> class queueClass {
-    qType array[size];
+const int SIZE = 100;
+
+// Створення узагальненого класу QueueClass
+template<typename T>
+class QueueClass {
+    T array[SIZE];
     int sloc, rloc;
 public:
-    queueClass() { sloc = rloc = 0; }
-    void Get(qType c);
-    qType Put(); // Виведення з об'єкта значення
+    QueueClass() { sloc = rloc = 0; }
+
+    void push(T c);         // Добавлення об'єкта в чергу
+
+    T pop();                // Виведення об'єкта з черги
 };
-// Занесення об'єкта в чергу.
-template <class qType> void queueClass<qType>::Get(qType c)
-{
-    if(sloc==size) { cout << "Черга заповнена" << endl; return; }
+
+// Занесення об'єкта в чергу
+template<typename T>
+void QueueClass<T>::push(T c) {
+    if (sloc == SIZE) {
+        cout << "Черга заповнена" << endl;
+        return;
+    }
     sloc++;
     array[sloc] = c;
 }
-// Вилучення об'єкта з черги.
-template <class qType> qType queueClass<qType>::Put()
-{
-    if(rloc == sloc) { cout << "Черга порожня" << endl; return 0; }
+
+// Вилучення об'єкта з черги
+template<typename T>
+T QueueClass<T>::pop() {
+    if (rloc == sloc) {
+        cout << "Черга порожня" << endl;
+        return 0;
+    }
     rloc++;
     return array[rloc];
 }
-int main()
-{
-    queueClass<int> ObjA, ObjB; // Створюємо дві черги для int-значень.
-    ObjA.Get(10);
-    ObjB.Get(19);
-    ObjA.Get(20);
-    ObjB.Get(1);
-    cout << ObjA.Put() << "\t";
-    cout << ObjA.Put() << "\t";
-    cout << ObjB.Put() << "\t";
-    cout << ObjB.Put() << endl;
-    queueClass<double> ObjC, ObjD; // Створюємо дві черги для double-значень
-    ObjC.Get(10.12);
-    ObjD.Get(19.99);
-    ObjC.Get(-20.0);
-    ObjD.Get(0.986);
-    cout << ObjC.Put() << "\t";
-    cout << ObjC.Put() << "\t";
-    cout << ObjD.Put() << "\t";
-    cout << ObjD.Put() << endl;
+
+int main() {
+    system("chcp 65001");
+    QueueClass<int> queueA, queueB; // Створюємо дві черги для int-значень
+    queueA.push(10);
+    queueB.push(19);
+    queueA.push(20);
+    queueB.push(1);
+    cout << queueA.pop() << "\t";
+    cout << queueA.pop() << "\t";
+    cout << queueB.pop() << "\t";
+    cout << queueB.pop() << endl;
+    QueueClass<double> queueC, queueD; // Створюємо дві черги для double-значень
+    queueC.push(10.12);
+    queueD.push(19.99);
+    queueC.push(-20.0);
+    queueD.push(0.986);
+    cout << queueC.pop() << "\t";
+    cout << queueC.pop() << "\t";
+    cout << queueD.pop() << "\t";
+    cout << queueD.pop() << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

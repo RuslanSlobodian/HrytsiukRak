@@ -1,25 +1,29 @@
-//Код програми 7.7. Демонстрація механізму створення класу з двома узагальненими типами даних
+// Код програми 7.7. Демонстрація механізму створення класу з двома узагальненими типами даних
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
-template <class aType, class bType> class myClass {
+template<typename aType, class bType>
+class MyClass {
     aType c;
     bType d;
 public:
-    myClass(aType ObjA, bType ObjB) { c = ObjA; d = ObjB; }
-    void showType()
-    {cout << "c= " << c << "; d= " << d << endl; }
+    MyClass(aType objectA, bType objectB) {
+        c = objectA;
+        d = objectB;
+    }
+
+    void showType() { cout << "c = " << c << "; d = " << d << endl; }
 };
 
-int main()
-{
-    myClass<int, double> ObjA(10, 0.23);
-    myClass<char, char *> ObjB('x', "Це тест.");
-    ObjA.showType(); // Відображення int- і double-значень
-    ObjB.showType (); // Відображення значень типу char і char *
+int main() {
+    system("chcp 65001");
+    MyClass<int, double> objectA(10, 0.23);
+    MyClass<char, char*> objectB('x', "Це тест");
+    objectA.showType();         // Відображення int- і double-значень
+    objectB.showType();         // Відображення значень типу char і char*
 
     //system("PAUSE");
     return EXIT_SUCCESS;

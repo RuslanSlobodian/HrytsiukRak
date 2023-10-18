@@ -1,24 +1,26 @@
-//Код програми 8.7. Демонстрація механізму перехоплення винятків  базовихі похідних типів
+// Код програми 8.7. Демонстрація механізму перехоплення винятків базовихі похідних типів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class bClass { 			// Оголошення класового типу
-
-};
-
-class dClass: public bClass { 	// Оголошення класового типу
+class BaseClass {            // Оголошення базового класу
 
 };
 
-int main()
-{
-    dClass derived;
-    try { throw derived; }
-    catch(bClass ObjB) {cout << "Перехоплення винятку базового класу" << endl; }
-    catch(dClass ObjD) {cout << "Це перехоплення не відбудеться" << endl; }
+class DerivedClass : public BaseClass {    // Оголошення похідного класу
+
+};
+
+int main() {
+    system("chcp 65001");
+    DerivedClass derived;
+    try {
+        throw derived;
+    }
+    catch (BaseClass object) { cout << "Перехоплення винятку базового класу" << endl; }
+    catch (DerivedClass object) { cout << "Це перехоплення не відбудеться" << endl; }
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -1,27 +1,26 @@
-//Код програми 8.6. Демонстрація механізму використання декількох catch-настанов
+// Код програми 8.6. Демонстрація механізму використання декількох catch-настанов
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-// Тут можливе перехоплення винятків різних типів.
-void Xhandler(int test)
-{
+// Тут можливе перехоплення винятків різних типів
+void Xhandler(int test) {
     try {
-        if(test) throw test;
+        if (test) throw test;
         else throw "Значення дорiвнює нулю.";
     }
-    catch(int c) {
+    catch (int c) {
         cout << "Перехоплення! Виняток №: " << c << endl;
     }
-    catch(const char *str) {
+    catch (const char* str) {
         cout << "Перехоплення рядка: " << str << endl;
     }
 }
 
-int main()
-{
+int main() {
+    system("chcp 65001");
     cout << "Початок" << endl;
     Xhandler(1);
     Xhandler(2);

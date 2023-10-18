@@ -1,28 +1,36 @@
-//Код програми 8.5. Демонстрація механізму перехоплення винятків класового типу
+// Код програми 8.5. Демонстрація механізму перехоплення винятків класового типу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <string.h>
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class myException {
+class MyException {
+    string message;
 public:
-    char str[80];
-    myException() { *str = 0; }
-    myException(char *s) { strcpy(str, s); }
+    MyException() {}
+
+    MyException(string message) {
+        this->message = message;
+    }
+
+    string getMessage() {
+        return this->message;
+    }
 };
-int main()
-{
-    int a, b;
+
+int main() {
+    system("chcp 65001");
+    int a;
+    int b;
     try {
         cout << "Введiть чисельник i знаменник: ";
         cin >> a >> b;
-        if(!b) throw myException("Дiлити на нуль не можна!");
-        else cout << "Частка дорiвнює " << a/b << endl;
+        if (!b) throw MyException("Дiлити на нуль не можна!");
+        else cout << "Частка дорiвнює " << a / b << endl;
     }
-    catch(myException e) { // Перехоплення помилки
-        cout << e.str << endl;
+    catch (MyException e) {     // Перехоплення помилки
+        cout << e.getMessage() << endl;
     }
 
     //system("PAUSE");

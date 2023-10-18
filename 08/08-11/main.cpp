@@ -1,28 +1,28 @@
-//Код програми 8.11. Демонстрація механізму повторного генерування винятку типу char *
+// Код програми 8.11. Демонстрація механізму повторного генерування винятку типу char*
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 void Xhandler() {
     try {
-        throw "Привіт";                // Генерує винятки типу char *
+        throw "Привіт";         // Генерує винятки типу char*
     }
-    catch(const char *) { 			// Перехоплює винятки типу char *
+    catch (const char*) {       // Перехоплює винятки типу char *
         cout << "Перехоплення винятку у функцiї Xhandler" << endl;
-        throw;                           // Повторне генерування винятку типу char *,
-        // яке перехоплюватиметься поза функцією Xhandler.
+        throw;                  // Повторне генерування винятку типу char *,
+                                // яке перехоплюватиметься поза функцією Xhandler
     }
 }
 
-int main()
-{
+int main() {
+    system("chcp 65001");
     cout << "Початок" << endl;
     try {
         Xhandler();
     }
-    catch(const char *) {
+    catch (const char*) {
         cout << "Перехоплення винятку у функцiї main()" << endl;
     }
     cout << "Кiнець програми";

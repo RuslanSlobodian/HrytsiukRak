@@ -1,48 +1,56 @@
-//Код програми 9.3. Демонстраціямеханізму перевизначення операторів введення/виведення потокової інформації
+// Код програми 9.3. Демонстрація механізму перевизначення операторів введення/виведення потокової інформації
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class KooClass { // Оголошення класового типу
-    int x, y, z; // Тривимірнікоординати
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    KooClass(int a, int b, int c) { x = a; y = b; z = c; }
-    friend ostream &operator<<(ostream &stream, KooClass obj);
-    friend istream &operator>>(istream &stream, KooClass &obj);
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    friend ostream& operator<<(ostream& stream, Coordinates object);
+
+    friend istream& operator>>(istream& stream, Coordinates& object);
 };
 
 // Відображення тривимірних координат x, y, z
-// Перевизначений оператор виведення даних для класу kooClass
-ostream &operator<<(ostream&stream, KooClass obj)
-{
-    stream << obj.x << ", ";
-    stream << obj.y << ", ";
-    stream << obj.z << endl;
+// Перевизначений оператор виведення даних для класу Coordinates
+ostream& operator<<(ostream& stream, Coordinates object) {
+    stream << object.x << ", ";
+    stream << object.y << ", ";
+    stream << object.z << endl;
 
-    return stream; // Повертає посилання на параметр stream
+    return stream;              // Повертає посилання на параметр stream
 }
 
 // Прийняття тривимірних координат x, y, z
 // Перевизначений оператор введення даних для класу kooClass
-istream &operator>>(istream&stream, KooClass &obj)
-{
+istream& operator>>(istream& stream, Coordinates& object) {
     cout << "Введiть координати x, y i z: ";
 
     // Перевизначений оператор введення даних
-    stream >> obj.x >> obj.y >> obj.z;
-    return stream; // Повертає посилання на параметр stream
+    stream >> object.x >> object.y >> object.z;
+    return stream;              // Повертає посилання на параметр stream
 }
 
-int main()
-{
-    KooClass ObjA(1, 2, 3);
+int main() {
+    system("chcp 65001");
+    Coordinates objectA(1, 2, 3);
 
-    cout << ObjA;	 // Перевизначений оператор виведення даних
+    cout << objectA;            // Перевизначений оператор виведення даних
 
-    cin >> ObjA	; // Перевизначений оператор введення даних
-    cout << ObjA	; // Перевизначений оператор виведення даних
+    cin >> objectA;             // Перевизначений оператор введення даних
+    cout << objectA;            // Перевизначений оператор виведення даних
 
     //system("PAUSE");
     return EXIT_SUCCESS;

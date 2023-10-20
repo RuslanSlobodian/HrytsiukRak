@@ -1,35 +1,35 @@
-//Код програми 9.15. Демонстрація механізму використання функцій read() і write()
+// Код програми 9.15. Демонстрація механізму використання функцій read() і write()
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <fstream>			// Для роботи з файлами
+#include <iostream>
+#include <cstdlib>
+#include <fstream>              // Для роботи з файлами
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    int n[5] = {1, 2, 3, 4, 5};
-    register int i;
+int main() {
+    system("chcp 65001");
+    int numbers[5] = {1, 2, 3, 4, 5};
+    int i;
 
-    ofstream out("test", ios::out | ios::binary);
-    if(!out) {
+    ofstream outStream("test", ios::out | ios::binary);
+    if (!outStream) {
         cout << "Не вдається вiдкрити файл" << endl;
         return 1;
     }
-    out.write((char *) &n, sizeof n);
-    out.close();
+    outStream.write((char*) &numbers, sizeof numbers);
+    outStream.close();
 
-    for(i=0; i<5; i++) n[i] = 0; // Очищує масив
+    for (i = 0; i < 5; i++) numbers[i] = 0;   // Очищує масив
 
-    ifstream in("test", ios::in | ios::binary);
-    if(!in) {
+    ifstream inStream("test", ios::in | ios::binary);
+    if (!inStream) {
         cout << "Не вдається вiдкрити файл" << endl;
         return 1;
     }
-    in.read((char *) &n, sizeof n);
-    for(i=0; i<5; i++) // Відображаємо значення, зчитанізфайлу.
-        cout << n[i] << " ";
-    in.close();
+    inStream.read((char*) &numbers, sizeof numbers);
+    for (i = 0; i < 5; i++)     // Відображаємо значення, зчитані з файлу
+        cout << numbers[i] << " ";
+    inStream.close();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

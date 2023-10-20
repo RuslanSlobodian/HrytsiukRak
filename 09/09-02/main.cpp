@@ -1,33 +1,43 @@
-//Код програми 9.2. Демонстраціямеханізму використанняфункцій-"друзів" класу для перевизначення оператора виведення даних
+// Код програми 9.2. Демонстрація механізму використання дружніх функцій класу для перевизначення оператора виведення даних
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class KooClass {		 // Оголошення класового типу
-    int x, y, z;			 // Тривимірнікоординати (тепер це private-члени)
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    KooClass(int a, int b, int c) { x = a; y = b; z = c; }
-    friend ostream &operator<<(ostream &stream, KooClass obj);
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    friend ostream& operator<<(ostream& stream, Coordinates object);
 };
 
 // Відображення тривимірних координат x, y, z
-// Перевизначений оператор виведення даних для класу kooClass
-ostream &operator<<(ostream &stream, KooClass obj)
-{
-    stream << obj.x << ", ";
-    stream << obj.y << ", ";
-    stream << obj.z << endl;
+// Перевизначений оператор виведення даних для класу Coordinates
+ostream& operator<<(ostream& stream, Coordinates object) {
+    stream << object.x << ", ";
+    stream << object.y << ", ";
+    stream << object.z << endl;
 
-    return stream; // Повертає посилання на параметр stream
+    return stream;              // Повертає посилання на параметр stream
 }
-int main()
-{
-    KooClass ObjA(1, 2, 3), ObjB(3, 4, 5), ObjC(5, 6, 7);
+
+int main() {
+    Coordinates objectA(1, 2, 3);
+    Coordinates objectB(3, 4, 5);
+    Coordinates objectC(5, 6, 7);
 
     // Перевизначений оператор виведення даних
-    cout << ObjA << ObjB << ObjC;
+    cout << objectA << objectB << objectC;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

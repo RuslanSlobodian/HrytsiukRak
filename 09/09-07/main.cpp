@@ -1,13 +1,13 @@
-//Код програми 9.7. Демонстрація механізму використання маніпулятора setiosflags() для встановлення опцій scientific і showpos
+// Код програми 9.7. Демонстрація механізму використання маніпулятора setiosflags()
+// для встановлення опцій scientific і showpos
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <iomanip> // Використанняманіпуляторів введення-виведення
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>              // Використанняманіпуляторів введення-виведення
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
+int main() {
     // Відображення знаку "+" перед позитивним значенням числа
     cout << setiosflags(ios::showpos);
 

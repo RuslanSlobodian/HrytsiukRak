@@ -1,22 +1,22 @@
-//Код програми 9.11. Демонстрація механізму запису даних у файл
+// Код програми 9.11. Демонстрація механізму запису даних у файл
 
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
-#include <fstream>			// Для роботи з файлами
+#include <iostream>
+#include <cstdlib>
+#include <fstream>              // Для роботи з файлами
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    ofstream out("test");
-    if(!out) {
+int main() {
+    system("chcp 65001");
+    ofstream outStream("test");
+    if (!outStream) {
         cout << "Не вдається відкрити файл" << endl;
         return 1;
     }
-    out << 10 << " " << 123.23 << endl;
-    out << "Це короткий текстовий файл.";
+    outStream << 10 << " " << 123.23 << endl;
+    outStream << "Це короткий текстовий файл.";
 
-    out.close();
+    outStream.close();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -1,12 +1,12 @@
-//Код програми 9.18. Демонстрація механізму використання функції get()
+// Код програми 9.18. Демонстрація механізму використання функції get()
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
+int main() {
+    system("chcp 65001");
     char str[80];
     cout << "Введiть iм'я: ";
     cin.get(str, 79);

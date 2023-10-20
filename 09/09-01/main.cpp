@@ -1,33 +1,47 @@
-//Код програми 9.1. Демонстраціямеханізму реалізації перевизначеного оператора виведення даних
+// Код програми 9.1. Демонстрація механізму реалізації перевизначеного оператора виведення даних
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class KooClass { // Оголошення класового типу
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    int x, y, z; // Тривимірнікоординати
-    KooClass(int a, int b, int c) { x = a; y = b; z = c; }
+    Coordinates() { x = y = z = 0; }
+
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    int getX() { return x; }
+
+    int getY() { return y; }
+
+    int getZ() { return z; }
 };
 
 // Відображення тривимірних координат x, y, z
-// Перевизначений оператор виведення даних для класу kooClass
-ostream &operator<<(ostream &stream, KooClass obj)
-{
-    stream << obj.x << ", ";
-    stream << obj.y << ", ";
-    stream << obj.z << endl;
+// Перевизначений оператор виведення даних для класу Coordinates
+ostream& operator<<(ostream& stream, Coordinates object) {
+    stream << object.getX() << ", ";
+    stream << object.getY() << ", ";
+    stream << object.getZ() << endl;
 
-    return stream; // Повертає посилання на параметр stream
+    return stream;              // Повертає посилання на параметр stream
 }
 
-int main()
-{
-    KooClass ObjA(1, 2, 3), ObjB(3, 4, 5), ObjC(5, 6, 7);
+int main() {
+    Coordinates objectA(1, 2, 3);
+    Coordinates objectB(3, 4, 5);
+    Coordinates objectC(5, 6, 7);
 
     // Перевизначений оператор виведення даних
-    cout << ObjA << ObjB << ObjC;
+    cout << objectA << objectB << objectC;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

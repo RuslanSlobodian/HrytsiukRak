@@ -1,33 +1,33 @@
-//Код програми 9.12. Демонстраціямеханізму зчитування даних зфайлу
+// Код програми 9.12. Демонстрація механізму зчитування даних з файлу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <fstream>			// Для роботи з файлами
+#include <iostream>
+#include <cstdlib>
+#include <fstream>              // Для роботи з файлами
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
+int main() {
+    system("chcp 65001");
     char ch1, ch2;
     int c;
     float f;
     char str[80];
 
-    ifstream in("test");
-    if(!in) {
+    ifstream inStream("test");
+    if (!inStream) {
         cout << "Не вдається вiдкрити файл" << endl;
         return 1;
     }
-    in >> c;
-    in >> f;
-    in >> ch1;
-    in >> ch2;
-    in >> str;
+    inStream >> c;
+    inStream >> f;
+    inStream >> ch1;
+    inStream >> ch2;
+    inStream >> str;
 
     cout << c << " " << f << " " << ch1 << ch2 << endl;
     cout << str;
 
-    in.close();
+    inStream.close();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

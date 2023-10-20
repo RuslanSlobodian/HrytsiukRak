@@ -1,24 +1,24 @@
-//Код програми 9.14. Демонстрація механізму використання функції put() для запису рядка уфайл
+// Код програми 9.14. Демонстрація механізму використання функції put() для запису рядка у файл
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <fstream>			// Для роботи з файлами
+#include <iostream>
+#include <cstdlib>
+#include <fstream>              // Для роботи з файлами
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    char *p = "Всiм привiт!";
+int main() {
+    system("chcp 65001");
+    const char* p = "Всiм привiт!";
 
-    ofstream out("test", ios::out | ios::binary);
+    ofstream outStream("test", ios::out | ios::binary);
 
-    if(!out) {
+    if (!outStream) {
         cout << "Не вдається вiдкрити файл" << endl;
         return 1;
     }
-    while(*p) out.put(*p++);
+    while (*p) outStream.put(*p++);
 
-    out.close();
+    outStream.close();
     //system("PAUSE");
     return EXIT_SUCCESS;
 }

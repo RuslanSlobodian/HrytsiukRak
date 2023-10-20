@@ -1,28 +1,28 @@
-//Код програми 9.16. Демонстрація механізму виявлення кінця файлу
+// Код програми 9.16. Демонстрація механізму виявлення кінця файлу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <fstream>			// Для роботи з файлами
+#include <iostream>
+#include <cstdlib>
+#include <fstream>              // Для роботи з файлами
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
+    system("chcp 65001");
     char ch;
-    if(argc != 2) {
+    if (argc != 2) {
         cout << "Застосування: iм'я_програми <iм'я_файлу>" << endl;
         return 1;
     }
-    ifstream in(argv[1], ios::in | ios::binary);
-    if(!in) {
+    ifstream inStream(argv[1], ios::in | ios::binary);
+    if (!inStream) {
         cout << "Не вдається вiдкрити файл" << endl;
         return 1;
     }
-    while(!in.eof()) { // Використання функції eof()
-        in.get(ch);
-        if(!in.eof()) cout << ch;
+    while (!inStream.eof()) {   // Використання функції eof()
+        inStream.get(ch);
+        if (!inStream.eof()) cout << ch;
     }
-    in.close();
+    inStream.close();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

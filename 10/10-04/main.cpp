@@ -1,68 +1,84 @@
-//Код програми 10.4. Демонстрація ефективності використання засобу динамічної ідентифікації типів
+// Код програми 10.4. Демонстрація ефективності використання засобу динамічної ідентифікації типів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <typeinfo> 		// Для динамічної ідентифікації типів
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class figure {
+class Figure {
 protected:
     double x, y;
 public:
-    figure(double _x, double _y) { x = _x; y = _y; }
+    Figure(double x, double y) {
+        this->x = x;
+        this->y = y;
+    }
+
     virtual double area() = 0;
 };
-class triangle: public figure {
+
+class Triangle : public Figure {
 public:
-    triangle(double _x, double _y): figure(_x, _y) {}
+    Triangle(double x, double y) : Figure(x, y) {}
+
     double area() { return x * 0.5 * y; }
 };
 
-class rectangle: public figure {
+class Rectangle : public Figure {
 public:
-    rectangle(double _x, double _y): figure(_x, _y) {}
+    Rectangle(double x, double y) : Figure(x, y) {}
+
     double area() { return x * y; }
 };
-class circle: public figure {
+
+class Circle : public Figure {
 public:
-    circle(double _x, double _y=0): figure(_x, _y) {}
+    Circle(double x, double y = 0) : Figure(x, y) {}
+
     double area() { return 3.14 * x * x; }
 };
-// Генератор об'єктів класу figure.
-figure *factory() {
-    switch(rand() % 3) {
-    case 0: return new circle(10.0);
-    case 1: return new triangle(10.1, 5.3);
-    case 2: return new rectangle(4.3, 5.7);
+
+// Генератор об'єктів класу Figure
+Figure* factory() {
+    switch (rand() % 3) {
+        case 0:
+            return new Circle(10.0);
+        case 1:
+            return new Triangle(10.1, 5.3);
+        case 2:
+            return new Rectangle(4.3, 5.7);
     }
     return 0;
 }
-int main()
-{
-    figure *p; // Покажчик на базовий класс
 
-    int t = 0, r = 0, c = 0;
+int main() {
+    system("chcp 65001");
+    Figure* figurePtr;          // Вказівник на базовий класс
+
+    int triangleCounter = 0;
+    int rectangleCounter = 0;
+    int circleCounter = 0;
 
     // Генеруємо і підраховуємо об'єкти
-    for(int i=0; i<10; i++) {
-        p = factory(); // Генеруємо об'єкт
-        cout << "Об'єкт має тип " << typeid(*p).name();
+    srand(time(NULL));
+    for (int i = 0; i < 10; i++) {
+        figurePtr = factory();  // Генеруємо об'єкт
+        cout << "Об'єкт має тип " << typeid(*figurePtr).name();
         cout << ". ";
 
         // Враховуємо цей об'єкт
-        if(typeid(*p) == typeid(triangle)) t++;
-        if(typeid(*p) == typeid(rectangle)) r++;
-        if(typeid(*p) == typeid(circle)) c++;
+        if (typeid(*figurePtr) == typeid(Triangle)) triangleCounter++;
+        if (typeid(*figurePtr) == typeid(Rectangle)) rectangleCounter++;
+        if (typeid(*figurePtr) == typeid(Circle)) circleCounter++;
 
         // Відображаємо площу фігури
-        cout << "Площа дорiвнює " << p->area() << endl;
+        cout << "Площа дорiвнює " << figurePtr->area() << endl;
     }
     cout << endl;
     cout << "Згенеровано такi об'єкти:" << endl;
-    cout << " трикутникiв: " << t << endl;
-    cout << " прямокутників: " << r << endl;
-    cout << " кругiв: " << c << endl;
+    cout << " трикутникiв: " << triangleCounter << endl;
+    cout << " прямокутників: " << rectangleCounter << endl;
+    cout << " кругiв: " << circleCounter << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

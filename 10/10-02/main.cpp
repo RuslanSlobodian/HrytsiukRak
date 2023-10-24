@@ -1,40 +1,42 @@
-//Код програми 10.2. Демонстрація механізму застосування оператора typeid до ієрархії поліморфних класів
+// Код програми 10.2. Демонстрація механізму застосування оператора typeid до ієрархії поліморфних класів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <typeinfo> 		// Для динамічної ідентифікації типів
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-// Оголошення базового класу
-class Base {
-    virtual void Fun() {}; // Робимо клас Base поліморфним
+class Base {                    // Оголошення базового класу
+    virtual void fun() {        // Робимо клас Base поліморфним
+        //. . .
+    };
+};
+
+class DerivedA : public Base {
     //. . .
 };
 
-class DerivedA: public Base {
+class DerivedB : public Base {
     //. . .
 };
 
-class DerivedB: public Base {
-    //. . .
-};
-int main()
-{
-    Base *p, baseob;
-    DerivedA ObjA; 		// Створення об'єкта класу
-    DerivedB ObjB; 		// Створення об'єкта класу
-    p = &baseob;
-    cout << "Змiнна p вказує на об'єкт типу ";
-    cout << typeid(*p).name() << endl;
+int main() {
+    system("chcp 65001");
+    Base* basePtr;
+    Base baseObject;            // Створення об'єкта базового класу
+    DerivedA ObjA;              // Створення об'єкта похідного класу
+    DerivedB ObjB;              // Створення об'єкта похідного класу
 
-    p = &ObjA;
-    cout << "Змiнна p вказує на об'єкт типу ";
-    cout << typeid(*p).name() << endl;
+    basePtr = &baseObject;
+    cout << "Змiнна basePtr вказує на об'єкт типу ";
+    cout << typeid(*basePtr).name() << endl;
 
-    p = &ObjB;
-    cout << "Змiнна p вказує на об'єкт типу ";
-    cout << typeid(*p).name() << endl;
+    basePtr = &ObjA;
+    cout << "Змiнна basePtr вказує на об'єкт типу ";
+    cout << typeid(*basePtr).name() << endl;
+
+    basePtr = &ObjB;
+    cout << "Змiнна basePtr вказує на об'єкт типу ";
+    cout << typeid(*basePtr).name() << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

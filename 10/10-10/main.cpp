@@ -1,12 +1,11 @@
-//Код програми 10.10. Демонстрація механізму використання 	оператора static_cast
+// Код програми 10.10. Демонстрація механізму використання оператора static_cast
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
+int main() {
     int c;
     float f;
     f = 199.22F;

@@ -1,41 +1,39 @@
-//Код програми 10.3. Демонстрація механізму застосування оператора typeidдо посилального параметра
+// Код програми 10.3. Демонстрація механізму застосування оператора typeid до посилального параметра
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <typeinfo> 		// Для динамічної ідентифікації типів
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-// Оголошення базового класу
-class Base {
-    virtual void Fun() {; // робимо клас Base поліморфним
-                        //. . .
-                       };
+class Base {                    // Оголошення базового класу
+    virtual void fun() {        // Робимо клас Base поліморфним
+        //. . .
+    };
 };
-class DerivedA: public Base {
-    //. . .
-};
-class DerivedB: public Base {
+
+class DerivedA : public Base {
     //. . .
 };
 
-// Демонструємо застосування оператора typeid до посилального  параметра.
-void WhatType(Base &obj)
-{
+class DerivedB : public Base {
+    //. . .
+};
+
+// Демонструємо застосування оператора typeid до посилального параметра
+void whatType(Base& obj) {
     cout << "Параметр obj посилається на об'єкт типу ";
     cout << typeid(obj).name() << endl;
 }
-int main()
-{
-    int c;
 
-    Base baseob;
-    DerivedA ObjA; 		// Створення об'єкта класу
-    DerivedB ObjB; 		// Створення об'єкта классу
+int main() {
+    system("chcp 65001");
+    Base baseObject;            // Створення об'єкта базового класу
+    DerivedA objectA;           // Створення об'єкта похідного класу
+    DerivedB objectB;           // Створення об'єкта похідного класу
 
-    WhatType(baseob);
-    WhatType(ObjA);
-    WhatType(ObjB);
+    whatType(baseObject);
+    whatType(objectA);
+    whatType(objectB);
 
     //system("PAUSE");
     return EXIT_SUCCESS;

@@ -53,7 +53,7 @@ bool compareTenants::operator () (tenant* ptrT1, tenant* ptrT2) const
 tenantList::~tenantList() // Оголошення деструктора
 {
     while( !setPtrsTens.empty() ) { 	// Видалення усіх мешканців
-        // Видалення покажчиків з множини
+        // Видалення вказівників з множини
         iter = setPtrsTens.begin();
         delete *iter;
         setPtrsTens.erase(iter);
@@ -121,7 +121,7 @@ rentRecord::~rentRecord() // Оголошення деструктора
 {
     while( !setPtrsRR.empty() ) { 		// Видалити рядки з платежами
 
-    // Видалити покажчики з множини
+    // Видалити вказівника з множини
     iter = setPtrsRR.begin();
     delete *iter;
     setPtrsRR.erase(iter);
@@ -223,7 +223,7 @@ expenseRecord::~expenseRecord() 		// Оголошення деструктора
 {
     while( !vectPtrsExpenses.empty() ) { 	// Видалити об'єкти expense
 
-        // Видалити покажчики на вектор
+        // Видалити вказівники на вектор
         iter = vectPtrsExpenses.begin();
         delete *iter;
         vectPtrsExpenses.erase(iter);

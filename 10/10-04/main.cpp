@@ -53,7 +53,7 @@ Figure* factory() {
 
 int main() {
     system("chcp 65001");
-    Figure* figurePtr;          // Вказівник на базовий класс
+    Figure* figurePtr;          // Вказівник на базовий клас
 
     int triangleCounter = 0;
     int rectangleCounter = 0;

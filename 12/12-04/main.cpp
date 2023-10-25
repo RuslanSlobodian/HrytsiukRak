@@ -11,13 +11,13 @@ class KooClass { 		// Оголошення класового типу
 public:
     KooClass() {x = y = z = 0; }
     KooClass(int a, int b, int c) {x = a; y = b; z = c; }
-    // Повертає модифікований об'єкт, адресований покажчиком
+    // Повертає модифікований об'єкт, адресований вказівником
     KooClass &operator+(int a) { x += a; y += a; z += a; return *this; }
     friend ostream &operator<<(ostream &stream, KooClass ObjA);
     friend bool operator<(KooClass ObjA, KooClass ObjB);
     friend bool operator==(KooClass ObjA, KooClass ObjB);
 };
-// Відображаємо координати x, y, z за допомогою оператора виведення для класу kooClass.
+// Відображаємо координати x, y, z за допомогою оператора виведення для класу kooClass
 ostream &operator<<(ostream &stream, KooClass ObjA)
 {
     stream << "x= " << ObjA.x << ", ";

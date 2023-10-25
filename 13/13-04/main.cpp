@@ -1,16 +1,16 @@
-//Код програми 13.4. Демонстрація механізму використання директиви #if
+// Код програми 13.4. Демонстрація механізму використання директиви #if
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 #define MAX 100
 
-int main()
-{
-#if MAX>10
-    cout << "Потрiбна додаткова память" << endl;
+int main() {
+    system("chcp 65001");
+#if MAX > 10
+    cout << "Потрiбна додаткова память!" << endl;
 #endif
     //...
 

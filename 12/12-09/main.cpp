@@ -1,49 +1,50 @@
-//Код програми 12.
+// Код програми 12.9. Демонстрація механізму об'єднання двох списків
 
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
-#include <vector>			// Для роботи з контейнерним класом "Вектор"
-#include <list> 			// Для роботи зі списками
+#include <iostream>
+#include <cstdlib>
+#include <list>                 // Для роботи зі списками
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    list<char> lst1, lst2; 		// Створення двох порожніх списків
+int main() {
+    system("chcp 65001");
+    list<char> listA, listB;    // Створення двох порожніх списків
 
     // Створення двох списків з випадково вибраними цілими числами
-
-    for(int i=0; i<10; i+=2) lst1.push_back('A'+i);
-    for(int i=1; i<11; i+=2) lst2.push_back('A'+i);
+    srand(time(nullptr));
+    for (int i = 0; i < 10; i += 2)
+        listA.push_back('A' + i);
+    for (int i = 1; i < 11; i += 2)
+        listB.push_back('A' + i);
 
     // Відображення початкового вмісту першого списку
-    cout << "Вмiст списку lst1: ";
-    list<char>::iterator p = lst1.begin();
-    while(p != lst1.end()) {
-        cout << *p;
-        p++;
+    cout << "Вмiст списку listA: ";
+    list<char>::iterator ptr = listA.begin();
+    while (ptr != listA.end()) {
+        cout << *ptr;
+        ptr++;
     }
     cout << endl << endl;
 
     // Відображення початкового вмісту другого списку
-    cout << "Вмiст списку lst2: ";
-    p = lst2.begin();
-    while(p != lst2.end()) {
-        cout << *p;
-        p++;
+    cout << "Вмiст списку listB: ";
+    ptr = listB.begin();
+    while (ptr != listB.end()) {
+        cout << *ptr;
+        ptr++;
     }
     cout << endl << endl;
 
-    // Тепер об'єднуємо ці два списки.
-    lst1.merge(lst2);
-    if(lst2.empty()) cout << "Список lst2 тепер порожнiй" << endl;
+    // Тепер об'єднуємо ці два списки
+    listA.merge(listB);
+    if (listB.empty()) cout << "Список listB тепер порожнiй" << endl;
 
     // Відображення об'єднаного вмісту першого списку
-    cout << "Вмiст списку lst1 пiсля об'єднання:" << endl;
-    p = lst1.begin();
-    while(p != lst1.end()) {
-        cout << *p << " ";
-        p++;
+    cout << "Вмiст списку listA пiсля об'єднання:" << endl;
+    ptr = listA.begin();
+    while (ptr != listA.end()) {
+        cout << *ptr << " ";
+        ptr++;
     }
     cout << endl;
 

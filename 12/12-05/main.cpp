@@ -1,39 +1,44 @@
-//Код програми 12.5. Демонстрація механізму використання ітераторів для вставлення елементів одного вектора у інший
+// Код програми 12.5. Демонстрація механізму використання ітераторів для вставлення елементів одного вектора у інший
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <vector>				// Для роботи з контейнерним класом "Вектор"
+#include <iostream>
+#include <cstdlib>
+#include <vector>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    vector<char> vek, vek2; // Побудова векторів нульової довжини
+int main() {
+    system("chcp 65001");
+    vector<char> vectorA;
+    vector<char> vectorB;
 
-    // Поміщаємо значення у вектор.
-    for(int i=0; i<10; i++) vek.push_back('A' + i);
+    // Поміщаємо значення у вектор
+    for (int i = 0; i < 10; i++)
+        vectorA.push_back('A' + i);
 
-    // Відображаємо початковий вміст вектора.
+    // Відображаємо початковий вміст вектора
     cout << "Початковий вмiст вектора:" << endl;
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for (int i = 0; i < vectorA.size(); i++)
+        cout << vectorA[i] << " ";
     cout << endl << endl;
 
-    // Ініціалізуємо другий вектор.
+    // Ініціалізуємо другий вектор
     char str[] = "-STL -- це сила!-";
-    for(int i=0; str[i]; i++) vek2.push_back(str[i]);
+    for (int i = 0; str[i]; i++)
+        vectorB.push_back(str[i]);
 
-    /* Отримуємо ітератори для середини вектора vek,
-    а також початку і кінця вектора vek2. */
-    vector<char>::iterator p = vek.begin()+5;
-    vector<char>::iterator p2start = vek2.begin();
-    vector<char>::iterator p2end = vek2.end();
+    // Отримуємо ітератори для середини вектора vectorA,
+    // а також початку і кінця вектора vectorB
+    vector<char>::iterator ptr = vectorA.begin() + 5;
+    vector<char>::iterator ptr2start = vectorB.begin();
+    vector<char>::iterator ptr2end = vectorB.end();
 
-    // Вставляємо вектор vek2 у вектор vek.
-    vek.insert(p, p2start, p2end);
+    // Вставляємо вектор vectorB у вектор vectorA
+    vectorA.insert(ptr, ptr2start, ptr2end);
 
-    // Відображаємо результат вставлення.
-    cout << "Вмiст вектора vek пiсля вставлення: " << endl;
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    // Відображаємо результат вставлення
+    cout << "Вмiст вектора vectorA пiсля вставлення: " << endl;
+    for (int i = 0; i < vectorA.size(); i++)
+        cout << vectorA[i] << " ";
     cout << endl;
 
     //system("PAUSE");

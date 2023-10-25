@@ -1,31 +1,30 @@
-//Код програми 12.2. Демонстрація механізму доступу до елементів вектора за допомогою ітератора
+// Код програми 12.2. Демонстрація механізму доступу до елементів вектора за допомогою ітератора
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-#include <vector>				// Для роботи з контейнерним класом "Вектор"
+#include <iostream>
+#include <cstdlib>
+#include <vector>               // Для роботи з контейнерним класом "Вектор"
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    vector<char> vek; 	// Побудова вектора нульової довжини
+int main() {
+    vector<char> vectorOfChars; // Побудова вектора нульової довжини
 
-    // Поміщаємо значення у вектор.
-    for(int i = 0; i < 10; i++) {
-        vek.push_back('A' + i);
+    // Поміщаємо значення у вектор
+    for (int i = 0; i < 10; i++) {
+        vectorOfChars.push_back('A' + i);
     }
 
-    // Отримуємо доступ до вмісту вектора за допомогою індексу.
-    for(int i=0; i<10; i++) {
-        cout << vek[i] << " ";
+    // Отримуємо доступ до вмісту вектора за допомогою індексу
+    for (int i = 0; i < 10; i++) {
+        cout << vectorOfChars[i] << " ";
     }
     cout << endl;
 
-    // Отримуємо доступ до вмісту вектора за допомогою ітератора.
-    vector<char>::iterator p = vek.begin();
-    while(p != vek.end()) {
-        cout << *p << " ";
-        p++;
+    // Отримуємо доступ до вмісту вектора за допомогою ітератора
+    vector<char>::iterator ptr = vectorOfChars.begin();
+    while (ptr != vectorOfChars.end()) {
+        cout << *ptr << " ";
+        ptr++;
     }
 
     //system("PAUSE");

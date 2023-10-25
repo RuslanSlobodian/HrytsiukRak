@@ -1,43 +1,44 @@
-//Код програми 12.7. Демонстрація механізму внесення елементів у список як з початку, так і з його кінця
+// Код програми 12.7. Демонстрація механізму внесення елементів у список як з початку, так і з його кінця
 
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
-#include <vector>			// Для роботи з контейнерним класом "Вектор"
-#include <list> 			// Для роботи зі списками
+#include <iostream>
+#include <cstdlib>
+#include <list> 			    // Для роботи зі списками
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 int main()
 {
-    list<char> lst; 		// Створення порожнього списку
-    list<char> revlst; 		// Створення порожнього списку
+    system("chcp 65001");
+    list<char> listOfChars; 	// Створення порожнього списку
+    list<char> listOfCharsReversed; // Створення порожнього списку
 
     // Поміщаємо значення у список
-    for(int i=0; i<10; i++) lst.push_back('A'+i);
+    for(int i=0; i<10; i++)
+        listOfChars.push_back('A' + i);
 
     // Відображаємо початковий вміст списку
-    cout << "Розмiр списку lst = " << lst.size() << endl;
+    cout << "Розмiр списку listOfChars = " << listOfChars.size() << endl;
     cout << "Початковий вмiст списку: ";
-    list<char>::iterator p;
+    list<char>::iterator ptr;
 
-    /* Видаляємо елементи із списку lst і поміщаємо їх
-    у список revlst у зворотному порядку. */
-    while(!lst.empty()) {
-        p = lst.begin();
-        cout << *p << " ";
-        revlst.push_front(*p);
-        lst.pop_front();
+    // Видаляємо елементи із списку listOfChars і поміщаємо їх
+    // у список listOfCharsReversed у зворотному порядку
+    while(!listOfChars.empty()) {
+        ptr = listOfChars.begin();
+        cout << *ptr << " ";
+        listOfCharsReversed.push_front(*ptr);
+        listOfChars.pop_front();
     }
     cout << endl << endl;
 
     // Відображаємо реверсний вміст списку
-    cout << "Розмiр списку revlst = ";
-    cout << revlst.size() << endl;
+    cout << "Розмiр списку listOfCharsReversed = ";
+    cout << listOfCharsReversed.size() << endl;
     cout << "Реверсний вмiст списку: ";
-    p = revlst.begin();
-    while(p != revlst.end()) {
-        cout << *p << " ";
-        p++;
+    ptr = listOfCharsReversed.begin();
+    while(ptr != listOfCharsReversed.end()) {
+        cout << *ptr << " ";
+        ptr++;
     }
     cout << endl;
 

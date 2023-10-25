@@ -1,27 +1,30 @@
-//Код програми 11.9. Демонстрація механізму використання статичних членів-даних классу
+// Код програми 11.9. Демонстрація механізму використання статичних атрибутів класу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 class ShareVar {
-    static int n;
+    static int value;
 public:
-    void Set(int c) { n = c; }
-    void Show() { cout << n << " "; }
+    void set(int value) { this->value = value; }
+
+    void show() { cout << value << " "; }
 };
-int ShareVar::n; // Визначаємо static-член n
 
-int main()
-{
-    ShareVar ObjA, ObjB;
+int ShareVar::value;            // Визначаємо static-атрибут value
 
-    ObjA.Show(); // Виводиться 0
-    ObjB.Show(); // Виводиться 0
-    ObjA.Set(10); // Встановлюємо static-члена n дорівнює 10
-    ObjA.Show(); // Виводиться 10
-    ObjB.Show(); // Також виводиться 10
+int main() {
+    ShareVar shareVarA;
+    ShareVar shareVarB;
+
+    shareVarA.show();           // Виводиться 0
+    shareVarB.show();           // Виводиться 0
+    shareVarA.set(10);          // Встановлюємо static-атрибуту value значення 10
+    shareVarA.show();           // Виводиться 10
+    shareVarB.show();           // Також виводиться 10
+
     //system("PAUSE");
     return EXIT_SUCCESS;
 }

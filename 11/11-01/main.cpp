@@ -1,63 +1,69 @@
-//Код програми 11.1. Демонстрація механізму використання простору імен CounterNameSpace для розрахунку у зворотному порядку
+// Код програми 11.1. Демонстрація механізму використання простору імен CounterNameSpace для розрахунку у зворотному порядку
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 // Приклад використання namespace-настанови
-namespace CounterNameSpace
-{
-int upperbound;
-int lowerbound;
+namespace CounterNameSpace {
+    int upperBound;
+    int lowerBound;
 
-class counter {
-    int count;
-public:
-    counter(int n) {
-        if(n <= upperbound) count = n;
-        else count = upperbound;
-    }
-    void Reset(int n) {
-        if(n <= upperbound) count = n;
-    }
-    int Run() {
-        if(count > lowerbound) return count--;
-        else return lowerbound;
-    }
-};
+    class Counter {
+        int count;
+    public:
+        Counter(int number) {
+            if (number <= upperBound)
+                count = number;
+            else
+                count = upperBound;
+        }
+
+        void reset(int number) {
+            if (number <= upperBound)
+                count = number;
+        }
+
+        int run() {
+            if (count > lowerBound)
+                return count--;
+            else
+                return lowerBound;
+        }
+    };
 }
 
-int main()
-{
-    CounterNameSpace::upperbound = 100;
-    CounterNameSpace::lowerbound = 0;
-    CounterNameSpace::counter ObjA(10);
-    CounterNameSpace::counter ObjB(20);
+int main() {
+    system("chcp 65001");
+    CounterNameSpace::upperBound = 100;
+    CounterNameSpace::lowerBound = 0;
+    CounterNameSpace::Counter counterA(10);
+    CounterNameSpace::Counter counterB(20);
 
-    int c;
+    int temp;
 
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjA" << 		endl;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterA" << endl;
     do {
-        c = ObjA.Run();
-        cout << c << " ";
-    } while(c > CounterNameSpace::lowerbound);
+        temp = counterA.run();
+        cout << temp << " ";
+    } while (temp > CounterNameSpace::lowerBound);
     cout << endl;
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjB" << 		endl;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterB" << endl;
     do {
-        c = ObjB.Run();
-        cout << c << " ";
-    } while(c > CounterNameSpace::lowerbound);
+        temp = counterB.run();
+        cout << temp << " ";
+    } while (temp > CounterNameSpace::lowerBound);
     cout << endl;
 
-    ObjB.Reset(100);
-    CounterNameSpace::lowerbound = 80;
+    counterB.reset(100);
+    CounterNameSpace::lowerBound = 80;
 
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjB" << 		endl;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterB" << endl;
     do {
-        c = ObjB.Run();
-        cout << c << " ";
-    } while(c > CounterNameSpace::lowerbound);
+        temp = counterB.run();
+        cout << temp << " ";
+    } while (temp > CounterNameSpace::lowerBound);
     cout << endl;
 
     //system("PAUSE");

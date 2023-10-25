@@ -1,32 +1,32 @@
-//Код програми 11.11. Демонстрація механізму використання модифікатора mutable
+// Код програми 11.11. Демонстрація механізму використання модифікатора mutable
 
+#include <iostream>
+#include <cstdlib>
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
-
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 class Demo {
     mutable int c;
     int d;
 public:
-    int Put() const { return c; } 	// Все гаразд
+    int getC() const {          // Все гаразд
+        return c;
+    }
 
-    void Set(int x) const
-    {
-        c = x; // тепер все гаразд
+    void setC(int c) const {
+        this->c = c;            // Тепер все гаразд
     };
 
-    void setJ(int x) const // Наступна функція не відкомпілюється.
+    void setD(int d) const      // Наступний метод не відкомпілюється
     {
-        d = x; // Це, як і раніше, неправильно!
+//        this->d = d;          // Це, як і раніше, неправильно!
     }
 };
-int main()
-{
-    Demo Obj;
-    Obj.Set(1900);
-    cout << Obj.Put();
+
+int main() {
+    Demo object;
+    object.setC(1900);
+    cout << object.getC();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

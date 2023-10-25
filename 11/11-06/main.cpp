@@ -1,23 +1,23 @@
-//Код програми 11.6. Демонстрація механізму використання бібліотечної функції qsort() для сортування елементів текстового масиву
+// Код програми 11.6. Демонстрація механізму використання бібліотечної функції qsort()
+// для сортування елементів текстового масиву
 
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
-#include <cstring>    		// Для роботи з рядковими типами даних
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
 
+using namespace std;
 
-using namespace std; 			// Використання стандартного простору імен
-
-int Comp(const void *a, const void *b)
-{
-    return * (char *) a – * (char *) b;
+int comp(const void* a, const void* b) {
+    return *(char*) a - *(char*) b;
 }
 
-int main()
-{
-    char str[] = "Покажчики на функцiї дають гнучкiсть.";
-
-    qsort(str, strlen(str), 1, Comp);
+int main() {
+    system("chcp 65001");
+    char str[] = "Вказівники на функцiї дають гнучкiсть";
+    cout << "Вихідний рядок: " << str << endl;
+    qsort(str, strlen(str), 1, comp);
     cout << "Вiдсортований рядок: " << str;
+
     cout << endl;
     //system("PAUSE");
     return EXIT_SUCCESS;

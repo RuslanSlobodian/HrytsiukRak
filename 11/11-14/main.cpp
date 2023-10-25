@@ -1,23 +1,29 @@
-//Код програми 11.14. Демонстрація механізму ініціалізації членів-даних з використанням конструкторів классу
+// Код програми 11.14. Демонстрація механізму ініціалізації атрибутів з використанням конструкторів класу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class myClass { 		     // Оголошення класового типу
-    int a, b;
+class MyClass {
+    int a;
+    int b;
 public:
-    // Ініціалізація a і b у конструкторі myClass(), використовуючи 			звичайний синтаксис.
-    myClass(int x, int y) { a = x; b = y; }
-    int PutA() { return a; }
-    int PutB() { return b; }
+    // Ініціалізація a і b у конструкторі MyClass(), використовуючи звичайний синтаксис
+    MyClass(int a, int b) {
+        this->a = a;
+        this->b = b;
+    }
+
+    int getA() const { return a; }
+    int getB() const { return b; }
 };
-int main()
-{
-    myClass ObjA(7, 9), ObjB(5, 2);
-    cout << "Значення об'єкта ObjA = " << ObjA.PutB() << " i " << 			ObjA.PutA() << endl;
-    cout << "Значення об'єкта ObjB = " << ObjB.PutB() << " i " << 			ObjB.PutA() << endl;
+
+int main() {
+    system("chcp 65001");
+    MyClass objectA(7, 9), objectB(5, 2);
+    cout << "Значення об'єкта objectA = " << objectA.getA() << " i " << objectA.getB() << endl;
+    cout << "Значення об'єкта objectB = " << objectB.getA() << " i " << objectB.getB() << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

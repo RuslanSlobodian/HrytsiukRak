@@ -1,27 +1,26 @@
-//Код програми 11.10. Демонстрація механізму використання const-функцій-членів классу
+// Код програми 11.10. Демонстрація механізму використання const-методів класу
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 class Demo {
-    int c;
+    int value;
 public:
-    int Put() const {
-        return c; // Все гаразд
+    int put() const {
+        return value;           // Все гаразд
     }
-    void Set(int x) const
-    {
-        c = x; // Помилка!
+
+    void set(int value) const {
+//        this->value = value;  // Помилка!
     }
 };
 
-int main()
-{
-    Demo Obj;
-    Obj.Set(1900);
-    cout << Obj.Put();
+int main() {
+    Demo object;
+    object.set(1900);
+    cout << object.put();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

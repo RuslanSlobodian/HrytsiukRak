@@ -1,35 +1,34 @@
-//Код програми 11.17. Демонстрація механізму використання покажчиків на члени класу (початкова версія)
+// Код програми 11.17. Демонстрація механізму використання вказівників на члени класу (початкова версія)
 
+#include <iostream>
+#include <cstdlib>
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+using namespace std;
 
-using namespace std; 			// Використання стандартного простору імен
-
-class myClass { 		      // Оголошення класового типу
+class MyClass {
 public:
-    int sum;
-    void myClass::Sum(int x);
+    int number;
+
+    void sum(int x);
 };
 
-void myClass::Sum(int x)
-{
-    sum = 0;
-    for(int i=x; i; i--) sum += i;
+void MyClass::sum(int x) {
+    number = 0;
+    for (int i = x; i; i--) number += i;
 }
 
-int main()
-{
-    int myClass::*dp; 		     // Покажчик на int-члена класу
-    void (myClass::*fp)(int x); // Покажчик на функцію-члена
+int main() {
+    system("chcp 65001");
+    int MyClass::*intPtr;       // Вказівник на атрибут класу MyClass
+    void (MyClass::*fp)(int x); // Вказівник на метод класу MyClass
 
-    myClass ObjC;
+    MyClass object;
 
-    dp = myClass::sum; // Отримуємо адресу члена даних
-    fp = &myClass::Sum; // Отримуємо адресу функції-члена класу
+    intPtr = &MyClass::number;  // Отримуємо адресу атрибуту класу
+    fp = &MyClass::sum;         // Отримуємо адресу метода класу
 
-    (ObjC.*fp)(7); // Обчислюємо суму чисел від 1 до 7
-    cout << "Сума чисел від 1 до 7 дорівнює " << ObjC.*dp;
+    (object.*fp)(7);            // Обчислюємо суму чисел від 1 до 7
+    cout << "Сума чисел від 1 до 7 дорівнює " << object.*intPtr;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

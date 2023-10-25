@@ -1,47 +1,53 @@
-//Код програми 11.19. Демонстрація механізму використання функції перетворення типів
+// Код програми 11.19. Демонстрація механізму використання функції перетворення типів
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class kooClass { // Оголошення класового типу
-    int x, y, z; // Тривимірні координати
+class Coordinates {             // Оголошення класового типу
+    int x;                      //
+    int y;                      // Тривимірні координати
+    int z;                      //
 public:
-    kooClass(int a, int b, int c) {x = a; y = b; z = c; }
-    kooClass operator+(kooClass obj);
+    Coordinates(int x, int y, int z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
 
-    friend ostream &operator<<(ostream &stream, kooClass &obj);
-    operator int() {return x * y * z; }
+    Coordinates operator+(const Coordinates& obj) const;
+
+    friend ostream& operator<<(ostream& stream, const Coordinates& obj);
+
+    operator int() { return x * y * z; }
 };
 
-// Відображення тривимірних координат x, y, z - функція виведення 	даних
-// для класу kooClass.
-ostream &operator<<(ostream &stream, kooClass &obj)
-{
+// Відображення тривимірних координат x, y, z - функція виведення даних для класу Coordinates
+ostream& operator<<(ostream& stream, const Coordinates& obj) {
     stream << obj.x << ", ";
     stream << obj.y << ", ";
     stream << obj.z << endl;
-    return stream; // Повертає посилання на параметр stream
+    return stream;              // Повертає посилання на параметр stream
 }
-kooClass kooClass::operator+(kooClass obj)
-{
-    kooClass tmp(0, 0, 0);
+
+Coordinates Coordinates::operator+(const Coordinates& obj) const {
+    Coordinates tmp(0, 0, 0);
     tmp.x = x + obj.x;
     tmp.y = y + obj.y;
     tmp.z = z + obj.z;
-    return tmp; // Повертає модифікований тимчасовий об'єкт
+    return tmp;                 // Повертає модифікований тимчасовий об'єкт
 }
-int main()
-{
-    kooClass ObjA(1, 2, 3), ObjB(2, 3, 4);
-    cout << ObjA << ObjB;
-    cout << ObjB+100;	// Відображає число 124, оскільки тут здійснюється
-    // перетворення об'єкта класу у значення типу int.
+
+int main() {
+    Coordinates objectA(1, 2, 3), objectB(2, 3, 4);
+    cout << objectA << objectB;
+    cout << objectB + 100;      // Відображає число 124, оскільки тут здійснюється
+                                // перетворення об'єкта класу у значення типу int
     cout << endl;
-    ObjA = ObjA + ObjB; 	// Додавання двох об'єктів класу kooClass
-    // виконується без перетворення типу.
-    cout << ObjA; 		// Відображає координати 3, 5, 7
+    objectA = objectA + objectB;// Додавання двох об'єктів класу Coordinates
+                                // виконується без перетворення типу
+    cout << objectA;            // Відображає координати 3, 5, 7
 
     //system("PAUSE");
     return EXIT_SUCCESS;

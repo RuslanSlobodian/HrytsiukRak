@@ -1,76 +1,78 @@
-//Код програми 11.2. Демонстрація механізму використання настанови using для виконання розрахунку у зворотному порядку
+// Код програми 11.2. Демонстрація механізму використання настанови using для виконання розрахунку у зворотному порядку
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-namespace CounterNameSpace
-{
-int upperbound;
-int lowerbound;
+namespace CounterNameSpace {
+    int upperBound;
+    int lowerBound;
 
-class counter {
-    int count;
-public:
-    counter(int n) {
-        if(n <= upperbound) count = n;
-        else count = upperbound;
-    }
+    class Counter {
+        int count;
+    public:
+        Counter(int number) {
+            if (number <= upperBound)
+                count = number;
+            else
+                count = upperBound;
+        }
 
-    void Reset(int n) {
-        if(n <= upperbound) count = n;
-    }
+        void reset(int n) {
+            if (n <= upperBound)
+                count = n;
+        }
 
-    int Run() {
-        if(count > lowerbound) return count--;
-        else return lowerbound;
-    }
-};
+        int run() {
+            if (count > lowerBound)
+                return count--;
+            else
+                return lowerBound;
+        }
+    };
 }
 
-int main()
-{
-    // Використовується тільки член upperbound з
-    // простору імен CounterNameSpace.
-    using CounterNameSpace::upperbound;
+int main() {
+    system("chcp 65001");
+    // Використовується тільки член upperBound з простору імен CounterNameSpace
+    using CounterNameSpace::upperBound;
 
-    // Тепер для встановлення значення змінній upperbound
-    // не потрібно вказувати простір імен.
-    upperbound = 100;
+    // Тепер для встановлення значення змінній upperBound не потрібно вказувати простір імен
+    upperBound = 100;
 
-    // Але під час звернення до змінної lowerbound і до інших
-    // об'єктів, як і раніше, необхідно вказувати простір імен.
-    CounterNameSpace::lowerbound = 0;
-    CounterNameSpace::counter ObjA (10);
-    int c;
+    // Але під час звернення до змінної lowerBound і до інших
+    // об'єктів, як і раніше, необхідно вказувати простір імен
+    CounterNameSpace::lowerBound = 0;
+    CounterNameSpace::Counter counterA(10);
+    int temp;
 
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjA" << endl;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterA" << endl;
     do {
-        c = ObjA.Run();
-        cout << c << " ";
-    } while(c > CounterNameSpace::lowerbound);
+        temp = counterA.run();
+        cout << temp << " ";
+    } while (temp > CounterNameSpace::lowerBound);
     cout << endl;
 
-    // Тепер використовуємо весь простір імен CounterNameSpace.
+    // Тепер використовуємо весь простір імен CounterNameSpace
     using namespace CounterNameSpace;
 
-    counter ObjB(20);
+    Counter counterB(20);
 
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjB" << endl;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterB" << endl;
     do {
-        c = ObjB.Run();
-        cout << c << " ";
-    } while(c > lowerbound);
+        temp = counterB.run();
+        cout << temp << " ";
+    } while (temp > lowerBound);
     cout << endl;
 
-    ObjB.Reset(100);
-    lowerbound = 80;
-    cout << "Розрахунок у зворотному порядку для об'єкта ObjB" << endl;
+    counterB.reset(100);
+    lowerBound = 80;
+    cout << "Розрахунок у зворотному порядку для об'єкта counterB" << endl;
     do {
-        c = ObjB.Run();
-        cout << c << " ";
-    } while(c > lowerbound);
+        temp = counterB.run();
+        cout << temp << " ";
+    } while (temp > lowerBound);
     cout << endl;
 
     //system("PAUSE");

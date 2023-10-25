@@ -1,24 +1,29 @@
-//Код програми 11.13. Демонстрація механізму використання неявногоперетворення конструктора
+// Код програми 11.13. Демонстрація механізму використання неявного перетворення конструктора
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class myClass { 		     // Оголошення класового типу
-    int n;
+class MyClass {
+    int с;
 public:
-    myClass(int c) { n = c; }
-    int Put() { return n; }
-};
-int main()
-{
-    myClass Obj(10);
+    MyClass(int c) {
+        this->с = c;
+        cout << "Використано параметризований конструктор" << endl;
+    }
 
-    cout << Obj.Put() << endl; // Відображає 10
-    // Тепер використовуємо неявне перетворення для присвоєння 			нового значення.
-    Obj = 1000;
-    cout << Obj.Put() << endl; // Відображає 1000
+    int getC() const { return с; }
+};
+
+int main() {
+    system("chcp 65001");
+    MyClass object(10);
+
+    cout << object.getC() << endl;  // Відображає 10
+    // Тепер використовуємо неявне перетворення для присвоєння нового значення
+    object = 1000;
+    cout << object.getC() << endl;  // Відображає 1000
 
     //system("PAUSE");
     return EXIT_SUCCESS;

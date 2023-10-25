@@ -1,21 +1,23 @@
-//Код програми 11.16. Демонстрація механізму застосування специфікатора компонування функцій
+// Код програми 11.16. Демонстрація механізму застосування специфікатора компонування функцій
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-extern "C" void cFun();
+extern "C" void cFunction();
 
 int main()
 {
-    cFun();
+    system("chcp 65001");
+    cFunction();
+
     //system("PAUSE");
     return EXIT_SUCCESS;
 }
 
-// Ця функція буде скомпонована як С-функція.
-void cFun()
+// Ця функція буде скомпонована як С-функція
+void cFunction()
 {
     cout << "Ця функцiя скомпонована як С-функцiя" << endl;
 }

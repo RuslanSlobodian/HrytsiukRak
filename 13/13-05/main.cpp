@@ -1,15 +1,15 @@
-//Код програми 13.5. Демонстрація механізму використання директив #if / #else
+// Код програми 13.5. Демонстрація механізму використання директив #if / #else
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
 #define MAX 6
 
-int main()
-{
-#if MAX>10
+int main() {
+    system("chcp 65001");
+#if MAX > 10
     cout << "Потрібна додаткова пам'ять" << endl;);
 #else
     cout << "Достатньо наявної пам'ятi" << endl;

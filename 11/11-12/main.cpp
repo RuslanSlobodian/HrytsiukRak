@@ -1,20 +1,21 @@
-//Код програми 11.12. Демонстрація механізму використання специфікатора explicit
+// Код програми 11.12. Демонстрація механізму використання специфікатора explicit
 
-#include <iostream>		 		// Для потокового введення-виведення
-#include <cstdlib>				// Стандартна бібліотека С++
+#include <iostream>
+#include <cstdlib>
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class MyClass {		 // Оголошення класового типу
+class MyClass {
     int a;
 public:
-    objB(int x) { a = x; }
-    int getData() { return a; }
+    explicit MyClass(int a) { this->a = a; }
+    int getData() const { return a; }
 };
-int main()
-{
-    MyClass objB(4);
-    cout << ObjA.getData();
+
+int main() {
+    MyClass object(4);
+//    object = 10;              // explicit забороняє так робити
+    cout << object.getData();
 
     //system("PAUSE");
     return EXIT_SUCCESS;

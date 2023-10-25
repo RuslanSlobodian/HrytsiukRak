@@ -1,4 +1,4 @@
-// Код програми 11.9. Демонстрація механізму використання статичних членів-даних классу
+// Код програми 11.9. Демонстрація механізму використання статичних атрибутів класу
 
 #include <iostream>
 #include <cstdlib>
@@ -13,7 +13,7 @@ public:
     void show() { cout << value << " "; }
 };
 
-int ShareVar::value;            // Визначаємо static-член value
+int ShareVar::value;            // Визначаємо static-атрибут value
 
 int main() {
     ShareVar shareVarA;
@@ -21,7 +21,7 @@ int main() {
 
     shareVarA.show();           // Виводиться 0
     shareVarB.show();           // Виводиться 0
-    shareVarA.set(10);          // Встановлюємо static-члена value дорівнює 10
+    shareVarA.set(10);          // Встановлюємо static-атрибуту value значення 10
     shareVarA.show();           // Виводиться 10
     shareVarB.show();           // Також виводиться 10
 

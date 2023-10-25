@@ -1,27 +1,30 @@
-//Код програми 12.15. Демонстрація механізму використання алгоритму reverse
+// Код програми 12.15. Демонстрація механізму використання алгоритму reverse
 
-#include <iostream>		 // Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <vector>		// Для роботи з контейнерним класом "Вектор"
-#include <algorithm> 	// Для роботи з алгоритмами бібліотеки STL
+#include <iostream>
+#include <cstdlib>
+#include <vector>               // Для роботи з контейнерним класом "Вектор"
+#include <algorithm>            // Для роботи з алгоритмами бібліотеки STL
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    vector<int> vek;
+int main() {
+    system("chcp 65001");
+    vector<int> vectorOfIntegers;
     unsigned int i;
 
-    for(int i=0; i<10; i++) vek.push_back(i);
+    for (i = 0; i < 10; i++)
+        vectorOfIntegers.push_back(i);
 
     cout << "Початкова послiдовнiсть: ";
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for (i = 0; i < vectorOfIntegers.size(); i++)
+        cout << vectorOfIntegers[i] << " ";
     cout << endl;
 
-    reverse(vek. begin(), vek.end());
+    reverse(vectorOfIntegers.begin(), vectorOfIntegers.end());
 
     cout << "Реверсована послiдовнiсть: ";
-    for(int i=0; i<vek.size(); i++) cout << vek[i] << " ";
+    for (i = 0; i < vectorOfIntegers.size(); i++)
+        cout << vectorOfIntegers[i] << " ";
 
     //system("PAUSE");
     return EXIT_SUCCESS;

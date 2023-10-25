@@ -1,56 +1,59 @@
-//Код програми 12.12. Демонстрація механізму використання відображення для створення словника
+// Код програми 12.12. Демонстрація механізму використання відображення для створення словника
 
+#include <iostream>
+#include <cstdlib>
+#include <map>                  // Для роботи з асоціативними контейнерами
+#include <cstring>              // Для роботи з рядковими типами даних
 
-#include <iostream>		// Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <map> 			// Для роботи з асоціативними контейнерами
-#include <cstring> 		// Для роботи з рядковими типами даних
+using namespace std;
 
-using namespace std; 			// Використання стандартного простору імен
-
-class word {
-    char str[20];
+class Word {
+    char charArray[20];
 public:
-    word() { strcpy(str, ""); }
-    word(char *s) { strcpy(str, s); }
-    char *get() { return str; }
+    Word() { strcpy(charArray, ""); }
+
+    Word(const char* s) { strcpy(charArray, s); }
+
+    char* get() { return charArray; }
 };
-bool operator<(word ObjA, word ObjB)
-{
-    return strcmp(ObjA.get(), ObjB.get()) < 0;
+
+bool operator<(Word wordA, Word wordB) {
+    return strcmp(wordA.get(), wordB.get()) < 0;
 }
 
-class meaning {
-    char str[80];
+class Meaning {
+    char charArray[80];
 public:
-    meaning() { strcmp(str, ""); }
-    meaning(char *s) { strcpy(str, s); }
-    char *get() { return str; }
+    Meaning() { strcmp(charArray, ""); }
+
+    Meaning(const char* str) { strcpy(charArray, str); }
+
+    char* get() { return charArray; }
 };
 
-int main()
-{
-    map<word, meaning> dictionary;
+int main() {
+    system("chcp 65001");
+    map<Word, Meaning> dictionary;
 
-    // Поміщаємо у відображення об'єкти класів word і meaning.
-    dictionary.insert(pair<word, meaning>(
-                          word("дiм"), meaning("Мiсце мешкання.")));
+    // Поміщаємо у відображення об'єкти класів Word і Meaning
+    dictionary.insert(pair<Word, Meaning>(
+            Word("дiм"), Meaning("Мiсце мешкання.")));
+    dictionary.insert(pair<Word, Meaning>(
+            Word("клавiатура"), Meaning("Пристрiй введення даних.")));
+    dictionary.insert(pair<Word, Meaning>(
+            Word("програмування"), Meaning("Процес розроблення програми.")));
+    dictionary.insert(pair<Word, Meaning>(
+            Word("STL"), Meaning("Standard Template Library")));
 
-    dictionary.insert(pair<word, meaning>(
-                          word("клавiатура"), meaning("Пристрiй введення даних.")));
-    dictionary.insert(pair<word, meaning>(
-                          word("програмування"), meaning("Процес розроблення програми.")));
-    dictionary.insert(pair<word, meaning>(
-                          word("STL"), meaning("Standard Template Library")));
+    // За заданим словом знаходимо його значення
+    char charArray[80];
+    cout << "Введiть слово: ";
+    cin >> charArray;
 
-    // За заданим словом знаходимо його значення.
-    char str[80];
-    cout << "Введiть слово: "; cin >> str;
-
-    map<word, meaning>::iterator p;
-    p = dictionary.find(word(str));
-    if(p != dictionary.end())
-        cout << "Визначення: " << p->second.get();
+    map<Word, Meaning>::iterator ptr;
+    ptr = dictionary.find(Word(charArray));
+    if (ptr != dictionary.end())
+        cout << "Визначення: " << ptr->second.get();
     else
         cout << "Такого слова у словнику немає" << endl;
 

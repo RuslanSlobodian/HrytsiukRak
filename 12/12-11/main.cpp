@@ -1,27 +1,30 @@
-//Код програми 12.11. Демонстрація механізму використання простого відображення
+// Код програми 12.11. Демонстрація механізму використання простого відображення
 
+#include <iostream>
+#include <cstdlib>
+#include <map>                  // Для роботи з асоціативними контейнерами
 
-#include <iostream>		// Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <map> 			// Для роботи з асоціативними контейнерами
+using namespace std;
 
-using namespace std; 			// Використання стандартного простору імен
+int main() {
+    system("chcp 65001");
+    std::map<char, int> mapA;   // Створення порожнього відображення
 
-int main()
-{
-    map<char, int> h; // Створення порожнього відображення.
-    // Поміщаємо пари у відображення.
-    for(int i=0; i<10; i++) {
-        h.insert(pair<char, int>('A'+i, i));
+    // Поміщаємо пари у відображення
+    for (int i = 0; i < 10; i++) {
+        mapA.insert(std::pair<char, int>('A' + i, i));
     }
     char ch;
-    cout << "Введiть ключ: "; cin >> ch;
+    cout << "Введiть ключ: ";
+    cin >> ch;
 
-    map<char, int>::iterator p;
-    // Знаходимо значення за заданим ключем.
-    p = h.find(ch);
-    if(p != h.end()) cout << p->second;
-    else cout << "Такого ключа у вiдображеннi немає" << endl;
+    std::map<char, int>::iterator ptr;
+    // Знаходимо значення за заданим ключем
+    ptr = mapA.find(ch);
+    if (ptr != mapA.end())
+        cout << ptr->second;
+    else
+        cout << "Такого ключа у вiдображеннi немає" << endl;
 
     //system("PAUSE");
     return EXIT_SUCCESS;

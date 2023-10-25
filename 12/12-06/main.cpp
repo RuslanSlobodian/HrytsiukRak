@@ -1,28 +1,28 @@
-//Код програми 12.6. Демонстрація механізму використання базових операцій для роботи зі списком
+// Код програми 12.6. Демонстрація механізму використання базових операцій для роботи з списком
 
-#include <iostream>		 	// Для потокового введення-виведення
-#include <cstdlib>			// Стандартна бібліотека С++
-#include <vector>			// Для роботи з контейнерним класом "Вектор"
-#include <list> 			// Для роботи зі списками
+#include <iostream>
+#include <cstdlib>
+#include <list>                 // Для роботи зі списками
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    list<char> lst; // Створення порожнього списку
+int main() {
+    system("chcp 65001");
+    std::list<char> listOfChars;     // Створення порожнього списку
     // Поміщаємо значення у список
-    for(int i=0; i<10; i++) lst.push_back('A'+i);
+    for (int i = 0; i < 10; i++)
+        listOfChars.push_back('A' + i);
 
     // Відображаємо початковий розміру списку
-    cout << "Розмiр = " << lst.size() << endl;
+    cout << "Розмiр = " << listOfChars.size() << endl;
 
     // Відображаємо початковий вміст списку
     cout << "Вмiст: ";
-    list<char>::iterator p = lst.begin();
-    // Отримуємо доступ до вмісту списку за допомогою ітератора.
-    while(p != lst.end()) {
-        cout << *p << " ";
-        p++;
+    list<char>::iterator ptr = listOfChars.begin();
+    // Отримуємо доступ до вмісту списку за допомогою ітератора
+    while (ptr != listOfChars.end()) {
+        cout << *ptr << " ";
+        ptr++;
         cout << endl;
     }
 

@@ -1,65 +1,79 @@
-//Код програми 12.10. Демонстрація механізму зберігання у списку об'єктів класу
+// Код програми 12.10. Демонстрація механізму зберігання у списку об'єктів класу
 
-#include <iostream>		// Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <vector>		// Для роботи з контейнерним класом "Вектор"
-#include <list> 		// Для роботи зі списками
+#include <iostream>
+#include <cstdlib>
+#include <list>                 // Для роботи зі списками
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-class myClass { 		// Оголошення класового типу
-    int a, b, sum;
+class MyClass {
+    int a;
+    int b;
+    int sum;
 public:
-    myClass() { a = b = 0; }
-    myClass(int c, int d) { a = c; b = d; sum = a + b; }
-    int getSum() { return sum; }
-    friend bool operator<(const myClass &ObjA, const myClass &ObjB);
-    friend bool operator>(const myClass &ObjA, const myClass &ObjB);
-    friend bool operator==(const myClass &ObjA, const myClass &ObjB);
-    friend bool operator!=(const myClass &ObjA, const myClass &ObjB);
-};
-bool operator<(const myClass &ObjA, const myClass &ObjB)
-{ return ObjA.sum < ObjB.sum; }
-bool operator>(const myClass &ObjA, const myClass &ObjB)
-{ return ObjA.sum > ObjB.sum; }
-bool operator==(const myClass &ObjA, const myClass &ObjB)
-{ return ObjA.sum == ObjB.sum; }
-bool operator!=(const myClass &ObjA, const myClass &ObjB)
-{ return ObjA.sum != ObjB.sum; }
+    MyClass() { a = b = 0; }
 
-int main()
-{
-    list<myClass> lst1; 	// Створення першого списку.
-    for(int i=0; i<10; i++) lst1.push_back(myClass(i, i));
+    MyClass(int a, int b) {
+        this->a = a;
+        this->b = b;
+        this->sum = this->a + this->b;
+    }
+
+    int getSum() { return sum; }
+
+    friend bool operator<(const MyClass& objectA, const MyClass& objectB);
+
+    friend bool operator>(const MyClass& objectA, const MyClass& objectB);
+
+    friend bool operator==(const MyClass& objectA, const MyClass& objectB);
+
+    friend bool operator!=(const MyClass& objectA, const MyClass& objectB);
+};
+
+bool operator<(const MyClass& objectA, const MyClass& objectB) { return objectA.sum < objectB.sum; }
+
+bool operator>(const MyClass& objectA, const MyClass& objectB) { return objectA.sum > objectB.sum; }
+
+bool operator==(const MyClass& objectA, const MyClass& objectB) { return objectA.sum == objectB.sum; }
+
+bool operator!=(const MyClass& objectA, const MyClass& objectB) { return objectA.sum != objectB.sum; }
+
+int main() {
+    system("chcp 65001");
+    list<MyClass> listA;        // Створення першого списку
+    for (int i = 0; i < 10; i++)
+        listA.push_back(MyClass(i, i));
 
     cout << "Перший список: ";
-    list<myClass>::iterator p = lst1.begin();
-    while(p != lst1.end()) {
-        cout << p->getSum() << " ";
-        p++;
+    list<MyClass>::iterator ptr = listA.begin();
+    while (ptr != listA.end()) {
+        cout << ptr->getSum() << " ";
+        ptr++;
     }
     cout << endl;
 
-    list<myClass> lst2; 		// Створення другого списку.
-    for(int i=0; i<10; i++) lst2.push_back(myClass(i*2, i*3));
+    list<MyClass> listB;        // Створення другого списку
+    for (int i = 0; i < 10; i++)
+        listB.push_back(MyClass(i * 2, i * 3));
 
     cout << "Другий список: ";
 
-    p = lst2.begin();
-    while(p != lst2.end()) {
-        cout << p->getSum() << " ";
-        p++;
+    ptr = listB.begin();
+    while (ptr != listB.end()) {
+        cout << ptr->getSum() << " ";
+        ptr++;
     }
     cout << endl;
 
-    // Тепер об'єднуємо списки lst! і lst2.
-    lst1.merge(lst2);
+    // Тепер об'єднуємо списки listA і listB
+    listA.merge(listB);
 
-    // Відображаємо об'єднаний список.
-    cout << "Об'єднаний список: "; p = lst1.begin();
-    while(p != lst1.end()) {
-        cout << p->getSum() << " ";
-        p++;
+    // Відображаємо об'єднаний список
+    cout << "Об'єднаний список: ";
+    ptr = listA.begin();
+    while (ptr != listA.end()) {
+        cout << ptr->getSum() << " ";
+        ptr++;
     }
     cout << endl;
 

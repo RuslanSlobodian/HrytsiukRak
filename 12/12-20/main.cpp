@@ -1,15 +1,14 @@
-//Код програми 12.20. Демонстрація механізму використання відображення string-об'єктів для створення словника
+// Код програми 12.20. Демонстрація механізму використання відображення string-об'єктів для створення словника
 
+#include <iostream>
+#include <cstdlib>
+#include <map>
+#include <string>
 
-#include <iostream>		// Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <map> 			// Для роботи з асоціативними контейнерами
-#include <string> 		// Для роботи з рядковими типами
+using namespace std;
 
-using namespace std; 			// Використання стандартного простору імен
-
-int main()
-{
+int main() {
+    system("chcp 65001");
     map<string, string> dictionary;
 
     dictionary.insert(pair<string, string>("дiм", "Мiсце мешкання."));
@@ -17,14 +16,15 @@ int main()
     dictionary.insert(pair<string, string>("програмування", "Процес розроблення програми."));
     dictionary.insert(pair<string, string>("STL", "Standard Template Library."));
 
-    string s;
-    cout << "Введiть слово: "; cin >> s;
+    string str;
+    cout << "Введiть слово: ";
+    cin >> str;
 
-    map<string, string>::iterator p;
+    map<string, string>::iterator ptr;
 
-    p = dictionary.find(s);
-    if(p != dictionary.end())
-        cout << "Визначення: " << p->second << endl;
+    ptr = dictionary.find(str);
+    if (ptr != dictionary.end())
+        cout << "Визначення: " << ptr->second << endl;
     else
         cout << "Такого слова у словнику немає." << endl;
 

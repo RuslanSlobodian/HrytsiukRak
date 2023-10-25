@@ -1,44 +1,50 @@
-//Код програми 12.14. Демонстрація механізму використання алгоритмів remove_copy і replace_copy
+// Код програми 12.14. Демонстрація механізму використання алгоритмів remove_copy і replace_copy
 
-#include <iostream>		// Для потокового введення-виведення
-#include <cstdlib>		// Стандартна бібліотека С++
-#include <vector> 		// Для роботи з контейнерним класом "Вектор"
-#include <algorithm> 	// Для роботи з алгоритмами бібліотеки STL
+#include <iostream>
+#include <cstdlib>
+#include <vector>               // Для роботи з контейнерним класом "Вектор"
+#include <algorithm>            // Для роботи з алгоритмами бібліотеки STL
 
 
-using namespace std; 			// Використання стандартного простору імен
+using namespace std;
 
-int main()
-{
-    char str[] = "Це дуже простий тест.";
-    vector<char> vek, vek2(30);
+int main() {
+    system("chcp 65001");
+    char str[] = "This is a very simple test.";
+    vector<char> vectorA;
+    vector<char> vectorB(30);
 
-    for(int i=0; str[i]; i++) vek.push_back(str[i]);
+    for (int i = 0; str[i]; i++)
+        vectorA.push_back(str[i]);
 
     // **** Демонстрація алгоритму remove_copy ****
 
     cout << "Вхiдна послiдовнiсть: ";
-    for(int i=0; i<vek.size(); i++) cout << vek[i];
+    for (int i = 0; i < vectorA.size(); i++)
+        cout << vectorA[i];
     cout << endl;
 
-    // Видаляємо всі букви 'е'.
-    remove_copy(vek.begin(), vek.end(), vek2.begin(), 'т');
+    // Видаляємо всі букви 's'
+    remove_copy(vectorA.begin(), vectorA.end(), vectorB.begin(), 's');
 
-    cout << "Пiсля видалення букв 'т': ";
-    for(int i=0; vek2[i]; i++) cout << vek2[i];
+    cout << "Пiсля видалення букв 's': ";
+    for (int i = 0; vectorB[i]; i++)
+        cout << vectorB[i];
     cout << endl << endl;
 
     // **** Демонстрація алгоритму replace_copy ****
 
     cout << "Вхiдна послiдовнiсть: ";
-    for(int i=0; i<vek.size(); i++) cout << vek[i];
+    for (int i = 0; i < vectorA.size(); i++)
+        cout << vectorA[i];
     cout << endl;
 
-    // Замінюємо букви 'е' буквами 'Х'.
-//    replace_copy(vek.begin(), vek.end(), vek2.begin(), 'е', 'X');
+    // Замінюємо букви 's' буквами 'S'
+    replace_copy(vectorA.begin(), vectorA.end(), vectorB.begin(), 's', 'S');
 
-    cout << "Пiсля замiни букв 'е' буквами 'X': ";
-    for(int i=0; vek2[i]; i++) cout << vek2[i];
+    cout << "Пiсля замiни букв 's' буквами 'S': ";
+    for (int i = 0; vectorB[i]; i++)
+        cout << vectorB[i];
     cout << endl << endl;
 
     //system("PAUSE");

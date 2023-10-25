@@ -32,7 +32,7 @@ StrClass StrClass::operator+(StrClass object) {
 // Присвоєння одного рядка іншому
 StrClass StrClass::operator=(StrClass object) {
     strcpy(charArray, object.charArray);
-    // Повернення модифікованого об'єкта операнда, адресованого покажчиком
+    // Повернення модифікованого об'єкта операнда, адресованого вказівником
     return *this;
 }
 

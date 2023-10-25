@@ -29,7 +29,7 @@ int main() {
     DerivedClass *derivedClassPtr;      // Створення вказівника на об'єкт похідного класу
     DerivedClass derivedClassObject;    // Створення об'єкта похідного класу
     // Доступ до об'єкта базового класу через вказівник baseClassPtr
-    baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового классу
+    baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового класу
 
     baseClassPtr->setAuthor("Б'ярн Страуструп");
 

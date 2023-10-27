@@ -1,11 +1,10 @@
-//Файл, що постачається клієнту
-#include "Landlord.h"
-//#include "landlord.cpp"
+#include "UserInterface.h"
 
-int main()
-{
+int main() {
     system("chcp 65001");
-    UserInterface theUserInterface;
-    theUserInterface.interact();
+
+    UserInterface userInterface;
+    userInterface.interact();
+
     return 0;
 }

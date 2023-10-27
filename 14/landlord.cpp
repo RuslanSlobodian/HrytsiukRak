@@ -15,42 +15,42 @@ char getaChar() // Отримання символу
     return ch;
 } // <------> Кінець getaChar()
 
-// >------> Методи класу tenant
-tenant::tenant(string n, int aNo) : name(n), aptNumber(aNo)
+// >------> Методи класу Tenant
+Tenant::Tenant(string n, int aNo) : name(n), aptNumber(aNo)
     { /* тут порожньо */ }
 //---------------------------------------------------------
-tenant::~tenant()
+Tenant::~Tenant()
     { /* тут також порожньо */ }
 //---------------------------------------------------------
-int tenant::getAptNumber()
+int Tenant::getAptNumber()
     { return aptNumber; }
 
-bool operator < (const tenant& t1, const tenant& t2)
+bool operator < (const Tenant& t1, const Tenant& t2)
     { return t1.name < t2.name; }
 //---------------------------------------------------------
-bool operator == (const tenant& t1, const tenant& t2)
+bool operator == (const Tenant& t1, const Tenant& t2)
     { return t1.name == t2.name; }
 //---------------------------------------------------------
-ostream& operator << (ostream& s, const tenant& t)
+ostream& operator << (ostream& s, const Tenant& t)
     { s << t.aptNumber << '\t' << t.name << endl; return s; }
 //---------------------------------------------------------
 
-// >------> Методи класу tenantInputScreen
-void tenantInputScreen::getTenant() // Отримання даних про мешканцях
+// >------> Методи класу TenantInputScreen
+void TenantInputScreen::getTenant() // Отримання даних про мешканцях
 {
     cout << "Введiть iм'я мешканця (Тарас Редько): ";
     getaLine(tName);
     cout << "Введiть номер кiмнати (101): ";
     cin >> aptNo;
     cin.ignore(80, '\n'); // Створити мешканця
-    tenant* ptrTenant = new tenant(tName, aptNo);
+    Tenant* ptrTenant = new Tenant(tName, aptNo);
     ptrTenantList->insertTenant(ptrTenant); // Занести перелік мешканців
 }
-bool compareTenants::operator () (tenant* ptrT1, tenant* ptrT2) const
+bool CompareTenants::operator () (Tenant* ptrT1, Tenant* ptrT2) const
     { return *ptrT1 < *ptrT2; }
 //---------------------------------------------------------
-// >------> Методи класу tenantList
-tenantList::~tenantList() // Оголошення деструктора
+// >------> Методи класу TenantList
+TenantList::~TenantList() // Оголошення деструктора
 {
     while( !setPtrsTens.empty() ) { 	// Видалення усіх мешканців
         // Видалення вказівників з множини
@@ -58,16 +58,16 @@ tenantList::~tenantList() // Оголошення деструктора
         delete *iter;
         setPtrsTens.erase(iter);
     }
-} // <------> Кінець ~tenantList()
-void tenantList::insertTenant(tenant* ptrT)
+} // <------> Кінець TenantList()
+void TenantList::insertTenant(Tenant* ptrT)
 {
     setPtrsTens.insert(ptrT); // Вставка
 }
 //---------------------------------------------------------
-int tenantList::getAptNo(string tName) // Ім'я присутнє у переліку?
+int TenantList::getAptNo(string tName) // Ім'я присутнє у переліку?
 {
     int aptNo;
-    tenant dummy(tName, 0);
+    Tenant dummy(tName, 0);
     iter = setPtrsTens.begin();
     while( iter != setPtrsTens.end() ) {
         aptNo = (*iter)->getAptNumber(); 		// Пошук мешканця
@@ -77,7 +77,7 @@ int tenantList::getAptNo(string tName) // Ім'я присутнє у перел
     return -1; 							// Немає
 } // <------> Кінець getAptNo()
 
-void tenantList::Display() // Виведення переліку мешканців
+void TenantList::Display() // Виведення переліку мешканців
 {
     cout << endl << "Apt#\tIм'я мешканця\n-------------------" << endl;
     if( setPtrsTens.empty() )
@@ -88,23 +88,23 @@ void tenantList::Display() // Виведення переліку мешканц
     }
 } // <------> Кінець Display()
 
-// >------> Методи класу rentRow
-rentRow::rentRow(int an) : aptNo(an) // Однопараметризований конструктор
+// >------> Методи класу RentRow
+RentRow::RentRow(int an) : aptNo(an) // Однопараметризований конструктор
     { fill( &rent[0], &rent[12], 0); }
 //---------------------------------------------------------
-void rentRow::setRent(int m, float am)
+void RentRow::setRent(int m, float am)
     { rent[m]= am; }
 //---------------------------------------------------------
-float rentRow::getSumOfRow() // Сума орендних платежів у рядку
+float RentRow::getSumOfRow() // Сума орендних платежів у рядку
     { return accumulate( &rent[0], &rent[12], 0); }
 //---------------------------------------------------------
-bool operator < (const rentRow& t1, const rentRow& t2)
+bool operator < (const RentRow& t1, const RentRow& t2)
     { return t1.aptNo < t2.aptNo; }
 //---------------------------------------------------------
-bool operator == (const rentRow& t1, const rentRow& t2)
+bool operator == (const RentRow& t1, const RentRow& t2)
     { return t1.aptNo == t2.aptNo; }
 //---------------------------------------------------------
-ostream& operator << (ostream& s, const rentRow& an)
+ostream& operator << (ostream& s, const RentRow& an)
 {
     s << an.aptNo << '\t'; // Вивести номер кімнати
     for(int j=0; j<12; j++) { // Вивести 12 орендних платежів
@@ -114,10 +114,10 @@ ostream& operator << (ostream& s, const rentRow& an)
     s << endl;
     return s;
 } // <------> Кінець operator <<
-bool compareRows::operator () (rentRow* ptrR1, rentRow* ptrR2) const
+bool CompareRows::operator () (RentRow* ptrR1, RentRow* ptrR2) const
     { return *ptrR1 < *ptrR2; }
-// >------> Методи класу rentRecord
-rentRecord::~rentRecord() // Оголошення деструктора
+// >------> Методи класу RentRecord
+RentRecord::~RentRecord() // Оголошення деструктора
 {
     while( !setPtrsRR.empty() ) { 		// Видалити рядки з платежами
 
@@ -126,26 +126,26 @@ rentRecord::~rentRecord() // Оголошення деструктора
     delete *iter;
     setPtrsRR.erase(iter);
     }
-} // <------> Кінець ~rentRecord()
+} // <------> Кінець RentRecord()
 
-void rentRecord::insertRent(int aptNo, int month, float amount)
+void RentRecord::insertRent(int aptNo, int month, float amount)
 {
-    rentRow searchRow(aptNo); // Тимчасовий рядок з тим самим aptNo
+    RentRow searchRow(aptNo); // Тимчасовий рядок з тим самим aptNo
     iter = setPtrsRR.begin(); // Пошук setPtrsRR
     while( iter != setPtrsRR.end() ) {
-        if(searchRow==**iter) { // rentRow знайдений?
+        if(searchRow==**iter) { // RentRow знайдений?
             // так, заносимо
             (*iter)->setRent(month, amount); // Рядок у перелік
             return;
         }
         else iter++;
     } // Не знайдений
-    rentRow* ptrRow = new rentRow(aptNo); 		// Новий рядок
+    RentRow* ptrRow = new RentRow(aptNo); 		// Новий рядок
     ptrRow->setRent(month, amount); 			// Занести в неї платіж
     setPtrsRR.insert(ptrRow); 				// Занести рядок вектор
 } // <------> Кінець insertRent()
 
-void rentRecord::Display()
+void RentRecord::Display()
 {
     cout << endl << "AptNo\tСiч Лют Бер Квiт Трав Черв "
     << "Лип Серп Вер Жовт Лист Груд\n"
@@ -160,7 +160,7 @@ void rentRecord::Display()
     }
 } // <------> Кінець Display()
 
-float rentRecord::getSumOfRents() 		// Сума усіх платежів
+float RentRecord::getSumOfRents() 		// Сума усіх платежів
 {
     float sumRents = 0.0;
     iter = setPtrsRR.begin();
@@ -171,8 +171,8 @@ float rentRecord::getSumOfRents() 		// Сума усіх платежів
     return sumRents;
 } // <------> Кінець getSumOfRents()
 
-// >------> Методи класу rentInputScreen
-void rentInputScreen::getRent()
+// >------> Методи класу RentInputScreen
+void RentInputScreen::getRent()
 {
     cout << "Введiть iм'я мешканця: ";
     getaLine(renterName);
@@ -191,8 +191,8 @@ void rentInputScreen::getRent()
     else 					// Повернення
     cout << "Такого мешканця немає" << endl;
 } // <------> Кінець getRent()
-// Методи класу expense
-bool operator < (const expense& e1, const expense& e2)
+// Методи класу Expense
+bool operator < (const Expense& e1, const Expense& e2)
 { 						// Порівнює дати
 
     if(e1.month == e2.month) 	// Якщо той же місяць
@@ -201,10 +201,10 @@ bool operator < (const expense& e1, const expense& e2)
     return e1.month < e2.month; 		// Порівняти місяці
 }
 //---------------------------------------------------------
-bool operator == (const expense& e1, const expense& e2)
+bool operator == (const Expense& e1, const Expense& e2)
     { return e1.month == e2.month && e1.day == e2.day; }
 //---------------------------------------------------------
-ostream& operator << (ostream& s, const expense& exp)
+ostream& operator << (ostream& s, const Expense& exp)
     {
     s << exp.month << '/' << exp.day << '\t' << exp.payee << '\t' ;
 
@@ -212,41 +212,41 @@ ostream& operator << (ostream& s, const expense& exp)
     return s;
 }
 //---------------------------------------------------------
-bool compareDates::operator () (expense* ptrE1, expense* ptrE2) const
+bool CompareDates::operator () (Expense* ptrE1, Expense* ptrE2) const
     { return *ptrE1 < *ptrE2; }
 //---------------------------------------------------------
-bool compareCategories::operator ()(expense* ptrE1, expense* ptrE2) const
+bool CompareCategories::operator ()(Expense* ptrE1, Expense* ptrE2) const
     { return ptrE1->category < ptrE2->category; }
 //---------------------------------------------------------
-// >------> Методи класу expenseRecord
-expenseRecord::~expenseRecord() 		// Оголошення деструктора
+// >------> Методи класу ExpenseRecord
+ExpenseRecord::~ExpenseRecord() 		// Оголошення деструктора
 {
-    while( !vectPtrsExpenses.empty() ) { 	// Видалити об'єкти expense
+    while( !vectPtrsExpenses.empty() ) { 	// Видалити об'єкти Expense
 
         // Видалити вказівники на вектор
         iter = vectPtrsExpenses.begin();
         delete *iter;
         vectPtrsExpenses.erase(iter);
     }
-} // <------> Кінець ~expenseRecord()
-void expenseRecord::insertExp(expense* ptrExp)
+} // <------> Кінець ExpenseRecord()
+void ExpenseRecord::insertExp(Expense* ptrExp)
     { vectPtrsExpenses.push_back(ptrExp); }
 //---------------------------------------------------------
-void expenseRecord::Display()
+void ExpenseRecord::Display()
 {
     cout << endl << "Дата\tОтримувач\t\tСума\tКатегорiя\n"
     << "----------------------------------------" << endl;
     if( vectPtrsExpenses.size() == 0 )
     cout << "*** Витрат немає ***" << endl;
     else {
-        sort( vectPtrsExpenses.begin(), // Сортування за датою
-        vectPtrsExpenses.end(), compareDates() );
+        sort(vectPtrsExpenses.begin(), // Сортування за датою
+        vectPtrsExpenses.end(), CompareDates() );
         iter = vectPtrsExpenses.begin();
         while( iter != vectPtrsExpenses.end() ) cout << **iter++;
     }
 } // <------> Кінець Display()
 
-float expenseRecord::displaySummary() // Використовується під час складання річного звіту
+float ExpenseRecord::displaySummary() // Використовується під час складання річного звіту
 {
     float totalExpenses = 0; // Сума, всі категорії
     if( vectPtrsExpenses.size() == 0 ) {
@@ -254,7 +254,7 @@ float expenseRecord::displaySummary() // Використовується під
         return 0;
     }
     // Сортувати за категоріями
-    sort( vectPtrsExpenses.begin(), vectPtrsExpenses.end(), compareCategories() );
+    sort(vectPtrsExpenses.begin(), vectPtrsExpenses.end(), CompareCategories() );
     // По кожній категорії сума записів
     iter = vectPtrsExpenses.begin();
     string tempCat = (*iter)->category;
@@ -274,11 +274,11 @@ float expenseRecord::displaySummary() // Використовується під
     cout << '\t' << tempCat << '\t' << sumCat << endl;
     return totalExpenses;
 } // <------> Кінець displaySummary()
-// >------> Методи класу expenseInputScreen
-expenseInputScreen::expenseInputScreen(expenseRecord* per) : ptrExpenseRecord(per)
+// >------> Методи класу ExpenseInputScreen
+ExpenseInputScreen::ExpenseInputScreen(ExpenseRecord* per) : ptrExpenseRecord(per)
 { /*пусто*/ }
 //------------------------------------------------------
-void expenseInputScreen::getExpense()
+void ExpenseInputScreen::getExpense()
 {
     int month, day;
     string category, payee;
@@ -290,16 +290,16 @@ void expenseInputScreen::getExpense()
     cout << "Введiть отримувача " << "(ЛьвiвЕлектроЗбут): ";
     getaLine(payee);
     cout << "Введiть суму (39.95): "; cin >> amount; cin.ignore(80, '\n');
-    expense* ptrExpense = new
-    expense(month, day, category, payee, amount);
+    Expense* ptrExpense = new
+    Expense(month, day, category, payee, amount);
 
     ptrExpenseRecord->insertExp(ptrExpense);
 } // <------> Кінець getExpense()
-// >------> Методи класу annualReport
-annualReport::annualReport(rentRecord* pRR, expenseRecord* pER) : ptrRR(pRR), ptrER(pER)
+// >------> Методи класу AnnualReport
+AnnualReport::AnnualReport(RentRecord* pRR, ExpenseRecord* pER) : ptrRR(pRR), ptrER(pER)
 { /* порожньо */ }
 //---------------------------------------------------------
-void annualReport::Display()
+void AnnualReport::Display()
 {
     cout << "Рiчний звіт\n--------------" << endl;
     cout << "Доходи" << endl;
@@ -310,20 +310,20 @@ void annualReport::Display()
     expenses = ptrER->displaySummary();
     cout << endl << "Баланс\t\t\t" << rents - expenses << endl;
 } // <------> Кінець Display()
-// >------> Методи класу userInterface
-userInterface::userInterface()
+// >------> Методи класу UserInterface
+UserInterface::UserInterface()
 { // Це життєво важливо для програми
-    ptrTenantList = new tenantList;
-    ptrRentRecord = new rentRecord;
-    ptrExpenseRecord = new expenseRecord;
-} // <------> Кінець userInterface()
-userInterface::~userInterface() // Оголошення деструктора
+    ptrTenantList = new TenantList;
+    ptrRentRecord = new RentRecord;
+    ptrExpenseRecord = new ExpenseRecord;
+} // <------> Кінець UserInterface()
+UserInterface::~UserInterface() // Оголошення деструктора
 {
     delete ptrTenantList;
     delete ptrRentRecord;
     delete ptrExpenseRecord;
-} // <------> Кінець ~userInterface()
-void userInterface::interact()
+} // <------> Кінець UserInterface()
+void UserInterface::interact()
 {
     while(true) {
         cout << "Для введення даних натисніть 'i'\n"
@@ -339,17 +339,17 @@ void userInterface::interact()
             switch(ch) {
                 // Екрани введення існують тільки під час їх використання
                 case 't': ptrTenantInputScreen =
-                new tenantInputScreen(ptrTenantList);
+                new TenantInputScreen(ptrTenantList);
                 ptrTenantInputScreen->getTenant();
                 delete ptrTenantInputScreen;
                 break;
                 case 'r': ptrRentInputScreen =
-                new rentInputScreen(ptrTenantList, ptrRentRecord);
+                new RentInputScreen(ptrTenantList, ptrRentRecord);
                 ptrRentInputScreen->getRent();
                 delete ptrRentInputScreen;
                 break;
                 case 'e': ptrExpenseInputScreen =
-                new expenseInputScreen(ptrExpenseRecord);
+                new ExpenseInputScreen(ptrExpenseRecord);
                 ptrExpenseInputScreen->getExpense();
                 delete ptrExpenseInputScreen;
                 break;
@@ -371,8 +371,8 @@ void userInterface::interact()
                 case 'e': ptrExpenseRecord->Display();
                 break;
                 case 'a':
-                ptrAnnualReport = new annualReport(ptrRentRecord,
-                ptrExpenseRecord);
+                ptrAnnualReport = new AnnualReport(ptrRentRecord,
+                                                   ptrExpenseRecord);
                 ptrAnnualReport->Display();
                 delete ptrAnnualReport;
                 break;

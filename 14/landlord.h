@@ -1,184 +1,204 @@
-// Заголовний файл landlord.h - містить оголошення класів і т.ін.
-#pragma warning(disable:4786) // Для множин (тільки компілятори Microsoft)
-#include <iostream> 		// Для потокового введення-виведення
-#include <vector> 		// Для роботи з контейнерним класом "Вектор"
-#include <set>
-#include <string.h> 		// Для роботи з рядковими типами
-#include <algorithm> 		// Для sort()
-#include <numeric> 		// Для accumulate()
+//#pragma warning(disable:4786) // Для множин (тільки компілятори Microsoft)
 
-using namespace std; 		// Використання стандартного простору імен
+#include <iostream>        // Для потокового введення-виведення
+#include <vector>        // Для роботи з контейнерним класом "Вектор"
+#include <set>
+#include <string.h>        // Для роботи з рядковими типами
+#include <algorithm>        // Для sort()
+#include <numeric>        // Для accumulate()
+
+using namespace std;        // Використання стандартного простору імен
 
 /// Глобальні методи ///
-void getaLine(string& inStr); 	// Отримання рядка тексту
-char getaChar(); 			// Отримання символу
+void getaLine(string& inStr);    // Отримання рядка тексту
+char getaChar();            // Отримання символу
 
-class tenant {			 // Мешканці
+class Tenant {             // Мешканці
 private:
-    string name;		 // Ім'я мешканця
-    int aptNumber;		 // Номер кімнати мешканця
+    string name;         // Ім'я мешканця
+    int aptNumber;         // Номер кімнати мешканця
 // Тут може бути будь-яка інша інформація про мешканця,
 // наприклад, номер телефону і т.ін.
 public:
-    tenant(string n, int aNo);
-    ~tenant();
+    Tenant(string n, int aNo);
+
+    ~Tenant();
+
     int getAptNumber(); // Потрібно для використання в множині
-    friend bool operator < (const tenant&, const tenant&);
-    friend bool operator == (const tenant&, const tenant&);
+    friend bool operator<(const Tenant&, const Tenant&);
+
+    friend bool operator==(const Tenant&, const Tenant&);
+
     // Для операцій введення/виведення
-    friend ostream& operator << (ostream&, const tenant&);
-}; // <------> Кінець оголошення класу tenant
+    friend ostream& operator<<(ostream&, const Tenant&);
+}; // <------> Кінець оголошення класу Tenant
 
 // Функціональний об'єкт для порівняння імен мешканців
-class compareTenants {
+class CompareTenants {
 
 public:
-    bool operator () (tenant*, tenant*) const;
+    bool operator()(Tenant*, Tenant*) const;
 };
 
-// >------> Клас tenantList
-class tenantList {
+// >------> Клас TenantList
+class TenantList {
 private:
 // Встановити покажчики на мешканців
-    set<tenant*, compareTenants> setPtrsTens;
-    set<tenant*, compareTenants>::iterator iter;
+    set<Tenant*, CompareTenants> setPtrsTens;
+    set<Tenant*, CompareTenants>::iterator iter;
 public:
-    ~tenantList();		 // Оголошення деструктора (Видалення мешканців)
-    void insertTenant(tenant*); 		// Внесення мешканця в перелік
-    int getAptNo(string);			 // Повертає номер кімнати
-    void Display(); 				// Виведення переліку мешканців
+    ~TenantList();         // Оголошення деструктора (Видалення мешканців)
+    void insertTenant(Tenant*);        // Внесення мешканця в перелік
+    int getAptNo(string);             // Повертає номер кімнати
+    void Display();                // Виведення переліку мешканців
 };
-// <------> Кінець оголошення класу tenantList
-class tenantInputScreen {
+
+// <------> Кінець оголошення класу TenantList
+class TenantInputScreen {
 private:
-    tenantList* ptrTenantList;
+    TenantList* ptrTenantList;
     string tName;
     int aptNo;
 public:
-    tenantInputScreen(tenantList* ptrTL): ptrTenantList(ptrTL)
-    { /* тут порожньо */ }
+    TenantInputScreen(TenantList* ptrTL) : ptrTenantList(ptrTL) { /* тут порожньо */ }
+
     void getTenant();
-}; // <------> Кінець класу tenantInputScreen
+}; // <------> Кінець класу TenantInputScreen
 
 // Один рядок таблиці прибутку: адреса і 12 місячних плат
-class rentRow {
+class RentRow {
 private:
     int aptNo;
     float rent[12];
 public:
-    rentRow(int); // Оголошення конструктора з одним параметром
+    RentRow(int); // Оголошення конструктора з одним параметром
     void setRent(int, float); // Запис плати за місяць
     float getSumOfRow(); // Сума платежів з одного рядка
     // Потрібно для збереження в множині
-    friend bool operator < (const rentRow&, const rentRow&);
-    friend bool operator == (const rentRow&, const rentRow&);
-    friend ostream& operator << (ostream&, const rentRow&); // Для виведення
-}; // <------> Кінець класу rentRow
+    friend bool operator<(const RentRow&, const RentRow&);
+
+    friend bool operator==(const RentRow&, const RentRow&);
+
+    friend ostream& operator<<(ostream&, const RentRow&); // Для виведення
+}; // <------> Кінець класу RentRow
 
 // Функціональний об'єкт порівняння об'єктів rentRows
-class compareRows {
+class CompareRows {
 public:
-    bool operator () (rentRow*, rentRow*) const;
+    bool operator()(RentRow*, RentRow*) const;
 };
 
-class rentRecord {
+class RentRecord {
 private:
-    // Множину покажчиків на об'єкти rentRow (по одному на мешканця)
-    set<rentRow*, compareRows> setPtrsRR;
-    set<rentRow*, compareRows>::iterator iter;
+    // Множину покажчиків на об'єкти RentRow (по одному на мешканця)
+    set<RentRow*, CompareRows> setPtrsRR;
+    set<RentRow*, CompareRows>::iterator iter;
 public:
-    ~rentRecord();
-    void insertRent(int, int, float);
-    void Display();
-    float getSumOfRents(); // Сума усіх платежів
-}; // <------> Кінець класу rentRecord
+    ~RentRecord();
 
-class rentInputScreen {
+    void insertRent(int, int, float);
+
+    void Display();
+
+    float getSumOfRents(); // Сума усіх платежів
+}; // <------> Кінець класу RentRecord
+
+class RentInputScreen {
 private:
-    tenantList* ptrTenantList;
-    rentRecord* ptrRentRecord;
+    TenantList* ptrTenantList;
+    RentRecord* ptrRentRecord;
     string renterName;
     float rentPaid;
     int month;
     int aptNo;
 public:
-    rentInputScreen(tenantList* ptrTL, rentRecord* ptrRR):
-    ptrTenantList(ptrTL), ptrRentRecord(ptrRR)
-    { /*тут пусто*/ }
-    void getRent(); // Орендна плата одного мешканця за один місяць
-}; // <------> Кінець класу rentInputScreen
+    RentInputScreen(TenantList* ptrTL, RentRecord* ptrRR) :
+            ptrTenantList(ptrTL), ptrRentRecord(ptrRR) { /*тут пусто*/ }
 
-class expense {
+    void getRent(); // Орендна плата одного мешканця за один місяць
+}; // <------> Кінець класу RentInputScreen
+
+class Expense {
 public:
     int month, day;
     string category, payee;
     float amount;
-    expense() { }
-    expense(int m, int d, string c, string p, float a):
-    month(m), day(d), category(c), payee(p), amount(a)
-    { /* тут порожньо! */ }
 
-    friend bool operator < (const expense&, const expense&);
-    friend bool operator == (const expense&, const expense&);
+    Expense() {}
+
+    Expense(int m, int d, string c, string p, float a) :
+            month(m), day(d), category(c), payee(p), amount(a) { /* тут порожньо! */ }
+
+    friend bool operator<(const Expense&, const Expense&);
+
+    friend bool operator==(const Expense&, const Expense&);
+
     // Потрібно для виведення
-    friend ostream& operator << (ostream&, const expense&);
-}; // <------> Кінець класу expense
+    friend ostream& operator<<(ostream&, const Expense&);
+}; // <------> Кінець класу Expense
 
 // Функціональний об'єкт порівняння витрат
-class compareDates {
+class CompareDates {
 public:
-    bool operator () (expense*, expense*) const;
+    bool operator()(Expense*, Expense*) const;
     // Функціональний об'єкт порівняння витрат
 };
 
-class compareCategories {
+class CompareCategories {
 public:
-    bool operator () (expense*, expense*) const;
+    bool operator()(Expense*, Expense*) const;
 };
 
-class expenseRecord {
+class ExpenseRecord {
 private:
     // Вектор покажчиків на витрати
-    vector<expense*> vectPtrsExpenses;
-    vector<expense*>::iterator iter;
+    vector<Expense*> vectPtrsExpenses;
+    vector<Expense*>::iterator iter;
 public:
-    ~expenseRecord();
-    void insertExp(expense*);
+    ~ExpenseRecord();
+
+    void insertExp(Expense*);
+
     void Display();
+
     float displaySummary(); // Потрібно для річного звіту
-}; // <------> Кінець класу expenseRecord
+}; // <------> Кінець класу ExpenseRecord
 
-class expenseInputScreen {
+class ExpenseInputScreen {
 private:
-    expenseRecord* ptrExpenseRecord;
+    ExpenseRecord* ptrExpenseRecord;
 public:
-    expenseInputScreen(expenseRecord*);
-    void getExpense();
-}; // <------> Кінець класу expenseInputScreen
+    ExpenseInputScreen(ExpenseRecord*);
 
-class annualReport {
+    void getExpense();
+}; // <------> Кінець класу ExpenseInputScreen
+
+class AnnualReport {
 private:
-    rentRecord* ptrRR;
-    expenseRecord* ptrER;
+    RentRecord* ptrRR;
+    ExpenseRecord* ptrER;
     float expenses, rents;
 public:
-    annualReport(rentRecord*, expenseRecord*);
-    void Display();
-}; // <------> Кінець класу annualReport
+    AnnualReport(RentRecord*, ExpenseRecord*);
 
-class userInterface {
+    void Display();
+}; // <------> Кінець класу AnnualReport
+
+class UserInterface {
 private:
-    tenantList* ptrTenantList;
-    tenantInputScreen* ptrTenantInputScreen;
-    rentRecord* ptrRentRecord;
-    rentInputScreen* ptrRentInputScreen;
-    expenseRecord* ptrExpenseRecord;
-    expenseInputScreen* ptrExpenseInputScreen;
-    annualReport* ptrAnnualReport;
+    TenantList* ptrTenantList;
+    TenantInputScreen* ptrTenantInputScreen;
+    RentRecord* ptrRentRecord;
+    RentInputScreen* ptrRentInputScreen;
+    ExpenseRecord* ptrExpenseRecord;
+    ExpenseInputScreen* ptrExpenseInputScreen;
+    AnnualReport* ptrAnnualReport;
     char ch;
 public:
-    userInterface();
-    ~userInterface();
+    UserInterface();
+
+    ~UserInterface();
+
     void interact();
 }; // <------> Кінець класу userInterfac
 

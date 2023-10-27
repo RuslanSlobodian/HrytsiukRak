@@ -4,8 +4,33 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        landlord.cpp \
+        AnnualReport.cpp \
+        Expense.cpp \
+        ExpenseInputScreen.cpp \
+        ExpenseRecord.cpp \
+        RentInputScreen.cpp \
+        RentRecord.cpp \
+        RentRow.cpp \
+        Tenant.cpp \
+        TenantInputScreen.cpp \
+        TenantList.cpp \
+        UserInterface.cpp \
+        globalFunctions.cpp \
         main.cpp
 
 HEADERS += \
-    landlord.h
+    AnnualReport.h \
+    Expense.h \
+    ExpenseInputScreen.h \
+    ExpenseRecord.h \
+    RentInputScreen.h \
+    RentRecord.h \
+    RentRow.h \
+    Tenant.h \
+    TenantInputScreen.h \
+    TenantList.h \
+    UserInterface.h \
+    globalFunctions.h
+
+DISTFILES += \
+    CMakeLists.txt

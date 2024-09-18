@@ -7,7 +7,7 @@ using namespace std;
 
 // Визначення шаблонної функції
 template<typename aType>
-void swapAB(aType &a, aType &b) {
+void swapAB(aType& a, aType& b) {
     aType tmp;                  // Створення тимчасової змінної
     tmp = a;
     a = b;

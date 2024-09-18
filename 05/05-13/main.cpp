@@ -13,6 +13,7 @@ public:
         this->c = c;
         cout << "Створення об'єкта класу BaseA" << endl;
     }
+
     ~BaseA() { cout << "Руйнування об'єкта класу BaseA" << endl; }
 };
 
@@ -24,6 +25,7 @@ public:
         this->f = f;
         cout << "Створення об'єкта класу BaseB" << endl;
     }
+
     ~BaseB() { cout << "Руйнування об'єкта класу BaseB" << endl; }
 };
 

@@ -6,14 +6,13 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     system("chcp 65001");
-    list<char> listOfChars; 	// Створення порожнього списку
+    list<char> listOfChars;    // Створення порожнього списку
     list<char> listOfCharsReversed; // Створення порожнього списку
 
     // Поміщаємо значення у список
-    for(int i=0; i<10; i++)
+    for (int i = 0; i < 10; i++)
         listOfChars.push_back('A' + i);
 
     // Відображаємо початковий вміст списку
@@ -23,7 +22,7 @@ int main()
 
     // Видаляємо елементи із списку listOfChars і поміщаємо їх
     // у список listOfCharsReversed у зворотному порядку
-    while(!listOfChars.empty()) {
+    while (!listOfChars.empty()) {
         ptr = listOfChars.begin();
         cout << *ptr << " ";
         listOfCharsReversed.push_front(*ptr);
@@ -36,7 +35,7 @@ int main()
     cout << listOfCharsReversed.size() << endl;
     cout << "Реверсний вмiст списку: ";
     ptr = listOfCharsReversed.begin();
-    while(ptr != listOfCharsReversed.end()) {
+    while (ptr != listOfCharsReversed.end()) {
         cout << *ptr << " ";
         ptr++;
     }

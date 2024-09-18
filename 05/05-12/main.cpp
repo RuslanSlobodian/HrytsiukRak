@@ -13,6 +13,7 @@ public:
         this->c = c;
         cout << "Створення об'єкта класу BaseClass" << endl;
     }
+
     ~BaseClass() { cout << "Руйнування об'єкта класу BaseClass" << endl; }
 };
 

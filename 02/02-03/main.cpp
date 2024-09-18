@@ -43,6 +43,7 @@ double MyClass::getData() {
 }
 
 int main() {
+    system("chcp 65001");
     // Створення та ініціалізація двох об'єктів
     MyClass objectA(1);
     MyClass objectB(2);

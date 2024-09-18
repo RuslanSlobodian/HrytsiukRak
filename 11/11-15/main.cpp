@@ -13,6 +13,7 @@ public:
     MyClass(int a, int b) : a(a), b(b) {}
 
     int getA() const { return a; }
+
     int getB() const { return b; }
 };
 

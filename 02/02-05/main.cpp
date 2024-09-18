@@ -29,6 +29,7 @@ void MyClass::func() {          // Надання значень членам-д
 }
 
 int main() {
+    system("chcp 65001");
     MyClass object;             // Створення об'єкта класу
     object.setA(5);          // Надання значень атрибутам
     cout << "Об'єкт object пiсля виклику функцiї object.setA(5): " << object.getA() << " ";

@@ -26,7 +26,7 @@ public:
 int main() {
     system("chcp 65001");
     BaseClass baseClassObject;  // Створення об'єкта базового класу
-    BaseClass *baseClassPtr;    // Створення вказівника на об'єкт базового класу
+    BaseClass* baseClassPtr;    // Створення вказівника на об'єкт базового класу
     FirstDerived firstDerivedObject;    // Створення об'єкта похiдного класу
     SecondDerived secondDerivedObject;  // Створення об'єкта похiдного класу
     baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового класу

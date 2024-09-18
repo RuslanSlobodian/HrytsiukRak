@@ -19,7 +19,7 @@ public:
 
 int main() {
     MyClass object;             // Створення об'єкта класу
-    MyClass *ptr;               // Створення вказівника на об'єкт класу MyClass
+    MyClass* ptr;               // Створення вказівника на об'єкт класу MyClass
 
     object.setNumber(1);        // Отримуємо прямий доступ до об'єкта object
     object.showNumber();

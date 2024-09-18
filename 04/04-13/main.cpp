@@ -9,7 +9,7 @@ using namespace std;            // Використання стандартно
 class StrClass {                // Оголошення класового типу
     char charArray[80];
 public:
-    StrClass(const char *str = "") {
+    StrClass(const char* str = "") {
         strcpy(charArray, str);
     }
 

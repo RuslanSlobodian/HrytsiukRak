@@ -55,6 +55,5 @@ int main() {
     cout << "Вмiст об'єкта objectB: " << objectB.getData() << endl;
 
     //system("PAUSE");
-    //
-    // return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

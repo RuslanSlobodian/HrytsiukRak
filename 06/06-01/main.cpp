@@ -9,7 +9,7 @@ using namespace std;
 class BaseClass {               // Оголошення базового класу
     char author[80];
 public:
-    void setAuthor(const char *author) { strcpy(this->author, author); }
+    void setAuthor(const char* author) { strcpy(this->author, author); }
 
     void showAuthor() { cout << "Автор: " << this->author << endl; }
 };
@@ -17,16 +17,16 @@ public:
 class DerivedClass : public BaseClass { // Оголошення похідного класу
     char title[80];
 public:
-    void setTitle(const char *title) { strcpy(this->title, title); }
+    void setTitle(const char* title) { strcpy(this->title, title); }
 
     void showTitle() { cout << "Назва: " << this->title << endl; }
 };
 
 int main() {
     system("chcp 65001");
-    BaseClass *baseClassPtr;    // Створення вказівника на об'єкт базового класу
+    BaseClass* baseClassPtr;    // Створення вказівника на об'єкт базового класу
     BaseClass baseClassObject;  // Створення об'єкта базового класу
-    DerivedClass *derivedClassPtr;      // Створення вказівника на об'єкт похідного класу
+    DerivedClass* derivedClassPtr;      // Створення вказівника на об'єкт похідного класу
     DerivedClass derivedClassObject;    // Створення об'єкта похідного класу
     // Доступ до об'єкта базового класу через вказівник baseClassPtr
     baseClassPtr = &baseClassObject;    // Присвоєння вказівнику адреси об'єкта базового класу

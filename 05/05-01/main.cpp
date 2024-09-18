@@ -73,7 +73,8 @@ void PassengerCar::show(string str) {
 
 int main() {
     system("chcp 65001");
-    Truck truck1, truck2;
+    Truck truck1;
+    Truck truck2;
     PassengerCar car;
     // iнiцiалiзацiя об'єкта типу вантажiвка
     truck1.setWheelsNumber(18);

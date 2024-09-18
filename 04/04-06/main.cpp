@@ -19,7 +19,7 @@ public:
         this->z = z;
     }
 
-    Coordinates(const Coordinates &source){
+    Coordinates(const Coordinates& source) {
         this->x = source.x;
         this->y = source.y;
         this->z = source.z;
@@ -31,9 +31,9 @@ public:
 
     // Ці функції для перевизначення оператора інкремента "++"
     // використовують посилальні параметри
-    friend Coordinates operator++(Coordinates &obi);
+    friend Coordinates operator++(Coordinates& obi);
 
-    friend Coordinates operator++(Coordinates &obi, int notused);
+    friend Coordinates operator++(Coordinates& obi, int notUsed);
 
     void show(string str);
 };
@@ -58,7 +58,7 @@ Coordinates Coordinates::operator=(Coordinates obj) {
 
 // Перевизначення префіксної форми унарного оператора інкремента "++" з використанням
 // "дружньої" функції класу. Для цього необхідне використання посилального параметра
-Coordinates operator++(Coordinates &obi) {
+Coordinates operator++(Coordinates& obi) {
     obi.x++;
     obi.y++;
     obi.z++;
@@ -67,7 +67,7 @@ Coordinates operator++(Coordinates &obi) {
 
 // Перевизначення постфіксної форми унарного оператора інкремента "++" з використанням
 // "дружньої" функції класу. Для цього необхідне використання посилального параметра
-Coordinates operator++(Coordinates &obi, int notused) {
+Coordinates operator++(Coordinates& obi, int notUsed) {
     Coordinates tmp = obi;
     obi.x++;
     obi.y++;

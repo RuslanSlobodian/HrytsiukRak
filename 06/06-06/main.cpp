@@ -51,7 +51,7 @@ public:
 
 int main() {
     system("chcp 65001");
-    Figure *figurePtr;          // Створення вказівника на об'єкт базового класу
+    Figure* figurePtr;          // Створення вказівника на об'єкт базового класу
     Triangle triangle;          // Створення об'єкта похiдного класу
     Rectangle rectangle;        // Створення об'єкта похiдного класу
     Circle circle;              // Створення об'єкта похiдного класу

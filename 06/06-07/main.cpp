@@ -43,8 +43,8 @@ class Circle : public Figure {
 
 int main() {
     system("chcp 65001");
-    Figure *figurePtr;          // Створення вказівника на об'єкт базового класу
-//        Figure figure; 	        // Помилка: створення цього об'єкта є неможливим!
+    Figure* figurePtr;          // Створення вказівника на об'єкт базового класу
+//        Figure figure; 	    // Помилка: створення цього об'єкта є неможливим!
     triangle triangle;          // Створення об'єкта похiдного класу
     rectangle rectangle;        // Створення об'єкта похiдного класу
 //    Circle circle; 	        // Помилка: створення цього об'єкта є неможливим!

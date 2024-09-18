@@ -6,7 +6,7 @@
 using namespace std;
 
 template<typename aType>
-void swapAB(aType &a, aType &b) {
+void swapAB(aType& a, aType& b) {
     aType tmp;  // Створення тимчасової змiнної
 
     tmp = a;
@@ -16,7 +16,7 @@ void swapAB(aType &a, aType &b) {
 }
 
 // Ця функцiя перевизначає узагальнену версiю функцiї swapAB() для параметрiв типу int
-void swapAB(int &a, int &b) {
+void swapAB(int& a, int& b) {
     int tmp;
     tmp = a;
     a = b;

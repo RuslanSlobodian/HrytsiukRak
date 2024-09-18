@@ -7,11 +7,11 @@
 using namespace std;
 
 class StrClass {                // Оголошення класового типу
-    char *charPtr;
+    char* charPtr;
 public:
     StrClass() { charPtr = nullptr; }
 
-    StrClass(const StrClass &object); // Оголошення конструктора копії
+    StrClass(const StrClass& object); // Оголошення конструктора копії
     ~StrClass() {
         if (charPtr) {
             delete[] charPtr;
@@ -19,19 +19,19 @@ public:
         }
     }
 
-    void show(const char *c) { cout << c << charPtr << endl; }
+    void show(const char* c) { cout << c << charPtr << endl; }
 
-    void set(const char *str);
+    void set(const char* str);
 };
 
 // Визначення конструктора копії
-StrClass::StrClass(const StrClass &object) {
+StrClass::StrClass(const StrClass& object) {
     charPtr = new char[strlen(object.charPtr) + 1];
     strncpy(charPtr, object.charPtr, sizeof(object.charPtr) + 1);
 }
 
 // Завантаження рядка
-void StrClass::set(const char *str) {
+void StrClass::set(const char* str) {
     charPtr = new char[strlen(str) + 1];
     strncpy(charPtr, str, sizeof(str) + 1);
 }

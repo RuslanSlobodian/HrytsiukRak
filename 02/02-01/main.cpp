@@ -34,6 +34,7 @@ double MyClass::outputData() {
 }
 
 int main() {
+    system("chcp 65001");
     // Створення двох об'єктів класу MyClass
     MyClass objectA;
     MyClass objectB;

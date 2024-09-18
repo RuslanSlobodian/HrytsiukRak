@@ -9,7 +9,7 @@
 using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
-    int *p;
+    int* p;
 public:
     MyClass(int c) {
         p = new int;

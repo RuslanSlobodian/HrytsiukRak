@@ -18,7 +18,7 @@ public:
         this->z = z;
     }
 
-    Coordinates(const Coordinates &source){
+    Coordinates(const Coordinates& source) {
         this->x = source.x;
         this->y = source.y;
         this->z = source.z;
@@ -29,7 +29,7 @@ public:
     Coordinates operator++();   // Префіксна форма оператора інкремента "++"
 
     // Постфіксна форма оператора інкремента "++"
-    Coordinates operator++(int notused);
+    Coordinates operator++(int notUsed);
 
     // Префіксна форма унарного оператора зміни знаку "-"
     Coordinates operator-();
@@ -66,7 +66,7 @@ Coordinates Coordinates::operator++() {
 }
 
 // Перевизначення постфіксної форми унарного оператора інкремента "++"
-Coordinates Coordinates::operator++(int notused) {
+Coordinates Coordinates::operator++(int notUsed) {
     Coordinates tmp = *this; // Збереження початкового значення об'єкта
     x++; // Інкремент координат x, y і z
     y++;

@@ -6,7 +6,7 @@
 using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
-    int *p;
+    int* p;
 public:
     MyClass(int c) {            // Визначення звичайного конструктора
         p = new int;
@@ -14,7 +14,7 @@ public:
         cout << "Видiлення p-пам'ятi звичайним конструктором" << endl;
     }
 
-    MyClass(const MyClass &sourceObject) { // Визначення конструктора копії
+    MyClass(const MyClass& sourceObject) { // Визначення конструктора копії
         p = new int;
         *p = *sourceObject.p;
         cout << "Видiлення p-пам'ятi конструктором копiї" << endl;

@@ -16,6 +16,7 @@ public:
     }
 
     int getA() const { return a; }
+
     int getB() const { return b; }
 };
 

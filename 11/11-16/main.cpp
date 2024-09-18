@@ -7,8 +7,7 @@ using namespace std;
 
 extern "C" void cFunction();
 
-int main()
-{
+int main() {
     system("chcp 65001");
     cFunction();
 
@@ -17,8 +16,7 @@ int main()
 }
 
 // Ця функція буде скомпонована як С-функція
-void cFunction()
-{
+void cFunction() {
     cout << "Ця функцiя скомпонована як С-функцiя" << endl;
 }
 

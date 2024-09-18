@@ -22,7 +22,7 @@ class SecondDerived : public FirstDerived { // Клас SecondDerived вивед
 int main() {
     system("chcp 65001");
     BaseClass baseClassObject;  // Створення об'єкта базового класу
-    BaseClass *baseClassPtr;    // Створення вказівника на об'єкт базового класу
+    BaseClass* baseClassPtr;    // Створення вказівника на об'єкт базового класу
     FirstDerived firstDerivedObject;    // Створення об'єкта похiдного класу
     SecondDerived secondDerivedObject;  // Створення об'єкта похiдного класу
 
@@ -32,7 +32,7 @@ int main() {
     baseClassPtr->show();       // Доступ до функції show() класу FirstDerived
     baseClassPtr = &secondDerivedObject;// Присвоєння вказівнику адреси об'єкта похідного класу
     baseClassPtr->show();       // Тут здійснюється звернення до методу show() класу FirstDerived,
-                                // оскільки у класі SecondDerived він не перевизначений
+    // оскільки у класі SecondDerived він не перевизначений
     //	system("PAUSE");
     return EXIT_SUCCESS;
 }

@@ -13,7 +13,7 @@ int main() {
     string s2;
 
     c = s1.find("string");
-    if (c != (int)string::npos) {
+    if (c != (int) string::npos) {
         cout << "Збiг виявлений у позицiї " << c << endl;   // 9 бо 4 UTF символи + 1 пробіл
         cout << "Залишок рядка такий: ";
         s2.assign(s1, c, s1.size());

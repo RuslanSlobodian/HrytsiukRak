@@ -9,6 +9,7 @@ class MyClass {
     int a;
 public:
     explicit MyClass(int a) { this->a = a; }
+
     int getData() const { return a; }
 };
 

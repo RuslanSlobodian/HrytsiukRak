@@ -12,7 +12,7 @@ public:
         cout << "Звичайний конструктор" << endl;
     }
 
-    MyClass(const MyClass &object) {
+    MyClass(const MyClass& object) {
         cout << "Конструктор копiї" << endl;
     }
 };

@@ -9,7 +9,7 @@ using namespace std;            // Використання стандартно
 class MyClass {                // Оголошення класового типу
     char str[80];
 public:
-    void set(char *s) {
+    void set(char* s) {
         strncpy(str, s, 80);
     }
 

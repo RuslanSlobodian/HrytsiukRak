@@ -8,12 +8,14 @@ using namespace std;            // Використання стандартно
 class BaseA {                   // Оголошення базового класу BaseA
 public:
     BaseA() { cout << "Створення об'єкта класу BaseA" << endl; }
+
     ~BaseA() { cout << "Руйнування об'єкта класу BaseA" << endl; }
 };
 
 class BaseB {                   // Оголошення базового класу BaseB
 public:
     BaseB() { cout << "Створення об'єкта класу BaseB" << endl; }
+
     ~BaseB() { cout << "Руйнування об'єкта класу BaseB" << endl; }
 };
 
@@ -21,6 +23,7 @@ public:
 class Derived : public BaseA, public BaseB {
 public:
     Derived() { cout << "Створення об'єкта класу Derived" << endl; }
+
     ~Derived() { cout << "Руйнування об'єкта класу Derived" << endl; }
 };
 

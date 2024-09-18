@@ -10,7 +10,7 @@ class TimerClass {              // Оголошення класового ти�
     int s;
 public:
     // Задавання секунд у вигляді символьного рядка
-    TimerClass(const char *str) {
+    TimerClass(const char* str) {
         s = atoi(str);
     }
 

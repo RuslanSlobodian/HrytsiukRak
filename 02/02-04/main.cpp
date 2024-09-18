@@ -7,7 +7,8 @@ using namespace std;            // Використання стандартно
 
 class MyClass {                 // Оголошення класового типу
 private:
-    int c, d;
+    int c;
+    int d;
 public:
     MyClass(int a, int b);      // Оголошення параметризованого конструктора
     void show();
@@ -25,6 +26,7 @@ void MyClass::show() {
 }
 
 int main() {
+    system("chcp 65001");
     // Створення та ініціалізація двох об'єктів за допомогою параметризованого конструктора
     MyClass objectX(10, 20);
     MyClass objectY(0, 0);

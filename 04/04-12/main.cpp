@@ -18,7 +18,7 @@ public:
         this->z = z;
     }
 
-    Coordinates(const Coordinates &source){
+    Coordinates(const Coordinates& source) {
         this->x = source.x;
         this->y = source.y;
         this->z = source.z;

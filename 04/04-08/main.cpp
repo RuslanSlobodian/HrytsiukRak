@@ -7,10 +7,10 @@
 using namespace std;
 
 class StrClass {                // Оголошення класового типу
-    char *charPtr;
+    char* charPtr;
 public:
     StrClass();                 // Оголошення звичайного конструктора
-    StrClass(const StrClass &object); // Оголошення конструктора копії
+    StrClass(const StrClass& object); // Оголошення конструктора копії
     ~StrClass() {               // Оголошення деструктора
         if (charPtr) {
             delete[]charPtr;
@@ -20,10 +20,10 @@ public:
 
     void show(string str) { cout << str << charPtr << endl; }
 
-    void set(const char *str);
+    void set(const char* str);
 
     // Перевизначений оператор присвоєння
-    StrClass operator=(const StrClass &object);
+    StrClass operator=(const StrClass& object);
 };
 
 // Визначення звичайного конструктора
@@ -32,19 +32,19 @@ StrClass::StrClass() {
 }
 
 // Визначення конструктора копії
-StrClass::StrClass(const StrClass &object) {
+StrClass::StrClass(const StrClass& object) {
     charPtr = new char[strlen(object.charPtr) + 1];
     strncpy(charPtr, object.charPtr, sizeof(object.charPtr) + 1);
 }
 
 // Завантаження рядка
-void StrClass::set(const char *str) {
+void StrClass::set(const char* str) {
     charPtr = new char[strlen(str) + 1];
     strncpy(charPtr, str, sizeof(str) + 1);
 }
 
 // Перевизначення оператора присвоєння "="
-StrClass StrClass::operator=(const StrClass &object) {
+StrClass StrClass::operator=(const StrClass& object) {
     // Якщо виділена область пам'яті має недостатній розмір, виділяється нова область пам'яті
     if (strlen(object.charPtr) > strlen(charPtr)) {
         delete[]charPtr;

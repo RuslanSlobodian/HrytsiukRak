@@ -19,7 +19,7 @@ public:
 
 int main() {
     MyClass objects[2];         //Оголошення масиву з 2 об'єктів
-    MyClass *ptr;               //Оголошення вказівника на об'єкт класу MyClass
+    MyClass* ptr;               //Оголошення вказівника на об'єкт класу MyClass
 
     objects[0].setNumber(10);   // Прямий доступ до об'єктів
     objects[1].setNumber(20);

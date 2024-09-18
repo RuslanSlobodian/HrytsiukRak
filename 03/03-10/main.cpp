@@ -9,7 +9,7 @@
 using namespace std;            // Використання стандартного простору імен
 
 class MyClass {                 // Оголошення класового типу
-    int *p;
+    int* p;
 public:
     MyClass(int c) {
         p = new int;
@@ -26,7 +26,7 @@ public:
 };
 
 // Ця функція НЕ створює проблем
-void function(MyClass &object) {// Передача об'єкта за посиланням
+void function(MyClass& object) {// Передача об'єкта за посиланням
     cout << "*p = " << object.getData() << endl;
 }
 

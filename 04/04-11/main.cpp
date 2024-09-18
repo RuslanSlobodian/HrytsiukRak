@@ -16,11 +16,11 @@ public:
         }
     }
 
-    int &operator[](int i);
+    int& operator[](int i);
 };
 
 // Забезпечення контролю потрапляння індексу масиву в допустимий інтервал його перебування
-int &ArrayClass::operator[](int i) {
+int& ArrayClass::operator[](int i) {
     if (i < 0 || i > (SIZE - 1)) {
         cout << endl << "Значення iндексу " << i << " виходить за межi допустимого iнтервалу" << endl;
         system("PAUSE");

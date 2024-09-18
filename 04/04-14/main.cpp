@@ -11,7 +11,7 @@ using namespace std;
 class StrClass {                // Оголошення класового типу
     char charArray[80];
 public:
-    StrClass(const char *str = "") {
+    StrClass(const char* str = "") {
         strcpy(charArray, str);
     }
 
@@ -24,13 +24,13 @@ public:
     StrClass operator+(StrClass object);
 
     // Конкатенація об'єкта з рядком, що завершується нулем
-    StrClass operator+(const char *str);
+    StrClass operator+(const char* str);
 
     // Присвоєння одного об'єкта типу StrClass іншому
-    StrClass &operator=(StrClass object);
+    StrClass& operator=(StrClass object);
 
     // Присвоєння рядка об'єкту типу StrClass, що завершується нулем
-    StrClass& operator=(const char *str);
+    StrClass& operator=(const char* str);
 
     void show(string str) { cout << str << charArray << endl; }
 };
@@ -48,12 +48,12 @@ StrClass& StrClass::operator=(StrClass object) {
     return *this;
 }
 
-StrClass& StrClass::operator=(const char *str) {
+StrClass& StrClass::operator=(const char* str) {
     strcpy(charArray, str);
     return *this;
 }
 
-StrClass StrClass::operator+(const char *str) {
+StrClass StrClass::operator+(const char* str) {
     StrClass tmp;               // Створення тимчасового об'єкта
     strcpy(tmp.charArray, charArray);
     strcat(tmp.charArray, str);

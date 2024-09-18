@@ -21,6 +21,7 @@ public:
     friend Coordinates operator*(Coordinates lhs, int number);
 
     friend Coordinates operator*(int number, Coordinates rhs);
+
     friend Coordinates operator/(Coordinates lhs, int number);
 
     friend Coordinates operator/(int number, Coordinates obi);

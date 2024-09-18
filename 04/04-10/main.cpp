@@ -17,7 +17,7 @@ public:
         }
     }
 
-    int &operator[](int i) {
+    int& operator[](int i) {
         return array[i];
     }
 };

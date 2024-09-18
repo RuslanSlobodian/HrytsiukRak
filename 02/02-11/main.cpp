@@ -19,7 +19,7 @@ public:
         height = _height;
     }
 
-    void getWidthAndHeight(int &_width, int &_height) {
+    void getWidthAndHeight(int& _width, int& _height) {
         _width = width;
         _height = height;
     }
@@ -36,6 +36,7 @@ public:
 char names[3][12] = {"low", "medium", "high"};
 
 int main() {
+    system("chcp 65001");
     DisplayClass monitors[3];
 
     monitors[0].setResolution(low);

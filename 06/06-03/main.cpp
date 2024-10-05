@@ -20,6 +20,7 @@ class SecondDerived : public BaseClass { // Клас SecondDerived виведе�
 };
 
 int main() {
+    system("chcp 65001");
     BaseClass baseClassObject;  // Створення об'єкта базового класу
     BaseClass* baseClassPtr;    // Створення вказівника на об'єкт базового класу
     FirstDerived firstDerivedObject;    // Створення об'єкта похідного класу
